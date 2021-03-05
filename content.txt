@@ -1583,3 +1583,8 @@ IntStream.range(0, list.size()).mapToObj(idx -> new IndexedValue<>(idx, list.get
 - рассказать о lazy-initialization exception
 
 - partitioning vs sharding vs sectioning
+
+- describe Jsonb in PostgreSQL
+https://scalegrid.io/blog/using-jsonb-in-postgresql-how-to-effectively-store-index-json-data-in-postgresql/#3
+https://postgrespro.ru/docs/postgresql/9.6/datatype-json
+
