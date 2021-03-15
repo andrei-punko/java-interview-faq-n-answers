@@ -3526,6 +3526,22 @@ IntStream.range(0, list.size()).mapToObj(idx -> new IndexedValue<>(idx, list.get
 <a href="https://scalegrid.io/blog/using-jsonb-in-postgresql-how-to-effectively-store-index-json-data-in-postgresql/#3">https://scalegrid.io/blog/using-jsonb-in-postgresql-how-to-effectively-store-index-json-data-in-postgresql/#3</a></br>
 <a href="https://postgrespro.ru/docs/postgresql/9.6/datatype-json">https://postgrespro.ru/docs/postgresql/9.6/datatype-json</a></br>
 </p>
+<p align="justify">
+<b>Postgres JSONB indexes</b></br>
+<a href="https://dzone.com/articles/using-jsonb-in-postgresql-how-to-effectively-store">https://dzone.com/articles/using-jsonb-in-postgresql-how-to-effectively-store</a></br>
+Support 3 types of indexes: GIN, BTREE and HASH</br>
+</p>
+<p align="justify">
+= GIN supports two operator classes:</br>
+    jsonb_ops (default) - ?, ?|, ?&, @>, @@, @? [Index each key and value in the JSONB element]</br>
+    jsonb_pathops - @>, @@, @? [Index only the values in the JSONB element; index has reduced size]</br>
+</p>
+<p align="justify">
+= B-tree indexes are the most common index type in relational databases. However, if you index an entire JSONB column with a B-tree index, the only useful operators are '=', '<', '>', '>=', '<='.</br>
+</p>
+<p align="justify">
+= If you are only interested in the "=" operator, then Hash indexes become interesting. For example, consider the case when we are looking for a particular tag on a book. The element to be indexed can be a top level element or deeply nested.</br>
+</p>
 
 </div>
 

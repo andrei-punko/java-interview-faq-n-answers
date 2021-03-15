@@ -3041,3 +3041,14 @@ IntStream.range(0, list.size()).mapToObj(idx -> new IndexedValue<>(idx, list.get
 https://scalegrid.io/blog/using-jsonb-in-postgresql-how-to-effectively-store-index-json-data-in-postgresql/#3
 https://postgrespro.ru/docs/postgresql/9.6/datatype-json
 
+- Postgres JSONB indexes
+https://dzone.com/articles/using-jsonb-in-postgresql-how-to-effectively-store
+Support 3 types of indexes: GIN, BTREE and HASH
+
+= GIN supports two operator classes:
+    jsonb_ops (default) - ?, ?|, ?&, @>, @@, @? [Index each key and value in the JSONB element]
+    jsonb_pathops - @>, @@, @? [Index only the values in the JSONB element; index has reduced size]
+
+= B-tree indexes are the most common index type in relational databases. However, if you index an entire JSONB column with a B-tree index, the only useful operators are '=', '<', '>', '>=', '<='.
+
+= If you are only interested in the "=" operator, then Hash indexes become interesting. For example, consider the case when we are looking for a particular tag on a book. The element to be indexed can be a top level element or deeply nested.
