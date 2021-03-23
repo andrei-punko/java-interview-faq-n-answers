@@ -2920,17 +2920,17 @@ A full-text index is a special type of index that provides index access for full
 
 - Describe date/time types in Java 8
 https://www.baeldung.com/java-8-date-time-intro
-- LocalDate represents a date in ISO format (yyyy-MM-dd) without time.
-- LocalTime represents time without a date.
-- LocalDateTime is used to represent a combination of date and time.
-- ZonedDateTime used when we need to deal with time zone specific date and time.
-- ZoneId is an identifier used to represent different zones. There are about 40 different time zones and the ZoneId are used to represent them as follows.
-- OffsetDateTime is an immutable representation of a date-time with an offset. This class stores all date and time fields, to a precision of nanoseconds, as well as the offset from UTC/Greenwich.
-- Period represents a quantity of time in terms of years, months and days.
-- Duration class represents a quantity of time in terms of seconds and nano seconds.
-- DateTimeFormatter provides various standard formatting options.
+= LocalDate represents a date in ISO format (yyyy-MM-dd) without time.
+= LocalTime represents time without a date.
+= LocalDateTime is used to represent a combination of date and time.
+= ZonedDateTime used when we need to deal with time zone specific date and time.
+= ZoneId is an identifier used to represent different zones. There are about 40 different time zones and the ZoneId are used to represent them as follows.
+= OffsetDateTime is an immutable representation of a date-time with an offset. This class stores all date and time fields, to a precision of nanoseconds, as well as the offset from UTC/Greenwich.
+= Period represents a quantity of time in terms of years, months and days.
+= Duration class represents a quantity of time in terms of seconds and nano seconds.
+= DateTimeFormatter provides various standard formatting options.
 https://www.baeldung.com/java-clock
-- Clock provides access to an instant in time using the best available system clock, and to be used as a time provider which can be effectively stubbed for testing purposes.
+= Clock provides access to an instant in time using the best available system clock, and to be used as a time provider which can be effectively stubbed for testing purposes.
 
 - как реализовать параллельное вычитывание месседжей из брокера?
 https://habr.com/ru/post/466585/
