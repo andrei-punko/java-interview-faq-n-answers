@@ -641,7 +641,7 @@ Serializable класс содержит поле static final long serialVersio
 Т.е. мы явно указываем менеджеру драйверов, какой драйвер загружать. При этом jar с драйвером должен быть в classpath, либо явно указываться путь к jar. После загрузки драйвера можно работать с БД. Весь код работы с БД:<br/>
 <pre>
 Class.forName(“mysql.Driver”)
-Connection connection = DriverManager.getConnection(<dbUrl>,<login>,<password>);
+Connection connection = DriverManager.getConnection(&lt;dbUrl&gt;,&lt;login&gt;,&lt;password&gt;);
 Statement st = connection.createStatement();
 ResultSet rs = st.executeQuery(...);
 while (rs.next()) {
@@ -770,25 +770,25 @@ Xml namespace – пространство имен xml. Синтаксис об
 <p align="justify">
 <b>Напишите well-formed xml-документ, содержащий информацию о трёх user’ах (ID user’а – атрибут, имя и отдел – вложенные элементы).</b><br/>
 <pre>
-<?xml version="1.0" encoding="UTF-8"?>
-<users>
-<user id=”id1”>
-       <name>asdasdsd</name>
-       <department>adasd</department>
-</user>
-...
-</users>
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;users&gt;
+  &lt;user id=”id1”&gt;
+    &lt;name&gt;asdasdsd&lt;/name&gt;
+	&lt;department&gt;adasd&lt;/department&gt;
+  &lt;/user&gt;
+  ...
+&lt;/users&gt;
 </pre>
 </p>
 <p align="justify">
 <b>Сколько строк будет получено в результате запроса SELECT * FROM TABLE_A, TABLE_B?</b><br/>
 <pre>
 a. +------------+   +------------+
-b. | TABLE_A |    | TABLE_B |
+b. | TABLE_A    |   | TABLE_B    |
 c. +------------+   +------------+
-d. | 1            |   | 4            |
-e. | 2            |   | 5            |
-f. | 3            |   +------------+
+d. | 1          |   | 4          |
+e. | 2          |   | 5          |
+f. | 3          |   +------------+
 g. +------------+
 </pre>
 Будет получено 6 строк: все комбинации пар строк из двух таблиц (их кол-во 3*2=6).<br/>
@@ -837,9 +837,9 @@ public boolean equals(Object obj) {
 Nested-класс (содержащийся в другом классе), имеет доступ ко всем private членам содержащего его класса. Таким образом, public или protected nested-класс, наследуемый подклассом, имеет косвенный доступ ко всем private членам суперкласса.<br/>
 Проверка класса объекта: if(obj instanceof ClassName) { ... }.<br/>
 <pre>
-							non-static метод суперкласса	static метод суперкласса
-non-static метод подкласса	Переопределение					Ошибка компиляции
-static метод подкласса		Ошибка компиляции				Скрытие
+                            non-static метод суперкласса    static метод суперкласса
+non-static метод подкласса  Переопределение                 Ошибка компиляции
+static метод подкласса      Ошибка компиляции               Скрытие
 </pre>
 </p>
 <p align="justify">
