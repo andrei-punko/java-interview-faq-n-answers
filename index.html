@@ -20,7 +20,6 @@
     </h1>
     <hr/>
 <p align="justify">
-
 <b>Links</b><br/>
 <a href="http://javamex.com">http://javamex.com</a><br/>
 <a href="http://javarevisited.blogspot.com">http://javarevisited.blogspot.com</a><br/>
@@ -132,12 +131,12 @@ public class Singleton {		// On Demand Holder idiom
 <p align="justify">
 <b>Советы по использованию</b><br/>
 1) Использовать нормальную (не ленивую) инициализацию везде где это возможно (п.2)<br/>
-2) Для статических полей использовать On Demand Holder idom (п.2.3)<br/>
-3) Для простых полей использовать Double Chedked Lock & volatile idom (п.2.2)<br/>
-4) Во всех остальных случаях использовать Syncronized accessor (п.2.1)<br/>
+2) Для статических полей использовать On Demand Holder idiom (п.2.3)<br/>
+3) Для простых полей использовать Double Checked Lock & volatile idiom (п.2.2)<br/>
+4) Во всех остальных случаях использовать Synchronized accessor (п.2.1)<br/>
 </p>
 <p align="justify">
-<b>Struts.</b><br/>
+<b>Struts</b><br/>
 Struts framework – среда для разработки Java EE web-приложений с помощью технологий Java Servlet и JSP. Способствует разработке приложений с архитектурой, соответствующей паттерну MVC, Model2. Включает следующие основные ф-ции:<br/>
 1. Controller servlet, который координирует запросы к соответствующим Action классам, созданным разработчиком. Те обращаются к модели; модель возвращает строку “ActionForward”, сообщая контроллеру, какую страницу отправить клиенту. Класс ActionForm помогает передавать данные между моделью и представлением.<br/>
 2. Библиотеки JSP-тегов и их поддержка в сервлете-контроллере для создания интерактивных приложений, основанных на веб-формах<br/>
@@ -645,7 +644,7 @@ Connection connection = DriverManager.getConnection(&lt;dbUrl&gt;,&lt;login&gt;,
 Statement st = connection.createStatement();
 ResultSet rs = st.executeQuery(...);
 while (rs.next()) {
-...
+    ...
 }
 rs.close();
 st.close();
@@ -858,7 +857,6 @@ Throws в методах:<br/>
 • Конструктор подкласса должен включить в свой throws все классы исключений или их суперклассы из блока throws конструктора суперкласса, к которому он обращается при создании объекта<br/>
 </p>
 <p align="justify">
-
 <b>Даны две таблицы: 1. Employee (id_employee, salary,  department_id_fk); 2. Department (id_department, department_name). Написать sql-запрос, который выберет все названия отделов, суммарная зарплата сотрудников в которых больше тысячи.</b><br/>
 SELECT DPT.department_name FROM Department DPT WHERE DPT.id_department in (SELECT department_id_fk FROM Employee GROUP BY department_id_fk HAVING SUM(salary)>1000)<br/>
 </p>
@@ -1727,7 +1725,6 @@ Traceroute — служебная компьютерная программа, �
 Traceroute входит в поставку большинства современных сетевых ОС. В системах Microsoft Windows эта программа носит название tracert, а в системах GNU/Linux, Cisco IOS и Mac OS — traceroute. <br/>
 </p>
 <p align="justify">
-
 <b>Как перемешать массив?</b><br/>
 <b>Дан набор строк вида "assa dfgg aga", найти 3й палиндром в строке / удалить все палиндромы</b><br/>
 <b>Реализовать бинарный серч</b><br/>
@@ -2999,7 +2996,6 @@ GRASP содержит 9 шаблонов:<br/>
 Шаблон защищает элементы от изменения другими элементами (объектами или подсистемами) с помощью вынесения взаимодействия в фиксированный интерфейс, через который (и только через который) возможно взаимодействие между элементами. Поведение может варьироваться лишь через создание другой реализации интерфейса. <br/>
 </p>
 <p align="justify">
-
 <b>Рассказать про Gitflow</b><br/>
 <a href="https://www.atlassian.com/ru/git/tutorials/comparing-workflows/gitflow-workflow">https://www.atlassian.com/ru/git/tutorials/comparing-workflows/gitflow-workflow</a><br/>
 Gitflow Workflow — это модель рабочего процесса Git. Gitflow идеально подходит для проектов, в которых цикл релиза протекает по графику. Помимо веток feature в рамках этого рабочего процесса используются отдельные ветки для подготовки, поддержки и регистрации выпусков.<br/>
@@ -3065,7 +3061,6 @@ Git merge hotfix_branch<br/>
 Когда работа над веткой исправления hotfix завершена, она сливается в ветки develop и master.<br/>
 </p>
 <p align="justify">
-
 <b>Написать сократитель ссылок</b><br/>
 1. записываем строку из символов англ. алфавита и цифр: abc..zABC..Z01..9 (62 символа)<br/>
 2. записываем исходную ссылку в БД, кодируем полученную ID записи по основанию 62 в цифро-буквенную строку<br/>
@@ -3096,7 +3091,6 @@ Git merge hotfix_branch<br/>
 Совпадает с первым вариантом<br/>
 </p>
 <p align="justify">
-
 <b>Паттерн Стратегия</b><br/>
 <a href="https://refactoring.guru/ru/design-patterns/strategy">https://refactoring.guru/ru/design-patterns/strategy</a><br/>
 Стратегия — это поведенческий паттерн проектирования, который определяет семейство схожих алгоритмов и помещает каждый из них в собственный класс, после чего алгоритмы можно взаимозаменять прямо во время исполнения программы.<br/>
@@ -3125,14 +3119,12 @@ Git merge hotfix_branch<br/>
 = Inversion of Control can be achieved through various mechanisms such as: Strategy design pattern, Service Locator pattern, Factory pattern, and Dependency Injection (DI).<br/>
 </p>
 <p align="justify">
-
 <b>What Is Dependency Injection?</b><br/>
 <a href="https://www.baeldung.com/inversion-control-and-dependency-injection-in-spring">https://www.baeldung.com/inversion-control-and-dependency-injection-in-spring</a><br/>
 Dependency injection is a pattern through which to implement IoC, where the control being inverted is the setting of object's dependencies.<br/>
 The act of connecting objects with other objects, or “injecting” objects into other objects, is done by an assembler rather than by the objects themselves.<br/>
 </p>
 <p align="justify">
-
 <b>Describe Asynchronous and Reactive approaches</b><br/>
 <a href="https://dzone.com/articles/5-things-to-know-about-reactive-programming">https://dzone.com/articles/5-things-to-know-about-reactive-programming</a><br/>
 = Asynchronous<br/>
@@ -3866,7 +3858,6 @@ for (AuthorDto author : authors) {
 Hibernate then generates an SQL statement that only selects the columns that are mapped by the attributes that you reference in the constructor call. This often reduces the number of selected columns and improves the performance even further.<br/>
 </p>
 <p align="justify">
-
 <b>Partitioning vs sharding</b><br/>
 <a href="https://stackoverflow.com/questions/20771435/database-sharding-vs-partitioning/20772839">https://stackoverflow.com/questions/20771435/database-sharding-vs-partitioning/20772839</a><br/>
 Partitioning is more a generic term for dividing data across tables or databases. Sharding is one specific type of partitioning, part of what is called horizontal partitioning.<br/>
@@ -3916,6 +3907,7 @@ Support 3 types of indexes: GIN, BTREE and HASH<br/>
 <p align="justify">
 = If you are only interested in the "=" operator, then Hash indexes become interesting. For example, consider the case when we are looking for a particular tag on a book. The element to be indexed can be a top level element or deeply nested.<br/>
 </p>
+
 </div>
 
 <!-- Optional JavaScript; choose one of the two! -->

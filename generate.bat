@@ -1,1 +1,1 @@
-java -jar github-pages-parser.jar content.txt template.html index.html
+java -jar github-pages-content-generator.jar content.txt template.html index.html

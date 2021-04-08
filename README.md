@@ -10,8 +10,8 @@ https://andrei-punko.github.io/java-interview-q-n-a
 - Run [generate.bat](generate.bat)
 - Commit changes to repo
 
-### Parser for generation the site by content from [citations.txt](citations.txt) using [template.html](template.html) placed here:
+### Generation the site by content from [citations.txt](citations.txt) using [template.html](template.html) placed here:
 
-https://github.com/andrei-punko/github-pages-parser
+https://github.com/andrei-punko/github-pages-content-generator
 
-If needed - change parser logic, build jar-file and replace existing [github-pages-parser.jar](github-pages-parser.jar)
+If needed - change generator logic, build jar-file and replace existing [github-pages-content-generator.jar](github-pages-content-generator.jar)

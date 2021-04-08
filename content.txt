@@ -569,7 +569,7 @@ Connection connection = DriverManager.getConnection(<dbUrl>,<login>,<password>);
 Statement st = connection.createStatement();
 ResultSet rs = st.executeQuery(...);
 while (rs.next()) {
-...
+    ...
 }
 rs.close();
 st.close();
