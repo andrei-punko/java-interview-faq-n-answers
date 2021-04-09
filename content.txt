@@ -424,16 +424,16 @@ t.start();				//Запуск потока
 * Написать и запустить поток, бесконечно печатающий в консоль строку
 ```
 public CustomThread implements Runnable {
-private final String str;
-public CustomThread(String str) {
-	this.str = str;
+    private final String str;
+    public CustomThread(String str) {
+        this.str = str;
+    }
+    @Override
+    public void run() {
+           while(true) { System.out.println(str); }
+    }
 }
-@Override
-public void run() {
-       while(true) { System.out.println(str); }
-}
-}
-…
+...
 CustomThread work = new CustomThread(“Hello!”);
 Thread th = new Thread(work);
 th.start();
@@ -624,7 +624,7 @@ public class Main {
 ```
 Если не будет введен аргумент (имя файла), еще при получении элемента массива по индексу будет брошено исключение ArrayIndexOutOfBoundsException.
 
-* Есть такой блок кода:
+* Какую из трёх исключительных ситуаций мы получим на выходе в данном блоке кода? Почему?
 ```
 try {
     throw new Exception1();
@@ -634,18 +634,19 @@ try {
 	throw new Exception3();
 }
 ```
-Какую из трёх исключительных ситуаций мы получим на выходе? Почему?
+Будет брошено Exception3. Java finally block is always executed whether exception is handled or not.
 
+* Что будет возвращено в данном блоке кода ниже? Почему?
 ```
 try {
-       return 1;
+    return 1;
 } catch(Exception e) {
-       return 2;
+    return 2;
 } finally {
-       return 3;
+    return 3;
 }
 ```
-Что будет возвращено? Почему?
+Вернется 3.
 
 • Секция finally может быть не выполнена только в случае использования потоков-демонов (они завершают выполнение метода run без использования секции finally). Блок finally может вызвать потерю исключений, поэтому: в приведенном примере Exception1 - перехватывается, Exception2 – теряется, Exception3 – бросается
 • Будет возвращено значение 3 (см. предыдущий ответ)
