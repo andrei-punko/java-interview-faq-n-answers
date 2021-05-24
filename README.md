@@ -2,7 +2,7 @@
 
 ### Link to site
 
-https://andrei-punko.github.io/java-interview-q-n-a
+https://andrei-punko.github.io/java-interview-faq-n-answers
 
 ### Update instructions:
 - Modify [content.txt](content.txt) if needed
