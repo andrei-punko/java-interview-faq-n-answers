@@ -1424,11 +1424,15 @@ select a.id, a.name, count(a.id) from Authors a left join Books b on a.id=b.auth
 - Типы ссылок в Java
 
 - Что сделали в Java 8 с HashMap для улучшения перфоманса?
+Java 7: https://habr.com/ru/post/128017/
+Java 8: https://javarush.ru/groups/posts/2496-podrobnihy-razbor-klassa-hashmap
+Тест производительности: https://coderlessons.com/articles/java/uluchsheniia-proizvoditelnosti-hashmap-v-java-8
+Если кратко - после некоторого порога заменяют связные списки на двоичные деревья, что приводит к сложности поиска O(log(n)) вместо O(n)
 
 - перечислить и вкратце описать технологии стека J2EE
 servlets, xml, jdbc, jta, jndi, jsp+jstl, jpa, jax-ws+jax-rs, jms
 
-IoC - привести пример
+- IoC - привести пример
 IoC - важный принцип ООП, используемый для уменьшения зацепления.
 It's a design principle in which custom-written portions of a computer program receive the flow of control from a generic framework
 Has analogy with Hollywood Principle: "Don't call us, we'll call you"
@@ -1451,6 +1455,21 @@ The SAX push model means that it is the SAX parser that calls your handler, not 
 The StAX pull model means that it is your "handler" class that calls the parser, not the other way around. Thus your handler class controls when the parser is to move on to the next event in the input. In other words, your handler "pulls" the XML events out of the parser. Additionally, you can stop the parsing at any point
 
 - описать жизненный цикл Spring-бина
+https://itsobes.ru/JavaSobes/opishite-zhiznennyi-tsikl-spring-bean/
+1. Инстанцирование объекта. Техническое начало жизни бина, работа конструктора его класса;
+2. Установка свойств из конфигурации бина, внедрение зависимостей;
+3. Нотификация aware-интерфейсов. BeanNameAware, BeanFactoryAware и другие. Мы уже писали о таких интерфейсах ранее. Технически, выполняется системными подтипами BeanPostProcessor, и совпадает с шагом 4;
+4. Пре-инициализация – метод postProcessBeforeInitialization() интерфейса BeanPostProcessor;
+5. Инициализация. Разные способы применяются в таком порядке:
+• Метод бина с аннотацией @PostConstruct из стандарта JSR-250 (рекомендуемый способ);
+• Метод afterPropertiesSet() бина под интерфейсом InitializingBean;
+• Init-метод. Для отдельного бина его имя устанавливается в параметре определения initMethod. В xml-конфигурации можно установить для всех бинов сразу, с помощью default-init-method;
+6. Пост-инициализация – метод postProcessAfterInitialization() интерфейса BeanPostProcessor.
+
+Когда IoC-контейнер завершает свою работу, мы можем кастомизировать этап штатного уничтожения бина. Три альтернативных способа «деинициализации» вызываются в том же порядке, что симметричные им методы инициализации:
+1. Метод с аннотацией @PreDestroy;
+2. Метод с именем, которое указано в свойстве destroyMethod определения бина (или в глобальном default-destroy-method);
+3. Метод destroy() интерфейса DisposableBean.
 
 - как запустить джоб после старта Spring-контекста?
 
