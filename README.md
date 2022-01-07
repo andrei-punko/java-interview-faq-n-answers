@@ -10,6 +10,8 @@ https://andrei-punko.github.io/java-interview-faq-n-answers
 - Run [generate.bat](generate.bat)
 - Commit changes to repo
 
+Instead 2 last steps you could use [generate-n-commit-n-push.bat](generate-n-commit-n-push.bat)
+
 ### Sources of generator to create a site by content from text file using template placed here:
 
 https://github.com/andrei-punko/github-pages-content-generator
