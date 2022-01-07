@@ -1,6 +1,6 @@
 ## Java interview questions and answers
 
-### Link to site
+### Link to generated site:
 
 https://andrei-punko.github.io/java-interview-faq-n-answers
 
@@ -10,7 +10,7 @@ https://andrei-punko.github.io/java-interview-faq-n-answers
 - Run [generate.bat](generate.bat)
 - Commit changes to repo
 
-### Generation the site by content from [citations.txt](citations.txt) using [template.html](template.html) placed here:
+### Sources of generator to create a site by content from text file using template placed here:
 
 https://github.com/andrei-punko/github-pages-content-generator
 
