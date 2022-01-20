@@ -3414,6 +3414,8 @@ Support 3 types of indexes: GIN, BTREE and HASH
 
 = If you are only interested in the "=" operator, then Hash indexes become interesting. For example, consider the case when we are looking for a particular tag on a book. The element to be indexed can be a top level element or deeply nested.
 
+- найти петли в древовидной структуре
+
 * Links
 http://javamex.com
 http://javarevisited.blogspot.com
