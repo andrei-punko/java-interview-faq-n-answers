@@ -400,6 +400,7 @@ MyRunnable r = new MyRunnable();	//Инстанциирование потока
 Thread t = new Thread(r);
 t.start();				//Запуск потока
 ```
+
 Проще говоря, Thread – работник, Runnable – работа.
 Предпочтительнее 2й способ, т.к. расширяя Thread, наш класс уже не сможет быть потомком другого класса.
 Состояния потока:
@@ -763,6 +764,7 @@ SELECT DPT.department_name FROM Department DPT WHERE DPT.id_department in (SELEC
 
 * Переложить на БД файловую систему (есть папки, в них могут быть другие папки и файлы), свести всё в одну таблицу, составить запрос на получение всех папок 2ого уровня вложенности (находящихся в корневой директории).
 С точки зрения файловой системы файлы и папки идентичны: они имеют некоторое имя и сами могут содержаться в некоторой папке. Корневая директория имеет нулевую вложенность, PARENT_ID=0.
+```
 CREATE TABLE "FS" (
        "ID" NUMBER NOT NULL ENABLE, 
        "NAME" VARCHAR2(255), 
@@ -770,8 +772,10 @@ CREATE TABLE "FS" (
 )
 SELECT fs2.name from fs fs2 where fs2.parent_id in (SELECT fs1.id as id1 from fs fs1 where fs1.parent_id in (SELECT fs0.id as id0 FROM fs fs0 where fs0.parent_id=0)), или, кратче:
 SELECT name from fs where parent_id in (SELECT id from fs where parent_id in (SELECT id FROM fs where parent_id=0))
+```
 
 * SQL statements: SELECT, INSERT, UPDATE, DELETE.
+```
 SELECT
    [DISTINCT | DISTINCTROW | ALL] select_expression,...
    [FROM table_references]
@@ -779,6 +783,7 @@ SELECT
      [GROUP BY {unsigned_integer | col_name | formula}]
      [HAVING where_definition]
      [ORDER BY {unsigned_integer | col_name | formula} [ASC | DESC], ...]
+```
 где
 WHERE - определение, какие строки должны быть выбраны или включены в GROUP BY
 GROUP BY - объединение строк с общими значениями в элементы меньшего набора строк
@@ -2832,9 +2837,11 @@ select t2.col1 from T1 t1 left join T2 t2 on t2.col2 == null;
 Файл spring.factories нужен, чтобы избежать сканирования пакетов для нахождения классов автоконфигурации (с аннотациями).
 Его нужно поместить в папку META-INF получающегося jar-файла. В нем надо указать наши AutoConfiguration-классы:
 # Auto Configure
+```
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
 org.springframework.boot.autoconfigure.amqp.RabbitAutoConfiguration,\
 org.springframework.boot.autoconfigure.cassandra.CassandraAutoConfiguration
+```
 
 - как сделать stream из листа/массива?
 из листа: list.stream()
@@ -3430,15 +3437,17 @@ Support 3 types of indexes: GIN, BTREE and HASH
 - найти петли в древовидной структуре
 
 - Для двух примеров, сказать чему будут равны b1 и b2
+```
 Integer i1 = 3;
 Integer i2 = 3;
 boolean b1 = i1 == i2;
-boolean b2 = i1.equals(i2);
+boolean b2 = i1.equals(i2); // true
 
 Integer i1 = 3000;
 Integer i2 = 3000;
 boolean b1 = i1 == i2;
-boolean b2 = i1.equals(i2);
+boolean b2 = i1.equals(i2); // false
+```
 
 - Как запустить некоторый код асинхронно, предложить разные способы. Есть ли что-то для этого в Spring?
 
@@ -3472,6 +3481,7 @@ https://ru.wikipedia.org/wiki/%D0%9D%D0%BE%D1%80%D0%BC%D0%B0%D0%BB%D1%8C%D0%BD%D
 - Рассказать о наследовании таблиц в БД
 https://langtoday.com/?p=319
 https://www.postgresql.org/docs/current/ddl-inherit.html
+```
 CREATE TABLE insects (
 	id serial
 	name text,
@@ -3481,6 +3491,7 @@ CREATE TABLE insects (
 CREATE TABLE bees (
 	can_collect_honey smallint
 ) INHERITS (insects);
+```
 
 Если мы сделаем Insert в одну из этих таблиц, то добавляемая строка появится только в той таблицу, в которую мы ее добавляем.
 

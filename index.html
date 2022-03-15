@@ -468,6 +468,8 @@ MyRunnable r = new MyRunnable();	//Инстанциирование потока
 Thread t = new Thread(r);
 t.start();				//Запуск потока
 </pre>
+</p>
+<p align="justify">
 Проще говоря, Thread – работник, Runnable – работа.<br/>
 Предпочтительнее 2й способ, т.к. расширяя Thread, наш класс уже не сможет быть потомком другого класса.<br/>
 Состояния потока:<br/>
@@ -867,23 +869,27 @@ SELECT DPT.department_name FROM Department DPT WHERE DPT.id_department in (SELEC
 <p align="justify">
 <b>Переложить на БД файловую систему (есть папки, в них могут быть другие папки и файлы), свести всё в одну таблицу, составить запрос на получение всех папок 2ого уровня вложенности (находящихся в корневой директории).</b><br/>
 С точки зрения файловой системы файлы и папки идентичны: они имеют некоторое имя и сами могут содержаться в некоторой папке. Корневая директория имеет нулевую вложенность, PARENT_ID=0.<br/>
-CREATE TABLE "FS" (<br/>
-       "ID" NUMBER NOT NULL ENABLE, <br/>
-       "NAME" VARCHAR2(255), <br/>
-       "PARENT_ID" NUMBER<br/>
-)<br/>
-SELECT fs2.name from fs fs2 where fs2.parent_id in (SELECT fs1.id as id1 from fs fs1 where fs1.parent_id in (SELECT fs0.id as id0 FROM fs fs0 where fs0.parent_id=0)), или, кратче:<br/>
-SELECT name from fs where parent_id in (SELECT id from fs where parent_id in (SELECT id FROM fs where parent_id=0))<br/>
+<pre>
+CREATE TABLE "FS" (
+       "ID" NUMBER NOT NULL ENABLE, 
+       "NAME" VARCHAR2(255), 
+       "PARENT_ID" NUMBER
+)
+SELECT fs2.name from fs fs2 where fs2.parent_id in (SELECT fs1.id as id1 from fs fs1 where fs1.parent_id in (SELECT fs0.id as id0 FROM fs fs0 where fs0.parent_id=0)), или, кратче:
+SELECT name from fs where parent_id in (SELECT id from fs where parent_id in (SELECT id FROM fs where parent_id=0))
+</pre>
 </p>
 <p align="justify">
 <b>SQL statements: SELECT, INSERT, UPDATE, DELETE.</b><br/>
-SELECT<br/>
-   [DISTINCT | DISTINCTROW | ALL] select_expression,...<br/>
-   [FROM table_references]<br/>
-     [WHERE where_definition]<br/>
-     [GROUP BY {unsigned_integer | col_name | formula}]<br/>
-     [HAVING where_definition]<br/>
-     [ORDER BY {unsigned_integer | col_name | formula} [ASC | DESC], ...]<br/>
+<pre>
+SELECT
+   [DISTINCT | DISTINCTROW | ALL] select_expression,...
+   [FROM table_references]
+     [WHERE where_definition]
+     [GROUP BY {unsigned_integer | col_name | formula}]
+     [HAVING where_definition]
+     [ORDER BY {unsigned_integer | col_name | formula} [ASC | DESC], ...]
+</pre>
 Где<br/>
 WHERE - определение, какие строки должны быть выбраны или включены в GROUP BY<br/>
 GROUP BY - объединение строк с общими значениями в элементы меньшего набора строк<br/>
@@ -3269,9 +3275,11 @@ Select t2.col1 from T1 t1 left join T2 t2 on t2.col2 == null;<br/>
 Файл spring.factories нужен, чтобы избежать сканирования пакетов для нахождения классов автоконфигурации (с аннотациями).<br/>
 Его нужно поместить в папку META-INF получающегося jar-файла. В нем надо указать наши AutoConfiguration-классы:<br/>
 # Auto Configure<br/>
-Org.springframework.boot.autoconfigure.EnableAutoConfiguration=\<br/>
-Org.springframework.boot.autoconfigure.amqp.RabbitAutoConfiguration,\<br/>
-Org.springframework.boot.autoconfigure.cassandra.CassandraAutoConfiguration<br/>
+<pre>
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+org.springframework.boot.autoconfigure.amqp.RabbitAutoConfiguration,\
+org.springframework.boot.autoconfigure.cassandra.CassandraAutoConfiguration
+</pre>
 </p>
 <p align="justify">
 <b>Как сделать stream из листа/массива?</b><br/>
@@ -3962,16 +3970,17 @@ Support 3 types of indexes: GIN, BTREE and HASH<br/>
 </p>
 <p align="justify">
 <b>Для двух примеров, сказать чему будут равны b1 и b2</b><br/>
-Integer i1 = 3;<br/>
-Integer i2 = 3;<br/>
-Boolean b1 = i1 == i2;<br/>
-Boolean b2 = i1.equals(i2);<br/>
-</p>
-<p align="justify">
-Integer i1 = 3000;<br/>
-Integer i2 = 3000;<br/>
-Boolean b1 = i1 == i2;<br/>
-Boolean b2 = i1.equals(i2);<br/>
+<pre>
+Integer i1 = 3;
+Integer i2 = 3;
+boolean b1 = i1 == i2;
+boolean b2 = i1.equals(i2); // true
+
+Integer i1 = 3000;
+Integer i2 = 3000;
+boolean b1 = i1 == i2;
+boolean b2 = i1.equals(i2); // false
+</pre>
 </p>
 <p align="justify">
 <b>Как запустить некоторый код асинхронно, предложить разные способы. Есть ли что-то для этого в Spring?</b><br/>
@@ -4013,16 +4022,17 @@ Boolean b2 = i1.equals(i2);<br/>
 <b>Рассказать о наследовании таблиц в БД</b><br/>
 <a href="https://langtoday.com/?p=319">https://langtoday.com/?p=319</a><br/>
 <a href="https://www.postgresql.org/docs/current/ddl-inherit.html">https://www.postgresql.org/docs/current/ddl-inherit.html</a><br/>
-CREATE TABLE insects (<br/>
-	id serial<br/>
-	name text,<br/>
-	size float<br/>
-);<br/>
-</p>
-<p align="justify">
-CREATE TABLE bees (<br/>
-	can_collect_honey smallint<br/>
-) INHERITS (insects);<br/>
+<pre>
+CREATE TABLE insects (
+	id serial
+	name text,
+	size float
+);
+
+CREATE TABLE bees (
+	can_collect_honey smallint
+) INHERITS (insects);
+</pre>
 </p>
 <p align="justify">
 Если мы сделаем Insert в одну из этих таблиц, то добавляемая строка появится только в той таблицу, в которую мы ее добавляем.<br/>
