@@ -3451,6 +3451,8 @@ boolean b2 = i1.equals(i2); // false
 
 - Как запустить некоторый код асинхронно, предложить разные способы. Есть ли что-то для этого в Spring?
 
+- Задачка "запустить 3 работы параллельно"
+
 - Статическое и динамическое связывание. Рассказать на примере дженериков
 
 - Привести примеры Immutable-классов в JDK
@@ -3504,6 +3506,44 @@ CREATE TABLE bees (
 Одна таблица может наследовать сразу от нескольких, также и у одного родителя может быть много потомков (с помощью пустой родительской таблицы и потомков можно создавать т.н. партиции (Partition), например, чтобы разнести большие массивы данных по какому-то параметру по разным таблицам для более быстрого доступа и т.п. — в этом случае в каждой партиционной таблице надо поставить проверку на те данные, которые туда пишутся).
 
 - Класс имплементит 2 интерфейса, с объявленными одинаковыми методами. В самом классе - описан метод нужной сигнатуры. Рассказать, будет ли это работать
+
+- Предложить структуру данных, чтобы хранить в ней структуру папок и файлов. Описать алгоритм, который измерит размер содержимого определенной папки.
+```
+@Builder
+@AllArgsConstructor
+public static class Node {
+    List<Node> children;
+    NodeType type;
+    Long size;
+
+    public enum NodeType {
+        FILE, FOLDER
+    }
+
+    public long calcSize() {
+        return calcSize(this);
+    }
+
+    private long calcSize(Node node) {
+        if (node.type == Node.NodeType.FILE) {
+            return node.size;
+        }
+
+        long result = 0;
+        for (var child : node.children) {
+            result += calcSize(child);
+        }
+        return result;
+    }
+}
+```
+
+- Предложить схему БД, чтобы хранить в ней структуру папок и файлов
+Node(id, name, parent_id, type, size, create_ts)
+
+- COPY vs ADD in Dockerfile
+https://docs.docker.com/develop/develop-images/dockerfile_best-practices/
+Although ADD and COPY are functionally similar, generally speaking, COPY is preferred. That’s because it’s more transparent than ADD. COPY only supports the basic copying of local files into the container, while ADD has some features (like local-only tar extraction and remote URL support) that are not immediately obvious. Consequently, the best use for ADD is local tar file auto-extraction into the image.
 
 * Links
 http://javamex.com
