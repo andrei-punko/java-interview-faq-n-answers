@@ -3545,6 +3545,33 @@ Node(id, name, parent_id, type, size, create_ts)
 https://docs.docker.com/develop/develop-images/dockerfile_best-practices/
 Although ADD and COPY are functionally similar, generally speaking, COPY is preferred. That’s because it’s more transparent than ADD. COPY only supports the basic copying of local files into the container, while ADD has some features (like local-only tar extraction and remote URL support) that are not immediately obvious. Consequently, the best use for ADD is local tar file auto-extraction into the image.
 
+* Как добиться того, чтобы один Docker-контейнер ждал полного старта другого контейнера?
+https://stackoverflow.com/questions/31746182/docker-compose-wait-for-container-x-before-starting-y
+Использовать healthcheck:
+https://docs.docker.com/compose/compose-file/#healthcheck
+```
+version: "3"
+
+services:
+  rabbitmq: # login guest:guest
+    image: rabbitmq:management
+    ports:
+      - "15672:15672"
+	...
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:15672"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+
+  app:
+    build: ./app/
+    depends_on:
+      - rabbitmq
+	...
+```
+(для версий более ранних, чем 3 - см. ссылку выше)
+
 * Links
 http://javamex.com
 http://javarevisited.blogspot.com

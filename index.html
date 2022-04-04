@@ -3989,6 +3989,9 @@ boolean b2 = i1.equals(i2); // false
 <b>Как запустить некоторый код асинхронно, предложить разные способы. Есть ли что-то для этого в Spring?</b><br/>
 </p>
 <p align="justify">
+<b>Задачка "запустить 3 работы параллельно"</b><br/>
+</p>
+<p align="justify">
 <b>Статическое и динамическое связывание. Рассказать на примере дженериков</b><br/>
 </p>
 <p align="justify">
@@ -4054,6 +4057,75 @@ CREATE TABLE bees (
 </p>
 <p align="justify">
 <b>Класс имплементит 2 интерфейса, с объявленными одинаковыми методами. В самом классе - описан метод нужной сигнатуры. Рассказать, будет ли это работать</b><br/>
+</p>
+<p align="justify">
+<b>Предложить структуру данных, чтобы хранить в ней структуру папок и файлов. Описать алгоритм, который измерит размер содержимого определенной папки.</b><br/>
+<pre>
+@Builder
+@AllArgsConstructor
+public static class Node {
+    List&lt;Node&gt; children;
+    NodeType type;
+    Long size;
+
+    public enum NodeType {
+        FILE, FOLDER
+    }
+
+    public long calcSize() {
+        return calcSize(this);
+    }
+
+    private long calcSize(Node node) {
+        if (node.type == Node.NodeType.FILE) {
+            return node.size;
+        }
+
+        long result = 0;
+        for (var child : node.children) {
+            result += calcSize(child);
+        }
+        return result;
+    }
+}
+</pre>
+</p>
+<p align="justify">
+<b>Предложить схему БД, чтобы хранить в ней структуру папок и файлов</b><br/>
+Node(id, name, parent_id, type, size, create_ts)<br/>
+</p>
+<p align="justify">
+<b>COPY vs ADD in Dockerfile</b><br/>
+<a href="https://docs.docker.com/develop/develop-images/dockerfile_best-practices/">https://docs.docker.com/develop/develop-images/dockerfile_best-practices/</a><br/>
+Although ADD and COPY are functionally similar, generally speaking, COPY is preferred. That’s because it’s more transparent than ADD. COPY only supports the basic copying of local files into the container, while ADD has some features (like local-only tar extraction and remote URL support) that are not immediately obvious. Consequently, the best use for ADD is local tar file auto-extraction into the image.<br/>
+</p>
+<p align="justify">
+<b>Как добиться того, чтобы один Docker-контейнер ждал полного старта другого контейнера?</b><br/>
+<a href="https://stackoverflow.com/questions/31746182/docker-compose-wait-for-container-x-before-starting-y">https://stackoverflow.com/questions/31746182/docker-compose-wait-for-container-x-before-starting-y</a><br/>
+Использовать healthcheck:<br/>
+<a href="https://docs.docker.com/compose/compose-file/#healthcheck">https://docs.docker.com/compose/compose-file/#healthcheck</a><br/>
+<pre>
+version: "3"
+
+services:
+  rabbitmq: # login guest:guest
+    image: rabbitmq:management
+    ports:
+      - "15672:15672"
+	...
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:15672"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+
+  app:
+    build: ./app/
+    depends_on:
+      - rabbitmq
+	...
+</pre>
+(для версий более ранних, чем 3 - см. ссылку выше)<br/>
 </p>
 <p align="justify">
 <b>Links</b><br/>
