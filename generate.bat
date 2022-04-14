@@ -1,1 +1,4 @@
-java -jar github-pages-content-generator.jar content.txt template.html index.html
+
+del *.html
+
+java -jar bin/github-pages-content-generator.jar src/content.txt bin/template.html index.html
