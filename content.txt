@@ -3572,6 +3572,11 @@ services:
 ```
 (для версий более ранних, чем 3 - см. ссылку выше)
 
+- native Spring application
+- r2dbc driver
+- Kafka partitions
+- Quarkus
+
 * Links
 http://javamex.com
 http://javarevisited.blogspot.com
