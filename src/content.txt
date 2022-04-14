@@ -1,4 +1,7 @@
 
+! Java interview Q&A
+** Java interview questions and answers
+
 * Исключения, роль наследования в обработке исключений. Что знаешь о try, final/finally/finalize. Секция throws в сигнатуре метода
 Ключевое слово final означает, что final-класс не может быть расширен, метод – переопределен, значение переменной – изменено.
 В блок try помещается критический блок кода, который может бросать исключения. Обработка исключений ведется в блоке catch. Блок finally выполняется всегда, кроме случая потоков-демонов и вызова System.exit(0).
@@ -3573,9 +3576,10 @@ services:
 (для версий более ранних, чем 3 - см. ссылку выше)
 
 - native Spring application
+
 - r2dbc driver
+
 - Kafka partitions
-- Quarkus
 
 * Links
 http://javamex.com
