@@ -105,13 +105,23 @@ anyMatch: A2
 Когда нет памяти в heap и когда невозможно создать нативный Thread
 
 25. Как GC определяет, что какой-то объект не используется? 
-?
+В ходе сборки мусора обнаруживает, что на него нет ссылок от других объектов
 
 26. Что такое жесткие ссылки? Откуда они?
 ?
 
 27. Что такое GC Root?
-?
+https://stackoverflow.com/questions/27186799/what-are-gc-roots-for-classes
+A garbage collection root is an object that is accessible from outside the heap.
+Memory Analyzer categorizes garbage collection roots according to the following list:
+= Class loaded by system ClassLoader
+    static field in JDK classes(java.* etc)
+= Live thread
+    stack - local variables, method params
+    java.lang.Thread instance
+= Object held as synchronization monitor
+= JNI references
+= JVM specials...
 
 28. Что такое ThreadLocal поля?
 Синглтон в рамках отдельного треда
