@@ -1550,6 +1550,7 @@ https://itsobes.ru/JavaSobes/opishite-zhiznennyi-tsikl-spring-bean/
 3. Метод destroy() интерфейса DisposableBean.
 
 - как запустить джоб после старта Spring-контекста?
+?
 
 - реализовать вручную функцию целочисленного деления int divide(int a, int b)
 ```
@@ -1564,10 +1565,12 @@ int divide(int a, int b) {
 ```
 
 - ссылки на методы
+?
 
 - в классе А определен метод а, в классе B extends A – такой же метод a, в классе C extends B – такой же метод a. Можно ли вызвать из класса C этот метод класса А?
 
 - написать (двумя способами) sql-запрос, который выведет уникальные значения данного столбца
+?
 
 - методы класса Object
 ```
@@ -3713,6 +3716,13 @@ A service client should invoke a remote service via a proxy that functions in a 
 = Service – это абстракция, которая определяет логическое множество подов и полиси, по которому получаем доступ к нему
 = Ingress exposes HTTP and HTTPS routes from outside the cluster to services within the cluster. Traffic routing is controlled by rules defined on the Ingress resource
 = Helm - package manager for Kubernetes
+
+- Как устроен Stream API внутри?
+Вызывая конвейнерные операции стрима, формируем планируемый набор операций, после чего вызовом терминальной операции - запускаем их выполнение.
+Внутри используется Spliterator, отличие его от итератора - это способность разделяться надвое. Это используется в параллельных стримах.
+
+- На каком этапе инициализируется прокси? Когда вызывается бинпостпроцессор?
+?
 
 * Links
 http://javamex.com
