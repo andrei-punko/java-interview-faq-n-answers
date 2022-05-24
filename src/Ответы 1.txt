@@ -167,7 +167,18 @@ List<Integer> results = integers.stream()
 32. Слышал когда-нибудь про MDC?
 https://www.baeldung.com/mdc-in-log4j-2-logback
 MDC (Mapped Diagnostic Context) provides a way to enrich log messages with information that could be unavailable in the scope where the logging actually occurs but that can be indeed useful to better track the execution of the program.
-?
+MDC allows us to fill a map-like structure with pieces of information that are accessible to the appender when the log message is actually written.
+MDC implementations typically use ThreadLocals to store the contextual information. That's an easy and reasonable way to achieve thread-safety.
+Here's the high-level idea:
+= Fill the MDC with pieces of information that we want to make available to the appender
+= Then log a message
+= And finally clear the MDC
+It is enough to change the conversion pattern, using the %X{} placeholder for each entry contained in the MDC we want to be logged:
+```
+log4j.appender.consoleAppender.layout.ConversionPattern=
+  %-4r [%t] %5p %c{1} %x - %m - tx.id=%X{transaction.id} tx.owner=%X{transaction.owner}%n
+```
+Always remember to clean up the MDC context at the end of each execution. Another approach is to use ThreadPoolExecutor hooks and perform necessary cleanups after each execution. 
 
 33. Что такое Spring и какие проблемы он решает? 
 было уже
@@ -189,7 +200,9 @@ Controller – это класс, который отвечает за подг�
 См. Ответы 4, вопрос 11
 
 39. Чем отличается scope prototype если смотреть в разрезе жизненного цикла бина?
-?
+https://docs.spring.io/spring-framework/docs/3.0.0.M3/reference/html/ch04s04.html
+There is one quite important thing to be aware of when deploying a bean in the prototype scope, in that the lifecycle of the bean changes slightly. Spring does not manage the complete lifecycle of a prototype bean: the container instantiates, configures, decorates and otherwise assembles a prototype object, hands it to the client and then has no further knowledge of that prototype instance. This means that while initialization lifecycle callback methods will be called on all objects regardless of scope, in the case of prototypes, _any configured destruction lifecycle callbacks will not be called_. It is the responsibility of the client code to clean up prototype scoped objects and release any expensive resources that the prototype bean(s) are holding onto. (One possible way to get the Spring container to release resources used by prototype-scoped beans is through the use of a custom bean post-processor which would hold a reference to the beans that need to be cleaned up)
+In some respects, you can think of the Spring containers role when talking about a prototype-scoped bean as somewhat of a replacement for the Java 'new' operator. All lifecycle aspects past that point have to be handled by the client.
 
 40. Где хранится singleton бин?
 Доступ к нему можно получить из bean registry
@@ -251,7 +264,14 @@ public class CachedPhotosService {
 да
 
 49. Читал про Spring Test? @SpringBootTest, как написать, чтобы поднять только 1 bean? 
-?
+https://stackoverflow.com/questions/51051994/spring-context-test-with-just-one-bean
+Нужно аннотировать тест аннотацией, где указать в конфигурации только этот 1 бин:
+```
+@RunWith(SpringRunner.class)
+@SpringBootTest(properties = "spring.profiles.active=test")
+@ContextConfiguration(classes = MyTestBean.class)
+```
+В данной статье также указывается на необычность такого подхода: "It is in fact a valid way to achieve that goal; however, it is also a bit unusual to load an ApplicationContext that contains a single user bean"
 
 50. С какими NoSQL базами данных работал?
 Redis, Amazon ElastiCache, Tarantool
