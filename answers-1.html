@@ -1,0 +1,414 @@
+<!--According to https://getbootstrap.com/docs/5.0/getting-started/introduction/-->
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+
+    <title>Java interview Q&A</title>
+    <meta http-equiv="Permissions-Policy" content="interest-cohort=()"/>
+</head>
+<body>
+
+<div class="container">
+    <p align="justify">
+        <a href="index.html">Main</a>&nbsp;
+        <a href="answers-1.html">Ответы 1</a>&nbsp;
+        <a href="answers-2.html">Ответы 2</a>&nbsp;
+        <a href="answers-3.html">Ответы 3</a>&nbsp;
+        <a href="answers-4.html">Ответы 4</a>&nbsp;
+    </p>
+<p align="justify">
+<h1>Java interview questions and answers</h1><hr/>
+</p>
+<p align="justify">
+1. Какой контракт между equals() и hashCode()?<br/>
+Было уже<br/>
+</p>
+<p align="justify">
+2. Расскажи про stack и heap?<br/>
+Было уже<br/>
+</p>
+<p align="justify">
+3. Расскажи про Young Generation, Old Generation, PermGen<br/>
+Young/Old generation - это области heap-а<br/>
+PermGen (permanent generation) – в этой области хранятся загруженные классы (экземпляры класса Class<T>). Здесь же с Java 7 хранится пул строк. Не считается частью кучи.<br/>
+</p>
+<p align="justify">
+4. У объекта есть адрес памяти. И это память скорее всего ограничена каким-то размером. Какую проблему ты видишь для hashCode() который определен как адрес памяти? В <br/>
+Старой java было реализовано по адресу памяти, в новой Java работает не так. <br/>
+<a href="https://habr.com/ru/company/vk/blog/321306/">https://habr.com/ru/company/vk/blog/321306/</a><br/>
+Реализация по умолчанию hashCode() (идентификационного хеша) не имеет отношения к адресу памяти объекта, как минимум в OpenJDK.<br/>
+В HotSpot идентификационный хеш генерируется лишь раз, а затем кешируется в слове mark в заголовке объекта. Т.е. перемещения объекта после сборок мусора в памяти НЕ вызывают смену значения хэшкода.<br/>
+</p>
+<p align="justify">
+5. Если объект создался в Young Generation, объекты могут перемещаться и менять свой адрес или нет?<br/>
+В какой-то момент объект перейдет из Young Generation в Old и если мы на основе адресов памяти вычисляли хэшкод, он измениться или нет? Если изменится, с этим могут быть какие-то проблемы? Что надо сделать с объектом чтобы его вычисленный хэшкод не изменялся?<br/>
+См. ответ к вопросу 4.<br/>
+</p>
+<p align="justify">
+6. Есть класс Person с полями id и name. Эти поля должны обладать какими-то свойствами для вычисления хэшкода? Если поля будут неиммутабельными с этим могут быть проблемы? Если мы не можем гарантировать, что исходные данные immutable? <br/>
+Для вычисления хэшкода поля должны быть иммутабельными.<br/>
+Если поля будут неиммутабельными - при помещении объекта в хэшированную коллекцию его потом можно не найти.<br/>
+Если не можем гарантировать иммутабельность всех полей - возможно стоит вычислять хэш только по полю id.<br/>
+</p>
+<p align="justify">
+7. Мы можем сохранять значение хэшкода когда его вычислили?<br/>
+Если объект immutable, то значение хэшкода не изменится, поэтому может использовать его (например как ключ в мэпе)<br/>
+Если объект не-immutable, то при изменении одного из полей хэшкод может измениться<br/>
+Если вопрос был о некоем "кэшировании" вычисленного значения хэшкода - то делать этого не надо, т.к. вычисление хэшкода предполагается выполняющимся быстро и ничего не стоит вычислить его при необходимости еще раз "здесь и сейчас"<br/>
+</p>
+<p align="justify">
+8. Какой тип возвращает метод hashCode()? Какую размерность имеет int? Почему нельзя использовать long? (ответ: хэшкоды кешируются в хедере класса Object)<br/>
+Int, длиной 4 байта<br/>
+Я бы так ответил: потому что такой контракт метода hashCode - возвращать значение типа int<br/>
+?<br/>
+</p>
+<p align="justify">
+9. Какие базовые реализации коллекций ты знаешь? Расскажи про интерфейсы коллекций.<br/>
+<a href="https://habr.com/ru/post/237043/">https://habr.com/ru/post/237043/</a><br/>
+На вершине иерархии в Java Collection Framework располагаются 2 интерфейса: Collection и Map. Эти интерфейсы разделяют все коллекции, входящие во фреймворк на две части по типу хранения данных: <br/>
+= простые последовательные наборы элементов Collection и <br/>
+= наборы пар «ключ — значение» (словари) Map<br/>
+От Collection наследуются интерфейсы Set, List, Queue.<br/>
+</p>
+<p align="justify">
+Реализации коллекций:<br/>
+= Интерфейс List:<br/>
+	== ArrayList. Динамический массив объектов. Позволяет использовать null в качестве элемента,<br/>
+	== LinkedList. Двунаправленный связный список. Позволяет использовать null в качестве элемента,<br/>
+	== Vector. Динамический массив объектов, позволяет использовать null в качестве элемента. Синхронизирован. Не рекомендуется использовать, если не требуется достижения потокобезопасности.<br/>
+	== Stack. Является расширением коллекции Vector. Частично синхронизирована (все операции, кроме push). Не рекомендуется использовать, лучше ArrayDeque.<br/>
+= Интерфейс Set:<br/>
+	== HashSet. Базируется на HashMap, при добавлении в качестве ключа используется добавляемый элемент, а в качестве значения - объект-пустышка (new Object()). Из-за особенностей реализации - порядок элементов при обходе не гарантируется,<br/>
+	== LinkedHashSet. Базируется на LinkedHashMap, благодаря этому порядок элементов при обходе является идентичным порядку элементов при добавлении,<br/>
+	== TreeSet. Предоставляет возможность управлять порядком элементов в коллекции при помощи объекта Comparator, либо сохраняет элементы с использованием "natural ordering".<br/>
+= Интерфейс Map:<br/>
+	== Hashtable. Не рекомендуется использовать, лучше взять HashMap или ConcurrentHashMap. Не позволяет использовать null в качестве значения или ключа,<br/>
+	== HashMap. Не синхронизирована и позволяет использовать null как в качестве ключа, так и значения,<br/>
+	== LinkedHashMap. В отличии от HashMap, порядок итерирования равен порядку добавления элементов,<br/>
+	== TreeMap. Реализация Map, основанная на красно-чёрных деревьях. Как и LinkedHashMap является упорядоченной. По-умолчанию, коллекция сортируется по ключам с использованием принципа "natural ordering", но это поведение может быть настроено под конкретную задачу при помощи объекта Comparator, который указывается в качестве параметра при создании.<br/>
+= Интерфейс Queue:<br/>
+	== PriorityQueue. Особенностью данной очереди является возможность управления порядком элементов. По-умолчанию, элементы сортируются с использованием «natural ordering», но это поведение может быть переопределено при помощи объекта Comparator, который задаётся при создании очереди. Данная коллекция не поддерживает null в качестве элементов.<br/>
+	== ArrayDeque. Представляет собой реализацию с использованием массивов, подобно ArrayList, но не позволяет обращаться к элементам по индексу и хранение null. Рекомендуется использовать вместо Stack.<br/>
+</p>
+<p align="justify">
+10. Чем List отличается от Set?<br/>
+Список - доступ по индексу, возможны дубликаты<br/>
+Множество - содержит только уникальные элементы<br/>
+</p>
+<p align="justify">
+11. Какие нововведения появились в Java 8?<br/>
+12. Что стало возможно использовать в интерфейсах, начиная с Java 8?<br/>
+?<br/>
+</p>
+<p align="justify">
+13. Чем начиная с Java 8 отличаются абстрактные классы и интерфейсы. (ответ: в интерфейсе нельзя использовать не статические поля)<br/>
+?<br/>
+</p>
+<p align="justify">
+14. Как инстанцировать экземпляр интерфейса?<br/>
+= создать анонимный класс, определив имплементацию нужных методов in-place<br/>
+= создать динамический прокси, передав ему интерфейс в качестве параметра<br/>
+</p>
+<p align="justify">
+15. В каком варианте массив будет успешно отсортирован: (от 0 до 3 вариантов):<br/>
+1. List<String> list = new ArrayList<>(stirings);<br/>
+2. List<String> list = Arrays.asList(strings);<br/>
+3. List<String> list = List.of(strings);<br/>
+Collections.sort(list);<br/>
+?<br/>
+</p>
+<p align="justify">
+Какую реализацию List возвращает Arrays.asList? (ответ: возвращает другой ArrayList – fixed sized list)<br/>
+Какую реализацию List возвращает List.of? (ответ: возвращает ImmutableList)<br/>
+</p>
+<p align="justify">
+16. Удали дубликаты: String strings[] = {"u", "z", "c", "a", "a", "b"}<br/>
+Решение 1: Arrays.stream(strings).distinct().collect(Collectors.toSet())<br/>
+Решение 2: new LinkedHashSet<>(Arrays.asList(strings))<br/>
+</p>
+<p align="justify">
+17.  Преобразовать: List<List<String>> lists ---> List<String> list<br/>
+<pre>
+lists.stream().flatMap(Collection::stream).collect(Collectors.toList())
+</pre>
+</p>
+<p align="justify">
+18. Что будет напечатано в консоль?<br/>
+<pre>
+Stream.of("d2", "a2", "b1", "b3", "c")
+        .map(s -&gt; {
+            System.out.println("map: " + s);
+            return s.toUpperCase();
+        })
+        .anyMatch(s -&gt; {
+            System.out.println("anyMatch: " + s);
+            return s.startsWith("A");
+        });
+</pre>
+Метод anyMatch() будет применяться только до того момента, пока return не вернет true, поэтому будут напечатаны только строки для первых двух айтемов из списка:<br/>
+Map: d2<br/>
+AnyMatch: D2<br/>
+Map: a2<br/>
+AnyMatch: A2<br/>
+</p>
+<p align="justify">
+19. Какие виды GC знаешь?<br/>
+Было уже<br/>
+</p>
+<p align="justify">
+20. С каким GC работал больше всего?<br/>
+Видимо G1, потому что он по умолчанию в последних Java<br/>
+</p>
+<p align="justify">
+21. Создается новый объект. Есть вероятность того, что он будет создан сразу в Old Generation?<br/>
+Если размер объекта превышает определенную величину, JVM считает, что он очень большой, и сразу помещает объект его в Old Generation часть кучи.<br/>
+</p>
+<p align="justify">
+22. Что такое OutOfMemoryException и когда он случается? <br/>
+24. Типы OutOfMemoryException?<br/>
+Когда нет памяти в heap и когда невозможно создать нативный Thread<br/>
+</p>
+<p align="justify">
+23. Что делает Java машина перед тем, как выкинуть OOM?<br/>
+GC попробует сделать сборку мусора<br/>
+</p>
+<p align="justify">
+25. Как GC определяет, что какой-то объект не используется? <br/>
+В ходе сборки мусора обнаруживает, что на него нет ссылок от других объектов<br/>
+</p>
+<p align="justify">
+26. Что такое жесткие ссылки? Откуда они?<br/>
+?<br/>
+</p>
+<p align="justify">
+27. Что такое GC Root?<br/>
+<a href="https://stackoverflow.com/questions/27186799/what-are-gc-roots-for-classes">https://stackoverflow.com/questions/27186799/what-are-gc-roots-for-classes</a><br/>
+A garbage collection root is an object that is accessible from outside the heap.<br/>
+Memory Analyzer categorizes garbage collection roots according to the following list:<br/>
+= Class loaded by system ClassLoader<br/>
+    static field in JDK classes(java.* etc)<br/>
+= Live thread<br/>
+    stack - local variables, method params<br/>
+    java.lang.Thread instance<br/>
+= Object held as synchronization monitor<br/>
+= JNI references<br/>
+= JVM specials...<br/>
+</p>
+<p align="justify">
+28. Что такое ThreadLocal поля?<br/>
+Синглтон в рамках отдельного треда<br/>
+</p>
+<p align="justify">
+29. Что можешь сказать об этом коде:<br/>
+List<Integer> results = integers.stream()<br/>
+        .map(integer -> CompletableFuture.supplyAsync(() -> process(integer), executor))<br/>
+        .map(CompletableFuture::join)<br/>
+        .collect(Collectors.toList());<br/>
+</p>
+<p align="justify">
+Подсказки от интервьюера: как можно исключить последовательный запуск и ожидание каждого потока? (ответ: разорвать stream, собрать CompletableFuture в List и заджойнить не на intах, потому что они будут конвейерно джойнится по одной, а надо собрать List<CompletableFuture> и заджойнить и тогда они выполнятся параллельно)<br/>
+</p>
+<p align="justify">
+30. Работал ли со Spring Cloud? <br/>
+Было уже<br/>
+</p>
+<p align="justify">
+31. Логгировал ли в проекте что-нибудь? Когда логгер что-то логгирует, откуда он берет все данные? Где они все хранятся?<br/>
+?<br/>
+</p>
+<p align="justify">
+32. Слышал когда-нибудь про MDC?<br/>
+<a href="https://www.baeldung.com/mdc-in-log4j-2-logback">https://www.baeldung.com/mdc-in-log4j-2-logback</a><br/>
+MDC (Mapped Diagnostic Context) provides a way to enrich log messages with information that could be unavailable in the scope where the logging actually occurs but that can be indeed useful to better track the execution of the program.<br/>
+MDC allows us to fill a map-like structure with pieces of information that are accessible to the appender when the log message is actually written.<br/>
+MDC implementations typically use ThreadLocals to store the contextual information. That's an easy and reasonable way to achieve thread-safety.<br/>
+Here's the high-level idea:<br/>
+= Fill the MDC with pieces of information that we want to make available to the appender<br/>
+= Then log a message<br/>
+= And finally clear the MDC<br/>
+It is enough to change the conversion pattern, using the %X{} placeholder for each entry contained in the MDC we want to be logged:<br/>
+<pre>
+log4j.appender.consoleAppender.layout.ConversionPattern=
+  %-4r [%t] %5p %c{1} %x - %m - tx.id=%X{transaction.id} tx.owner=%X{transaction.owner}%n
+</pre>
+Always remember to clean up the MDC context at the end of each execution. Another approach is to use ThreadPoolExecutor hooks and perform necessary cleanups after each execution. <br/>
+</p>
+<p align="justify">
+33. Что такое Spring и какие проблемы он решает? <br/>
+Было уже<br/>
+</p>
+<p align="justify">
+34. Какие есть стереотипные аннотации в Spring?<br/>
+@Component, @Repository, @Service и @Controller<br/>
+</p>
+<p align="justify">
+35. Чем отличается @Controller от @RestController?<br/>
+@RestController - это сочетание аннотации @Controller и @ResponseBody<br/>
+Controller – это класс, который отвечает за подготовку модели с данными, отображаемыми представлением, а также за выбор правильного представления.<br/>
+</p>
+<p align="justify">
+36. Чем отличается @Service от @Component?<br/>
+В данный момент это одно и то же, но рекомендуется помечать аннотацией @Service именно классы, выполняющие сервисные функции<br/>
+</p>
+<p align="justify">
+37. Чем отличается @Component от @Repository?<br/>
+Для @Repository выполняется дополнительная трансляция исключений из persistence layer<br/>
+</p>
+<p align="justify">
+38. Какие есть scope у бина?<br/>
+См. Ответы 4, вопрос 11<br/>
+</p>
+<p align="justify">
+39. Чем отличается scope prototype если смотреть в разрезе жизненного цикла бина?<br/>
+<a href="https://docs.spring.io/spring-framework/docs/3.0.0.M3/reference/html/ch04s04.html">https://docs.spring.io/spring-framework/docs/3.0.0.M3/reference/html/ch04s04.html</a><br/>
+There is one quite important thing to be aware of when deploying a bean in the prototype scope, in that the lifecycle of the bean changes slightly. Spring does not manage the complete lifecycle of a prototype bean: the container instantiates, configures, decorates and otherwise assembles a prototype object, hands it to the client and then has no further knowledge of that prototype instance. This means that while initialization lifecycle callback methods will be called on all objects regardless of scope, in the case of prototypes, _any configured destruction lifecycle callbacks will not be called_. It is the responsibility of the client code to clean up prototype scoped objects and release any expensive resources that the prototype bean(s) are holding onto. (One possible way to get the Spring container to release resources used by prototype-scoped beans is through the use of a custom bean post-processor which would hold a reference to the beans that need to be cleaned up)<br/>
+In some respects, you can think of the Spring containers role when talking about a prototype-scoped bean as somewhat of a replacement for the Java 'new' operator. All lifecycle aspects past that point have to be handled by the client.<br/>
+</p>
+<p align="justify">
+40. Где хранится singleton бин?<br/>
+Доступ к нему можно получить из bean registry<br/>
+</p>
+<p align="justify">
+41. Расскажи про жизненный цикл бина<br/>
+Было уже<br/>
+</p>
+<p align="justify">
+42. Какие есть вариант инъекции бина?<br/>
+См. Ответы 4, вопрос 10<br/>
+</p>
+<p align="justify">
+43. Как создать свой Spring Boot starter?<br/>
+См. Ответы 4, вопрос 8<br/>
+</p>
+<p align="justify">
+44. Ты на код-ревью. Что не нравится? Что бы сделал иначе? Что вызывает подозрение? Как сделать self-injection? Что нужно дописать для этого?<br/>
+@Component<br/>
+@RequiredArgsConstructor<br/>
+Public class CachedPhotosService {<br/>
+    private static final String RESIZED_PHOTO_CACHE_NAME = "RESIZED_PHOTO_CACHE_NAME";<br/>
+</p>
+<p align="justify">
+	private final PhotoRepository photoRepository;<br/>
+    private final PhotoValidationService photoValidationService;<br/>
+    private final PhotoOperations photoOperations;<br/>
+</p>
+<p align="justify">
+    @Cacheable(cacheNames = RESIZED_PHOTO_CACHE_NAME)<br/>
+    public PhotoDTO resizedPhoto(String photoId, int width, int height) {<br/>
+        photoValidationService.validateSize(width, height);<br/>
+</p>
+<p align="justify">
+        Photo photo = photoRepository.findById(photoId);<br/>
+</p>
+<p align="justify">
+        PhotoDTO photoDto = ConversionUtils.convert(photo);<br/>
+        var resizedPhoto = photoOperations.resize(photoDto, width, height);<br/>
+</p>
+<p align="justify">
+        return resizedPhoto;<br/>
+    }<br/>
+</p>
+<p align="justify">
+    public PhotoDTO iconifiedPhoto(String photoId) {<br/>
+        return resizedPhoto(photoId, 100, 100);<br/>
+    }<br/>
+}<br/>
+= захардкоданы размеры в iconifiedPhoto(), вынес бы в константы<br/>
+= надо добавить @Transactional(readOnly=true) на resizedPhoto()<br/>
+= валидацию параметров width и height можно выполнять слоем выше, при помощи валидационных аннотаций<br/>
+= ConversionUtils.convert() переделал бы: вместо статического метода сделать Спринг-компонент<br/>
+= @Cacheable видимо не будет работать при вызовах iconifiedPhoto, для этого можно сделать self-injection: надо дописать getter для this и вызывать на нем resizedPhoto() из iconifiedPhoto()<br/>
+</p>
+<p align="justify">
+45. Расскажи какие тесты писал? <br/>
+Юнит-тесты<br/>
+Интеграционные<br/>
+Функциональные<br/>
+Перфоманс тесты<br/>
+</p>
+<p align="justify">
+46. Слышал про Testcontainers?<br/>
+Да<br/>
+</p>
+<p align="justify">
+47. Слышал про WireMock?<br/>
+Да<br/>
+</p>
+<p align="justify">
+48. Слышал про Mockito?<br/>
+Да<br/>
+</p>
+<p align="justify">
+49. Читал про Spring Test? @SpringBootTest, как написать, чтобы поднять только 1 bean? <br/>
+<a href="https://stackoverflow.com/questions/51051994/spring-context-test-with-just-one-bean">https://stackoverflow.com/questions/51051994/spring-context-test-with-just-one-bean</a><br/>
+Нужно аннотировать тест аннотацией, где указать в конфигурации только этот 1 бин:<br/>
+<pre>
+@RunWith(SpringRunner.class)
+@SpringBootTest(properties = "spring.profiles.active=test")
+@ContextConfiguration(classes = MyTestBean.class)
+</pre>
+В данной статье также указывается на необычность такого подхода: "It is in fact a valid way to achieve that goal; however, it is also a bit unusual to load an ApplicationContext that contains a single user bean"<br/>
+</p>
+<p align="justify">
+50. С какими NoSQL базами данных работал?<br/>
+Redis, Amazon ElastiCache, Tarantool<br/>
+</p>
+<p align="justify">
+51. Зачем использовать NoSQL БД?<br/>
+Было уже<br/>
+</p>
+<p align="justify">
+52. За счёт чего удается добиваться NoSQL БД большей производительности и масштабируемости?<br/>
+Большей производительности добиваются за счет eventual consistency, когда при записи в БД клиенту отвечают, что запись уже проведена, хотя в реальности данные изменения еще не распространились по всему кластеру.<br/>
+Большей масштабируемости добиваются за счет горизонтального масштабирования, которое в отличие от вертикального, можно проводить в более широким пределах.<br/>
+</p>
+<p align="justify">
+53. Какие минусы есть у использования NoSQL БД по сравнению с SQL БД?<br/>
+Было уже<br/>
+</p>
+<p align="justify">
+54. Какую аббревиатуру похожую на ACID используют относительно NoSQL БД?<br/>
+ACID - Atomicity, Consistency, Isolation, Durability<br/>
+BASE - Basically Available, Soft State, Eventually Consistent («базовая доступность, неустойчивое состояние, согласованность в конечном счете»).<br/>
+Согласованность в конечном счете обеспечивает более высокую скорость записи, поскольку приложению не приходится дожидаться подтверждения того, что запись сохранилась. Как только хранилище данных приняло запись, но еще до того, как данные попали в долговременное хранение на ее диск или на диск другой машины, база данных может сообщить приложению, что операция записи прошла успешно, и приложение может переходить к следующей операции. Так вы выигрываете в производительности, правда, рискуете не увидеть тех данных, которые только что записали, либо данные могут совсем потеряться из-за какой-нибудь ошибки.<br/>
+BASE has roots in Eric Brewer's Consistency, Availability and Partition-tolerance (CAP) Theorem, and eventual consistency is the underpinning of any distributed system that aims to provide high availability and partition tolerance.<br/>
+</p>
+<p align="justify">
+55. Слышал ли про инфраструктуру как код? Имел ли дело с Ansible?<br/>
+Да, например в Openshift инфраструктура была описана в конфигах и лежала под контролем версий<br/>
+Ansible был на одном проекте: были описаны функции в скриптах, которые вызывались с параметрами из TeamCity джоб<br/>
+</p>
+<p align="justify">
+56. Какие есть способы автоматизации развертывания Kubernetes?<br/>
+Helm<br/>
+</p>
+
+    <hr/>
+    <p>
+        <small>
+            Autogenerated content from <a href="https://github.com/andrei-punko/java-interview-faq-n-answers">source</a>
+        </small>
+    </p>
+</div>
+
+<!-- Optional JavaScript; choose one of the two! -->
+
+<!-- Option 1: Bootstrap Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
+        crossorigin="anonymous"></script>
+
+<!-- Option 2: Separate Popper and Bootstrap JS -->
+<!--
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.6.0/dist/umd/popper.min.js" integrity="sha384-KsvD1yqQ1/1+IA7gi3P0tyJcT3vR+NdBTt13hSJ2lnve8agRGXTTyNaBYmCR/Nwi" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.min.js" integrity="sha384-nsg8ua9HAw1y0W1btsyWgBklPnCUAFLuTMS2G72MMONqmOymq585AcH49TLBQObG" crossorigin="anonymous"></script>
+-->
+</body>
+</html>

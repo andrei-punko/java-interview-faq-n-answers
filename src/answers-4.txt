@@ -1,4 +1,7 @@
 
+! Java interview Q&A
+** Java interview questions and answers
+
 1,2. Отличие stack от heap. Как их конфигурировать? Какие еще области памяти знаешь?
 https://itsobes.ru/JavaSobes/na-kakie-oblasti-delitsia-pamiat-jvm/
 JVM разделяет память на две основные категории: "кучу" (heap) и "не кучу" (non-heap).
