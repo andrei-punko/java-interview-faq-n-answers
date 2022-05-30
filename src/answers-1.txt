@@ -2,42 +2,42 @@
 ! Java interview Q&A
 ** Java interview questions and answers
 
-1. Какой контракт между equals() и hashCode()?
+- Какой контракт между equals() и hashCode()?
 было уже
 
-2. Расскажи про stack и heap?
+- Расскажи про stack и heap?
 было уже
 
-3. Расскажи про Young Generation, Old Generation, PermGen
+- Расскажи про Young Generation, Old Generation, PermGen
 Young/Old generation - это области heap-а
 PermGen (permanent generation) – в этой области хранятся загруженные классы (экземпляры класса Class<T>). Здесь же с Java 7 хранится пул строк. Не считается частью кучи.
 
-4. У объекта есть адрес памяти. И это память скорее всего ограничена каким-то размером. Какую проблему ты видишь для hashCode() который определен как адрес памяти? В 
+- У объекта есть адрес памяти. И это память скорее всего ограничена каким-то размером. Какую проблему ты видишь для hashCode() который определен как адрес памяти? В 
 старой java было реализовано по адресу памяти, в новой Java работает не так. 
 https://habr.com/ru/company/vk/blog/321306/
 Реализация по умолчанию hashCode() (идентификационного хеша) не имеет отношения к адресу памяти объекта, как минимум в OpenJDK.
 В HotSpot идентификационный хеш генерируется лишь раз, а затем кешируется в слове mark в заголовке объекта. Т.е. перемещения объекта после сборок мусора в памяти НЕ вызывают смену значения хэшкода.
 
-5. Если объект создался в Young Generation, объекты могут перемещаться и менять свой адрес или нет?
+- Если объект создался в Young Generation, объекты могут перемещаться и менять свой адрес или нет?
 В какой-то момент объект перейдет из Young Generation в Old и если мы на основе адресов памяти вычисляли хэшкод, он измениться или нет? Если изменится, с этим могут быть какие-то проблемы? Что надо сделать с объектом чтобы его вычисленный хэшкод не изменялся?
 См. ответ к вопросу 4.
 
-6. Есть класс Person с полями id и name. Эти поля должны обладать какими-то свойствами для вычисления хэшкода? Если поля будут неиммутабельными с этим могут быть проблемы? Если мы не можем гарантировать, что исходные данные immutable? 
+- Есть класс Person с полями id и name. Эти поля должны обладать какими-то свойствами для вычисления хэшкода? Если поля будут неиммутабельными с этим могут быть проблемы? Если мы не можем гарантировать, что исходные данные immutable? 
 Для вычисления хэшкода поля должны быть иммутабельными.
 Если поля будут неиммутабельными - при помещении объекта в хэшированную коллекцию его потом можно не найти.
 Если не можем гарантировать иммутабельность всех полей - возможно стоит вычислять хэш только по полю id.
 
-7. Мы можем сохранять значение хэшкода когда его вычислили?
+- Мы можем сохранять значение хэшкода когда его вычислили?
 если объект immutable, то значение хэшкода не изменится, поэтому может использовать его (например как ключ в мэпе)
 если объект не-immutable, то при изменении одного из полей хэшкод может измениться
 если вопрос был о некоем "кэшировании" вычисленного значения хэшкода - то делать этого не надо, т.к. вычисление хэшкода предполагается выполняющимся быстро и ничего не стоит вычислить его при необходимости еще раз "здесь и сейчас"
 
-8. Какой тип возвращает метод hashCode()? Какую размерность имеет int? Почему нельзя использовать long? (ответ: хэшкоды кешируются в хедере класса Object)
+- Какой тип возвращает метод hashCode()? Какую размерность имеет int? Почему нельзя использовать long? (ответ: хэшкоды кешируются в хедере класса Object)
 int, длиной 4 байта
 я бы так ответил: потому что такой контракт метода hashCode - возвращать значение типа int
 ?
 
-9. Какие базовые реализации коллекций ты знаешь? Расскажи про интерфейсы коллекций.
+- Какие базовые реализации коллекций ты знаешь? Расскажи про интерфейсы коллекций.
 https://habr.com/ru/post/237043/
 На вершине иерархии в Java Collection Framework располагаются 2 интерфейса: Collection и Map. Эти интерфейсы разделяют все коллекции, входящие во фреймворк на две части по типу хранения данных: 
 = простые последовательные наборы элементов Collection и 
@@ -63,7 +63,7 @@ https://habr.com/ru/post/237043/
 	== PriorityQueue. Особенностью данной очереди является возможность управления порядком элементов. По-умолчанию, элементы сортируются с использованием «natural ordering», но это поведение может быть переопределено при помощи объекта Comparator, который задаётся при создании очереди. Данная коллекция не поддерживает null в качестве элементов.
 	== ArrayDeque. Представляет собой реализацию с использованием массивов, подобно ArrayList, но не позволяет обращаться к элементам по индексу и хранение null. Рекомендуется использовать вместо Stack.
 
-10. Чем List отличается от Set?
+- Чем List отличается от Set?
 список - доступ по индексу, возможны дубликаты
 множество - содержит только уникальные элементы
 
@@ -71,14 +71,14 @@ https://habr.com/ru/post/237043/
 12. Что стало возможно использовать в интерфейсах, начиная с Java 8?
 ?
 
-13. Чем начиная с Java 8 отличаются абстрактные классы и интерфейсы. (ответ: в интерфейсе нельзя использовать не статические поля)
+- Чем начиная с Java 8 отличаются абстрактные классы и интерфейсы. (ответ: в интерфейсе нельзя использовать не статические поля)
 ?
 
-14. Как инстанцировать экземпляр интерфейса?
+- Как инстанцировать экземпляр интерфейса?
 = создать анонимный класс, определив имплементацию нужных методов in-place
 = создать динамический прокси, передав ему интерфейс в качестве параметра
 
-15. В каком варианте массив будет успешно отсортирован: (от 0 до 3 вариантов):
+- В каком варианте массив будет успешно отсортирован: (от 0 до 3 вариантов):
 1. List<String> list = new ArrayList<>(stirings);
 2. List<String> list = Arrays.asList(strings);
 3. List<String> list = List.of(strings);
@@ -88,16 +88,16 @@ Collections.sort(list);
 Какую реализацию List возвращает Arrays.asList? (ответ: возвращает другой ArrayList – fixed sized list)
 Какую реализацию List возвращает List.of? (ответ: возвращает ImmutableList)
 
-16. Удали дубликаты: String strings[] = {"u", "z", "c", "a", "a", "b"}
+- Удали дубликаты: String strings[] = {"u", "z", "c", "a", "a", "b"}
 Решение 1: Arrays.stream(strings).distinct().collect(Collectors.toSet())
 Решение 2: new LinkedHashSet<>(Arrays.asList(strings))
 
-17.  Преобразовать: List<List<String>> lists ---> List<String> list
+- Преобразовать: List<List<String>> lists ---> List<String> list
 ```
 lists.stream().flatMap(Collection::stream).collect(Collectors.toList())
 ```
 
-18. Что будет напечатано в консоль?
+- Что будет напечатано в консоль?
 ```
 Stream.of("d2", "a2", "b1", "b3", "c")
         .map(s -> {
@@ -115,29 +115,28 @@ anyMatch: D2
 map: a2
 anyMatch: A2
 
-19. Какие виды GC знаешь?
+- Какие виды GC знаешь?
 было уже
 
-20. С каким GC работал больше всего?
+- С каким GC работал больше всего?
 Видимо G1, потому что он по умолчанию в последних Java
 
-21. Создается новый объект. Есть вероятность того, что он будет создан сразу в Old Generation?
+- Создается новый объект. Есть вероятность того, что он будет создан сразу в Old Generation?
 Если размер объекта превышает определенную величину, JVM считает, что он очень большой, и сразу помещает объект его в Old Generation часть кучи.
 
-22. Что такое OutOfMemoryException и когда он случается? 
-24. Типы OutOfMemoryException?
+- Что такое OutOfMemoryException и когда он случается? Типы OutOfMemoryException?
 Когда нет памяти в heap и когда невозможно создать нативный Thread
 
-23. Что делает Java машина перед тем, как выкинуть OOM?
+- Что делает Java машина перед тем, как выкинуть OOM?
 GC попробует сделать сборку мусора
 
-25. Как GC определяет, что какой-то объект не используется? 
+- Как GC определяет, что какой-то объект не используется? 
 В ходе сборки мусора обнаруживает, что на него нет ссылок от других объектов
 
-26. Что такое жесткие ссылки? Откуда они?
+- Что такое жесткие ссылки? Откуда они?
 ?
 
-27. Что такое GC Root?
+- Что такое GC Root?
 https://stackoverflow.com/questions/27186799/what-are-gc-roots-for-classes
 A garbage collection root is an object that is accessible from outside the heap.
 Memory Analyzer categorizes garbage collection roots according to the following list:
@@ -150,10 +149,10 @@ Memory Analyzer categorizes garbage collection roots according to the following 
 = JNI references
 = JVM specials...
 
-28. Что такое ThreadLocal поля?
+- Что такое ThreadLocal поля?
 Синглтон в рамках отдельного треда
 
-29. Что можешь сказать об этом коде:
+- Что можешь сказать об этом коде:
 List<Integer> results = integers.stream()
         .map(integer -> CompletableFuture.supplyAsync(() -> process(integer), executor))
         .map(CompletableFuture::join)
@@ -161,13 +160,13 @@ List<Integer> results = integers.stream()
 
 Подсказки от интервьюера: как можно исключить последовательный запуск и ожидание каждого потока? (ответ: разорвать stream, собрать CompletableFuture в List и заджойнить не на intах, потому что они будут конвейерно джойнится по одной, а надо собрать List<CompletableFuture> и заджойнить и тогда они выполнятся параллельно)
 
-30. Работал ли со Spring Cloud? 
+- Работал ли со Spring Cloud? 
 было уже
 
-31. Логгировал ли в проекте что-нибудь? Когда логгер что-то логгирует, откуда он берет все данные? Где они все хранятся?
+- Логгировал ли в проекте что-нибудь? Когда логгер что-то логгирует, откуда он берет все данные? Где они все хранятся?
 ?
 
-32. Слышал когда-нибудь про MDC?
+- Слышал когда-нибудь про MDC?
 https://www.baeldung.com/mdc-in-log4j-2-logback
 MDC (Mapped Diagnostic Context) provides a way to enrich log messages with information that could be unavailable in the scope where the logging actually occurs but that can be indeed useful to better track the execution of the program.
 MDC allows us to fill a map-like structure with pieces of information that are accessible to the appender when the log message is actually written.
@@ -183,43 +182,43 @@ log4j.appender.consoleAppender.layout.ConversionPattern=
 ```
 Always remember to clean up the MDC context at the end of each execution. Another approach is to use ThreadPoolExecutor hooks and perform necessary cleanups after each execution. 
 
-33. Что такое Spring и какие проблемы он решает? 
+- Что такое Spring и какие проблемы он решает? 
 было уже
 
-34. Какие есть стереотипные аннотации в Spring?
+- Какие есть стереотипные аннотации в Spring?
 @Component, @Repository, @Service и @Controller
 
-35. Чем отличается @Controller от @RestController?
+- Чем отличается @Controller от @RestController?
 @RestController - это сочетание аннотации @Controller и @ResponseBody
 Controller – это класс, который отвечает за подготовку модели с данными, отображаемыми представлением, а также за выбор правильного представления.
 
-36. Чем отличается @Service от @Component?
+- Чем отличается @Service от @Component?
 В данный момент это одно и то же, но рекомендуется помечать аннотацией @Service именно классы, выполняющие сервисные функции
 
-37. Чем отличается @Component от @Repository?
+- Чем отличается @Component от @Repository?
 Для @Repository выполняется дополнительная трансляция исключений из persistence layer
 
-38. Какие есть scope у бина?
+- Какие есть scope у бина?
 См. Ответы 4, вопрос 11
 
-39. Чем отличается scope prototype если смотреть в разрезе жизненного цикла бина?
+- Чем отличается scope prototype если смотреть в разрезе жизненного цикла бина?
 https://docs.spring.io/spring-framework/docs/3.0.0.M3/reference/html/ch04s04.html
 There is one quite important thing to be aware of when deploying a bean in the prototype scope, in that the lifecycle of the bean changes slightly. Spring does not manage the complete lifecycle of a prototype bean: the container instantiates, configures, decorates and otherwise assembles a prototype object, hands it to the client and then has no further knowledge of that prototype instance. This means that while initialization lifecycle callback methods will be called on all objects regardless of scope, in the case of prototypes, _any configured destruction lifecycle callbacks will not be called_. It is the responsibility of the client code to clean up prototype scoped objects and release any expensive resources that the prototype bean(s) are holding onto. (One possible way to get the Spring container to release resources used by prototype-scoped beans is through the use of a custom bean post-processor which would hold a reference to the beans that need to be cleaned up)
 In some respects, you can think of the Spring containers role when talking about a prototype-scoped bean as somewhat of a replacement for the Java 'new' operator. All lifecycle aspects past that point have to be handled by the client.
 
-40. Где хранится singleton бин?
+- Где хранится singleton бин?
 Доступ к нему можно получить из bean registry
 
-41. Расскажи про жизненный цикл бина
+- Расскажи про жизненный цикл бина
 было уже
 
-42. Какие есть вариант инъекции бина?
+- Какие есть вариант инъекции бина?
 См. Ответы 4, вопрос 10
 
-43. Как создать свой Spring Boot starter?
+- Как создать свой Spring Boot starter?
 См. Ответы 4, вопрос 8
 
-44. Ты на код-ревью. Что не нравится? Что бы сделал иначе? Что вызывает подозрение? Как сделать self-injection? Что нужно дописать для этого?
+- Ты на код-ревью. Что не нравится? Что бы сделал иначе? Что вызывает подозрение? Как сделать self-injection? Что нужно дописать для этого?
 @Component
 @RequiredArgsConstructor
 public class CachedPhotosService {
@@ -251,22 +250,22 @@ public class CachedPhotosService {
 = ConversionUtils.convert() переделал бы: вместо статического метода сделать Спринг-компонент
 = @Cacheable видимо не будет работать при вызовах iconifiedPhoto, для этого можно сделать self-injection: надо дописать getter для this и вызывать на нем resizedPhoto() из iconifiedPhoto()
 
-45. Расскажи какие тесты писал? 
+- Расскажи какие тесты писал? 
 юнит-тесты
 интеграционные
 функциональные
 перфоманс тесты
 
-46. Слышал про Testcontainers?
+- Слышал про Testcontainers?
 да
 
-47. Слышал про WireMock?
+- Слышал про WireMock?
 да
 
-48. Слышал про Mockito?
+- Слышал про Mockito?
 да
 
-49. Читал про Spring Test? @SpringBootTest, как написать, чтобы поднять только 1 bean? 
+- Читал про Spring Test? @SpringBootTest, как написать, чтобы поднять только 1 bean? 
 https://stackoverflow.com/questions/51051994/spring-context-test-with-just-one-bean
 Нужно аннотировать тест аннотацией, где указать в конфигурации только этот 1 бин:
 ```
@@ -276,89 +275,89 @@ https://stackoverflow.com/questions/51051994/spring-context-test-with-just-one-b
 ```
 В данной статье также указывается на необычность такого подхода: "It is in fact a valid way to achieve that goal; however, it is also a bit unusual to load an ApplicationContext that contains a single user bean"
 
-50. С какими NoSQL базами данных работал?
+- С какими NoSQL базами данных работал?
 Redis, Amazon ElastiCache, Tarantool
 
-51. Зачем использовать NoSQL БД?
+- Зачем использовать NoSQL БД?
 было уже
 
-52. За счёт чего удается добиваться NoSQL БД большей производительности и масштабируемости?
+- За счёт чего удается добиваться NoSQL БД большей производительности и масштабируемости?
 Большей производительности добиваются за счет eventual consistency, когда при записи в БД клиенту отвечают, что запись уже проведена, хотя в реальности данные изменения еще не распространились по всему кластеру.
 Большей масштабируемости добиваются за счет горизонтального масштабирования, которое в отличие от вертикального, можно проводить в более широким пределах.
 
-53. Какие минусы есть у использования NoSQL БД по сравнению с SQL БД?
+- Какие минусы есть у использования NoSQL БД по сравнению с SQL БД?
 было уже
 
-54. Какую аббревиатуру похожую на ACID используют относительно NoSQL БД?
+- Какую аббревиатуру похожую на ACID используют относительно NoSQL БД?
 ACID - Atomicity, Consistency, Isolation, Durability
 BASE - Basically Available, Soft State, Eventually Consistent («базовая доступность, неустойчивое состояние, согласованность в конечном счете»).
 Согласованность в конечном счете обеспечивает более высокую скорость записи, поскольку приложению не приходится дожидаться подтверждения того, что запись сохранилась. Как только хранилище данных приняло запись, но еще до того, как данные попали в долговременное хранение на ее диск или на диск другой машины, база данных может сообщить приложению, что операция записи прошла успешно, и приложение может переходить к следующей операции. Так вы выигрываете в производительности, правда, рискуете не увидеть тех данных, которые только что записали, либо данные могут совсем потеряться из-за какой-нибудь ошибки.
 BASE has roots in Eric Brewer's Consistency, Availability and Partition-tolerance (CAP) Theorem, and eventual consistency is the underpinning of any distributed system that aims to provide high availability and partition tolerance.
 
-55. Слышал ли про инфраструктуру как код? Имел ли дело с Ansible?
+- Слышал ли про инфраструктуру как код? Имел ли дело с Ansible?
 Да, например в Openshift инфраструктура была описана в конфигах и лежала под контролем версий
 Ansible был на одном проекте: были описаны функции в скриптах, которые вызывались с параметрами из TeamCity джоб
 
-56. Какие есть способы автоматизации развертывания Kubernetes?
+- Какие есть способы автоматизации развертывания Kubernetes?
 Helm
 
-1. Зачем нужен Docker?
+- Зачем нужен Docker?
 контейнер позволяет создать изолированное окружение, в котором протестировать приложение
 также позволяет развернуть необходимую инфраструктуру, например БД, брокеры сообщений и т.д.
 по сравнению с виртуалкой - требует намного меньше ресурсов
 
-2. Со временем запрос стал выполняться дольше. Какие есть способы ускорения?
+- Со временем запрос стал выполняться дольше. Какие есть способы ускорения?
 Посмотреть, какие изменения были сделаны недавно, если деградация произошла не так давно. Возможны виноваты свежие изменения.
 Посмотреть план запроса, убедиться, что используются те индексы, на которые рассчитываем. Либо добавить индексы, если их нет.
 Также проблема может быть в данных: их стало столько, что индекс перестал использоваться. Также убедиться в этом при помощи плана запроса.
 
-3. Зачем нужны индексы?
+- Зачем нужны индексы?
 для ускорения поиска
 
-4. Почему бы не сделать индексы на все поля сразу?
+- Почему бы не сделать индексы на все поля сразу?
 индекс надо в том числе обновлять. в какой-то момент затраты на это могут стать критичными и замедлять выполнение запросов
 
-5. Как работает индекс?
+- Как работает индекс?
 было уже
 
-6. Что такое ACID?
+- Что такое ACID?
 было уже
 
-7. Расскажи про Kafka? Из чего состоит Kafka?
+- Расскажи про Kafka? Из чего состоит Kafka?
 ?
 
-8. Во сколько раз увеличится скорость обработки если в одном топике есть 5 партиций и будет 10 consumerов?
+- Во сколько раз увеличится скорость обработки если в одном топике есть 5 партиций и будет 10 consumerов?
 ?
 
-9. Команда Linux для просмотра java процессов
+- Команда Linux для просмотра java процессов
 ps aux | grep java
 
-10. Слышал ли про Ansible? Зачем он нужен?
+- Слышал ли про Ansible? Зачем он нужен?
 было уже
 
-11. Какие java коллекции знаешь? Какие использовал? 
+- Какие java коллекции знаешь? Какие использовал? 
 См. Ответы 1 - Вопрос 9
 Использовал почти все из них
 
-12. Как изнутри работает Hashmap?
+- Как изнутри работает Hashmap?
 См. "Ответы 3 - Вопрос 4"
 
-13. Разница между checked и unchecked exceptions
+- Разница между checked и unchecked exceptions
 было уже
 
-14. Можно ли обработать RuntimeException? Обрабатывал ли?
+- Можно ли обработать RuntimeException? Обрабатывал ли?
 Да. Это unchecked exception, и его отличие от checked лишь в том, что не надо отражать возможность его бросания в сигнатуре метода
 
-15. Использовал ли Lombok?
+- Использовал ли Lombok?
 да
 
-16. Для чего нужна аннотация @SneakyThrows в Lombok?
+- Для чего нужна аннотация @SneakyThrows в Lombok?
 чтобы избегнуть указания checked exceptions в сигнатуре метода, и потом быть обязанным их обрабатывать
 
-17. 2 вида операций Stream API
+- 2 вида операций Stream API
 было уже
 
-18. Что будет выведено в консоль?
+- Что будет выведено в консоль?
 ```
 public static Stream<String> bar(Stream<String> stream) {
     System.out.println("start bar");
@@ -373,7 +372,7 @@ public static void main(String[] args) {
 ```
 Кажется, что будет выведено foofoo, но на стриме не вызвана терминальная операция, ничего не будет выведено.
 
-19. Вернуть список пользователей, у которых какая-либо группа начинается на «А»:
+- Вернуть список пользователей, у которых какая-либо группа начинается на «А»:
 ```
 @Data
 class User {
@@ -397,13 +396,13 @@ public class Test {
 ```
 ?
 
-20. Написать, как можно запустить код в отдельном потоке (несколько вариантов)
+- Написать, как можно запустить код в отдельном потоке (несколько вариантов)
 ?
 
-21. Написать ExecutorService. Какие есть преимущества у ExecutorService перед Thread?
+- Написать ExecutorService. Какие есть преимущества у ExecutorService перед Thread?
 ?
 
-22. Написать deadlock
+- Написать deadlock
 Deadlock или взаимная блокировка — это ошибка, которая происходит когда потоки имеют циклическую зависимость от пары синхронизированных объектов.
 https://www.javatpoint.com/deadlock-in-java
 ```
@@ -450,35 +449,35 @@ public class TestDeadlockExample1 {
 }
 ```
 
-23. Зачем нужно ключевое слово volatile?
+- Зачем нужно ключевое слово volatile?
 Для многопоточной оптимизации переменная может быть скопирована, для реализации так называемого "кэша потока". Тогда разные потоки будут работать с разными ее копиями.
 Использование volatile приводит к тому, что все потоки работают с одной и той же копией этой переменной.
 
-24. Зачем нужен GC? Привести пример работы любого GC которого знаешь.
+- Зачем нужен GC? Привести пример работы любого GC которого знаешь.
 ?
 
-25. Отличие Spring от Spring Boot?
+- Отличие Spring от Spring Boot?
 было уже
 
-26. Как устроен Spring Boot starter?
+- Как устроен Spring Boot starter?
 было уже
 
-27. Расскажи про жизненный цикл bean?
+- Расскажи про жизненный цикл bean?
 !!!
 
-28. Как донастроить bean? (вопрос про BeanPostProcessor)
+- Как донастроить bean? (вопрос про BeanPostProcessor)
 Написать свой BeanPostProcessor, там добавить нужную логику донастройки бина
 
-29. Какие есть способы внедрения зависимостей? Какие использовал?
+- Какие есть способы внедрения зависимостей? Какие использовал?
 было уже
 
-30. Преимущества инъекции зависимости в конструктор?
+- Преимущества инъекции зависимости в конструктор?
 Это позволяет обнаруживать ошибки на ранней стадии: при отсутствии нужного бина в контексте, - все упадет на этапе старта приложения, а не позже, когда этот бин понадобится
 
-31. Какие есть 3 способа заинжектить несколько имплементаций одного интерфейса?
+- Какие есть 3 способа заинжектить несколько имплементаций одного интерфейса?
 ответ: @Qualifier, @Primary, по имени
 
-32. Будет ли это нормально работать? Нужно чтобы вся коллекция элементов нормально обработалась, либо ни один элемент нормально не обработался:
+- Будет ли это нормально работать? Нужно чтобы вся коллекция элементов нормально обработалась, либо ни один элемент нормально не обработался:
 @Transactional
 public void processCollection(Collection<Object> objects) {
     objects.parallelStream()
@@ -490,19 +489,19 @@ public void processOne(Object o) {
     ...
 }
 
-33. Как сделать REST-запрос? Какие способы знаешь сделать это?
+- Как сделать REST-запрос? Какие способы знаешь сделать это?
 = При помощи RestTemplate: или вызовом соответствующего метода (get/post и т.п.) либо вызовом метода exchange с указанием, какой HTTP-метод использовать
 = При помощи библиотеки OkHttp
 = При помощи библиотеки OpenFeign
 
-1. Иерархия коллекций в java?
+- Иерархия коллекций в java?
 было уже
 
-2. Как работает Hashtable?
+- Как работает Hashtable?
 Hashtable - это потокобезопасный ассоциативный список.
 Методы помечены как synchronized, т.е. при добавлении/извлечении элемента блокируется вся коллекция, что не оптимально.
 
-3. Как работает ConcurrentHashMap?
+- Как работает ConcurrentHashMap?
 https://stackoverflow.com/questions/12646404/concurrenthashmap-and-hashtable-in-java
 = Hashtable is belongs to the Collection framework; ConcurrentHashMap belongs to the Executor framework.
 = Hashtable uses _single lock_ for whole data. ConcurrentHashMap uses _multiple locks_ on segment level (16 by default) instead of object level i.e. whole Map.
@@ -511,34 +510,33 @@ https://stackoverflow.com/questions/12646404/concurrenthashmap-and-hashtable-in-
 = ConcurrentHashMap returns Iterator, which fails-safe (i.e. iterator will make a copy of the internal data structure) on concurrent modification.
 = ConcurrentHashMap uses a database shards logic (Segment<K, V>[] segments) is known as Concurrency-Level, i.e. divides the data into shards(segments) then puts locks on each shard (segment) instead of putting a single lock for whole data (Map). The default value is 16.
 
-4. Как работает HashMap?
+- Как работает HashMap?
 Вычисляем хэшкод, остаток от деления его на кол-во бакетов дает номер бакета.
 В каждом бакете односвязный список, в него добавляется entry, содержащая ключ+значение.
 Начиная с Java 8 - после добавления 8го элемента в этот бакет - связный список перестраивается в красно-черное дерево.
 Красно-чёрное дерево - самобалансирующееся двоичное дерево поиска, гарантирующее логарифмический рост высоты дерева от числа узлов и позволяющее быстро выполнять основные операции дерева поиска: добавление, удаление и поиск узла. Сбалансированность достигается за счёт введения дополнительного атрибута узла дерева — «цвета».
 As of Java 8 (see JEP 180), the data structure in which the values inside one bucket are stored is changed from a list to a balanced tree if a bucket contains 8 or more values, and it's changed back to a list if, at some point, only 6 values are left in the bucket. This improves the performance to be O(log n).
 
-5. Можно ли потерять элемент в HashMap?
+- Можно ли потерять элемент в HashMap?
 Если метод hashCode так написан, что хэш ключа меняется, то можем действительно потерять объект в HashMap
 
-6. Какой тип классов ты бы использовал для ключа HashMap?
+- Какой тип классов ты бы использовал для ключа HashMap?
 Immutable класс (например String)
 
-7. Как использовать свой класс в качестве ключа? Что если в этом классе есть поле коллекции (т.е. класс не до конца иммутабельный)?
+- Как использовать свой класс в качестве ключа? Что если в этом классе есть поле коллекции (т.е. класс не до конца иммутабельный)?
 Сделать свой класс immutable.
 Если в классе есть поле коллекции - возвращать unmodifiable коллекцию в геттере.
 
-8. Какие использовал коллекции из Concurrent пакета?
+- Какие использовал коллекции из Concurrent пакета?
 LinkedBlockingQueue - в Java-лабе для коннекшн-пула
 ConcurrentHashMap - для получения конкурентного мэпа
 AtomicInteger - для конкурентного подсчета кол-ва событий
 CopyOnWriteArrayList - thread-safe variant of ArrayList
 
-9. Расскажи про Java Memory Model?
-11. Как устроена память в Java?
+- Расскажи про Java Memory Model? / Как устроена память в Java?
 Отвечено в "Ответы 4 - Вопрос 1,2"
 
-10. Есть 2 банковских аккаунта. Мы с одного хотим перевести деньги на другой. Из двух потоков в разном порядке захватываем мониторы этих аккаунтов (в первом потоке 
+- Есть 2 банковских аккаунта. Мы с одного хотим перевести деньги на другой. Из двух потоков в разном порядке захватываем мониторы этих аккаунтов (в первом потоке 
 захватим монитор первого аккаунта и затем второго, а во втором потоке наоборот). Какая здесь есть проблема? Способы решить возникающий deadlock?
 https://habr.com/ru/company/nordavind/blog/176541/
 Видна проблема потенциального дедлока.
@@ -547,7 +545,7 @@ https://habr.com/ru/company/nordavind/blog/176541/
 = Второе правило: всегда соблюдайте один и тот же порядок захвата мьютексов в разных потоках.
 Если вы в одном потоке захватываете мьютекс 1, а затем мьютекс 2, то недопустимо захватывать их в ином порядке в другом потоке.
 
-12. Какие есть виды сборщиков мусора?
+- Какие есть виды сборщиков мусора?
 https://www.oracle.com/webfolder/technetwork/tutorials/obe/java/gc01/index.html
 = Serial
 The serial collector is the default for client style machines in Java SE 5 and 6. With the serial collector, both minor and major garbage collections are done serially (using a single virtual CPU). In addition, it uses a mark-compact collection method. This method moves older memory to the beginning of the heap so that new memory allocations are made into a single continuous chunk of memory at the end of the heap. This compacting of memory makes it faster to allocate new chunks of memory to the heap.
@@ -566,14 +564,14 @@ The Garbage First or G1 garbage collector is available in Java 7 and is designed
 
 См. также ответ на вопрос "Как работает Garbage Collector в java?" в https://andrei-punko.github.io/java-interview-faq-n-answers
 
-13. Какие есть способы инъекции бина?
+- Какие есть способы инъекции бина?
 Отвечено в "Ответы 4 - Вопрос 10"
 
-14. Преимущества @Autowired в конструктор?
+- Преимущества @Autowired в конструктор?
 Если одного из бинов для инжекта нету - приложение упадет при поднятии контекста, на старте, а не потом, позже, когда дернут нужную операцию и этот бин понадобится.
 Такая архитектура позволяет устранять ошибки на ранней стадии.
 
-15. Всегда ли отрабатывает @PostConstruct?
+- Всегда ли отрабатывает @PostConstruct?
 Метод, аннотированный @PostConstruct, вызывается после вызова конструктора и инъекции зависимостей, перед вызовом метода init().
 
 Оказывается, есть такая проблема:
@@ -584,7 +582,7 @@ https://answacode.com/questions/48380553/vesennyaya-zagruzka-postconstruct-ne-vy
 = добавить зависимость javax.annotation:javax.annotation-api к POM или
 = обновить до более новой Spring-Boot версии 2.0.0+, которая включает эту зависимость
 
-16. Spring Cloud. Какие компоненты есть у Spring Cloud?
+- Spring Cloud. Какие компоненты есть у Spring Cloud?
 Eureka - service discovery
 Ribbon - client-side load balancer
 Hystrix - circuit breaker
@@ -595,10 +593,10 @@ Bus - uses lightweight message broker to link distributed system nodes. The prim
 Stream - framework built on top of Spring Boot and Spring Integration that helps in creating event-driven or message-driven microservices
 Sleuth - provides Spring Boot auto-configuration for distributed tracing
 
-17. Работал ли с ELK стэком?
+- Работал ли с ELK стэком?
 да
 
-18. Оркестраторы?
+- Оркестраторы?
 https://mcs.mail.ru/blog/what-are-container-orchestration-systems
 Задачи оркестраторов контейнеров:
 = Подготовка инфраструктуры и развертывание.
@@ -632,11 +630,11 @@ https://mcs.mail.ru/blog/what-are-container-orchestration-systems
 
 = Docker Swarm. Это "родная", базовая система кластеризации и оркестровки контейнеров Docker. Использует декларативную модель. Взаимодействие с кластером происходит через команды Docker, а управление действиями — через менеджер Swarm.
 
-19. Разница аннотаций @SpringBootTest и JUnit?
+- Разница аннотаций @SpringBootTest и JUnit?
 The @SpringBootTest annotation is useful when we need to bootstrap the entire container. The annotation works by creating the ApplicationContext that will be utilized in our tests.
 Аннотации JUnit тестируют один класс в изоляции
 
-20. Что такое пирамида тестирования?
+- Что такое пирамида тестирования?
 https://dou.ua/lenta/columns/testing-in-jiji/
 Пирамида тестирования — один из способов обеспечения качества ПО, визуализация, которая помогает группировать тесты по типу их назначения.
 Чем выше мы будем подниматься по пирамиде, тем выше комплексность, цена и хрупкость тестов.
@@ -650,17 +648,17 @@ https://dou.ua/lenta/columns/testing-in-jiji/
 = Третий уровень: тесты пользовательского функционала (end-to-end / functional tests)
 Здесь количество тестов должно быть наименьшим. Воссоздавая пользовательские сценарии, мы проверяем приложения на стабильность и работоспособность. На этом уровне тесты самые хрупкие.
 
-21. Зачем нужны разные виды тестов?
+- Зачем нужны разные виды тестов?
 Тесты вообще нужны для
 = проверки работоспособности: при добавлении нового кода - приложение работает как ожидалось
 = фиксации рабочего состояния: при изменении старого кода - быть уверенным в том, что переходим из рабочего состояния в рабочее
 Разные виды тестов обеспечивают разную гранулярность тестируемых блоков (в крупную/мелкую клетку) и позволяют лучше и быстрее опеределить, что именно и где сломалось.
 
-22. Kafka. Consumer/producer, консьюмер-группа, как работает топик, партиция? Как работает кластер Кафки? Transaction log Kafka. Гарантия доставки сообщения.
+- Kafka. Consumer/producer, консьюмер-группа, как работает топик, партиция? Как работает кластер Кафки? Transaction log Kafka. Гарантия доставки сообщения.
 Transaction log Kafka - сообщения хранятся в текстовом файле, доступны по офсету
 ?
 
-1,2. Отличие stack от heap. Как их конфигурировать? Какие еще области памяти знаешь?
+- Отличие stack от heap. Как их конфигурировать? Какие еще области памяти знаешь?
 https://itsobes.ru/JavaSobes/na-kakie-oblasti-delitsia-pamiat-jvm/
 JVM разделяет память на две основные категории: "кучу" (heap) и "не кучу" (non-heap).
 = Heap - куча, вся managed-память, в которой хранятся все пользовательские объекты. Параметры -Xms, -Xmn и -Xmx устанавливают начальный, минимальный и максимальный размеры хипа соответственно.
@@ -673,7 +671,7 @@ Xss - stack size of each thread, default value is 256 KB in JDK1.4 and 1 MB in J
 
 = Metaspace – с Java 8 заменяет permanent generation. Отличие в том, что по умолчанию metaspace ограничен только размерами доступной на машине памяти, но так же как PermGen может быть ограничен, параметром -XX:MaxMetaspaceSize.
 
-3. Написать тело метода printTree который пройдет по всему дереву Node и распечатает каждый элемент. Какие варианты есть кроме рекурсии, чтобы избежать StackOverFlow?
+- Написать тело метода printTree который пройдет по всему дереву Node и распечатает каждый элемент. Какие варианты есть кроме рекурсии, чтобы избежать StackOverFlow?
 ```
 class Node {
 	private Node left;
@@ -703,13 +701,13 @@ public void printTree(Node root) {
 }
 ```
 
-4.  Какие типы операций существуют в Stream API?
+- Какие типы операций существуют в Stream API?
 два типа: intermediate and terminal - конвейерный и терминальный
 
-5. Что такое функциональный интерфейс?
+- Что такое функциональный интерфейс?
 Это интерфейс, который содержит только 1 абстрактный метод. Основное назначение – использование в лямбда выражениях и method reference.
 
-6. Что напечатает следующее выражение:
+- Что напечатает следующее выражение:
 ```
 Arrays.stream(new Integer[]{1, 4, 3})
         .peek(e -> {
@@ -733,7 +731,7 @@ Saw 2 3
 "Returns whether any elements of this stream match the provided predicate.
 May not evaluate the predicate on all elements if not necessary for determining the result."
 
-7. Отличие Spring от Spring Boot?
+- Отличие Spring от Spring Boot?
 https://www.geeksforgeeks.org/difference-between-spring-and-spring-boot/
 = Spring is an open-source lightweight framework that allows Java EE developers to build simple, reliable, and scalable enterprise applications. This framework mainly focuses on providing various ways to help you manage your business objects. It made the development of Web applications much easier than compared to classic Java frameworks and Application Programming Interfaces (APIs), such as Java database connectivity (JDBC), JavaServer Pages(JSP), and Java Servlet. This framework uses various new techniques such as Aspect-Oriented Programming (AOP), Plain Old Java Object (POJO), and dependency injection (DI), to develop enterprise applications.
 
@@ -741,13 +739,13 @@ The Spring framework can be considered as a collection of sub-frameworks, also c
 
 = Spring Boot is built on top of the conventional spring framework. So, it provides all the features of spring and is yet easier to use than spring. Spring Boot is a microservice-based framework and making a production-ready application in very less time. In Spring Boot everything is auto-configured. We just need to use proper configuration for utilizing a particular functionality. Spring Boot is very useful if we want to develop REST API.
 
-8. Как работает Spring Boot стартер? Как написать свой?
+- Как работает Spring Boot стартер? Как написать свой?
 = Добавить в src/main/resources/META-INF файл spring.factories, где перечислены бины автоконфигураций
 = Добавить бины автоконфигурации, которые по сути - описание части Спринг-контекста, с висящей на бинах автоконфигурации аннотацией @Conditional с различными условиями, когда эту автоконфигурацию включать
 = Добавить проперти для бинов, которые будут использоваться по умолчанию
 = При использовании данного стартера его зависимости будут включены транзитивно, поэтому добавить туда нужные зависимости для его (стартера) использования
 
-9. Что такое циклическая зависимость? Способы решения.
+- Что такое циклическая зависимость? Способы решения.
 Циклическая зависимость в Spring на самом деле является циклической ссылкой, то есть два или более bean-компонентов ссылаются друг на друга, образуя замкнутый цикл. Например, A зависит от B, B зависит от C, а C зависит от A.
 
 Сценарии разрешения циклической зависимости в Spring включают:
@@ -757,12 +755,12 @@ The Spring framework can be considered as a collection of sub-frameworks, also c
 = Циклическая зависимость атрибутов поля
 	Spring разделяет этап создания и этап инжекта бина
 
-10. Какие есть способы инъекции бинов?
+- Какие есть способы инъекции бинов?
 = через поля (не рекомендуется)
 = через конструкторы (рекомендуется)
 = через сеттеры (лучше - для опциональных зависимостей)
 
-11. Какие есть Spring Scope?
+- Какие есть Spring Scope?
 https://www.baeldung.com/spring-bean-scopes
 The latest version of the Spring framework defines 6 types of scopes:
 = singleton
@@ -773,14 +771,14 @@ The latest version of the Spring framework defines 6 types of scopes:
 	When beans are application scoped, the same instance of the bean is shared across multiple servlet-based applications running in the same ServletContext, while singleton scoped beans are scoped to a single application context only.
 = websocket (exhibits singleton behavior, but limited to a WebSocket session only)
 
-12. Зачем нужен Scope Prototype? Примеры использования
+- Зачем нужен Scope Prototype? Примеры использования
 Когда надо создавать новый экземпляр бина каждый раз для выполнения бизнес-задачи, 
 например бин с неким контекстом, который актуален для обработки именно этого запроса
 
-13. Есть один интерфейс и 2 bean которые его используют. Как сделать @Autowired нужного bean?
+- Есть один интерфейс и 2 bean которые его используют. Как сделать @Autowired нужного bean?
 Можно указать нужный бин с помощью @Qualifier, либо указать один из них как @Primary
 
-14. Привести примеры использования шаблонов проектирования в Spring
+- Привести примеры использования шаблонов проектирования в Spring
 https://habr.com/ru/company/otus/blog/451516/
 = Proxy (Заместитель)
 Прокси предоставляет заместителя для другого объекта, чтобы контролировать доступ к нему.
@@ -835,10 +833,10 @@ ServiceLocatorFactoryBean сохраняет информацию обо все�
 Паттерн Context Object, инкапсулирует системные данные в объекте-контексте для совместного использования другими частями приложения без привязки приложения к конкретному протоколу.
 ApplicationContext является центральным интерфейсом в приложении Spring для предоставления информации о конфигурации приложения.
 
-15. Если не использовать @Transactional будет ли использован прокси?
+- Если не использовать @Transactional будет ли использован прокси?
 Да, в Spring все бины создаются через прокси, а не только те, что используют @Transactional
 
-16. Как создать прокси объект? С помощью каких механизмов это делает Spring?
+- Как создать прокси объект? С помощью каких механизмов это делает Spring?
 https://medium.com/@spac.valentin/java-dynamic-proxy-mechanism-and-how-spring-is-using-it-93756fc707d5
 There are multiple ways of creating proxies:
 = Using plain java objects, if you know the interface beforehand. These are static proxies because you know at compile time the types of all involved objects.
@@ -851,14 +849,14 @@ The latter two are dynamic proxies because they work without knowing at compile 
 
 Spring делает это при помощи третьего способа, используя ProxyFactory, сохраняя бины в bean registry (чтобы потом извлечь нужный по типу)
 
-17. Какие еще есть способы модификации исходных классов (вопрос про weaving, AspectJ)
+- Какие еще есть способы модификации исходных классов (вопрос про weaving, AspectJ)
 https://www.baeldung.com/aspectj
 Виды оборачивания существующего кода в дополнительный код:
 = compile-time weaving is simplest approach. When we have both the source code of the aspect and the code that we are using aspects in, the AspectJ compiler will compile from source and produce a woven class files as output. Afterward, upon execution of your code, the weaving process output class is loaded into JVM as a normal Java class.
 = load-time weaving is simply binary weaving deferred until the point that a class loader loads a class file and defines the class to the JVM.
 = post-compile-time (sometimes called binary weaving) weaving is used to weave existing class files and JAR files.
 
-18. Плюсы и минусы SQL и NoSQL баз данных
+- Плюсы и минусы SQL и NoSQL баз данных
 https://boodet.online/blog/relyacionnye-vs-nerelyacionnye-bazy-dannyh-otlichiya-i-preimushhestva
 = Язык
 SQL используют универсальный язык структурированных запросов для определения и обработки данных. Это накладывает определенные ограничения: прежде чем начать обработку, данные надо разместить внутри таблиц и описать.
@@ -885,13 +883,13 @@ NoSQL используют, если объем данных большой. О�
 = записи хранятся в коллекции с разными полями или атрибутами;
 = необходимо горизонтальное масштабирование.
 
-19. Какой механизм есть в NoSQL для защиты от сбоев типа перезагрузка/выключение сервера?
+- Какой механизм есть в NoSQL для защиты от сбоев типа перезагрузка/выключение сервера?
 ?
 
-20. Виды NoSQL БД
+- Виды NoSQL БД
 Графовая, key-value, документная, колоночная
 
-21. Уровни изоляции БД
+- Уровни изоляции БД
 https://ru.wikipedia.org/wiki/%D0%A3%D1%80%D0%BE%D0%B2%D0%B5%D0%BD%D1%8C_%D0%B8%D0%B7%D0%BE%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%BD%D0%BE%D1%81%D1%82%D0%B8_%D1%82%D1%80%D0%B0%D0%BD%D0%B7%D0%B0%D0%BA%D1%86%D0%B8%D0%B9
 = Read uncommitted. Если несколько параллельных транзакций пытаются изменять одну и ту же строку таблицы, то в окончательном варианте строка будет иметь значение, определенное всем набором успешно выполненных транзакций. При этом возможно считывание не только логически несогласованных данных, но и данных, изменения которых ещё не зафиксированы.
 
@@ -902,15 +900,15 @@ https://ru.wikipedia.org/wiki/%D0%A3%D1%80%D0%BE%D0%B2%D0%B5%D0%BD%D1%8C_%D0%B8%
 
 = Serializable. Все транзакции выполняются последовательно, одна за другой.
 
-22. Какая разница между фантомным чтением и неповторяющимся чтением?
+- Какая разница между фантомным чтением и неповторяющимся чтением?
 Неповторяющееся чтение - при повторном чтении в рамках одной транзакции - ранее прочитанные данные оказываются изменены.
 Фантомное чтение - при повторной выборке строк по одним и тем же критериям в рамках одной транзакции - видим вставку новых строк другой параллельной транзакцией.
 
-23. Анализировал ли план запроса?
+- Анализировал ли план запроса?
 Да, там перечислены веса для каждой части запроса, откуда можно понять, на что тратится основное время при выполнении запроса.
 Также можно увидеть, используются ли индексы и какие.
 
-24. Какие есть способы оптимизации выборки?
+- Какие есть способы оптимизации выборки?
 От менее к более радикальным:
 = Использование индексов и внешних ключей для ускорения запроса
 = Использование JOIN вместо подзапросов
@@ -925,10 +923,9 @@ https://ru.wikipedia.org/wiki/%D0%A3%D1%80%D0%BE%D0%B2%D0%B5%D0%BD%D1%8C_%D0%B8%
 	== использовать "жадную загрузку" где надо, чтобы избежать "проблемы N+1"
 = Выполнить нормализацию БД
 
-25. Составной индекс в БД. Каким правилом нужно руководствоваться при составлении составного индекса? (ответ: по уникальности)
+- Составной индекс в БД. Каким правилом нужно руководствоваться при составлении составного индекса? (ответ: по уникальности)
 Составной индекс - в котором участвует не одна, а несколько колонок БД.
 При составлении индекса надо ориентироваться прежде всего на запросы. Но если запросы можно изменять, то лучше расположить колонки в индексе так, чтобы вначале шли колонки с низкой cardinality.
-
 
 - Рассказать про функциональный интерфейс и лямбда-функцию
 Функциональный интерфейс в Java — интерфейс, в котором объявлен только один абстрактный метод.
