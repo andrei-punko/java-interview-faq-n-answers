@@ -106,7 +106,7 @@ Int, длиной 4 байта<br/>
 <b>Что стало возможно использовать в интерфейсах, начиная с Java 8?</b><br/>
 </p>
 <p align="justify">
-<b>Чем начиная с Java 8 отличаются абстрактные классы и интерфейсы. (ответ: в интерфейсе нельзя использовать не статические поля)</b><br/>
+<b>Чем начиная с Java 8 отличаются абстрактные классы и интерфейсы? </b><br/>
 ?<br/>
 </p>
 <p align="justify">
@@ -115,16 +115,21 @@ Int, длиной 4 байта<br/>
 = создать динамический прокси, передав ему интерфейс в качестве параметра<br/>
 </p>
 <p align="justify">
-<b>В каком варианте массив будет успешно отсортирован: (от 0 до 3 вариантов):</b><br/>
-1. List<String> list = new ArrayList<>(stirings);<br/>
-2. List<String> list = Arrays.asList(strings);<br/>
-3. List<String> list = List.of(strings);<br/>
-Collections.sort(list);<br/>
-?<br/>
-</p>
-<p align="justify">
-Какую реализацию List возвращает Arrays.asList? (ответ: возвращает другой ArrayList – fixed sized list)<br/>
-Какую реализацию List возвращает List.of? (ответ: возвращает ImmutableList)<br/>
+<b>В каком варианте массив будет успешно отсортирован?</b><br/>
+<pre>
+List&lt;String&gt; list1 = new ArrayList&lt;&gt;(List.of("B", "C", "A"));
+Collections.sort(list1);
+
+List&lt;String&gt; list2 = Arrays.asList("B", "C", "A");
+Collections.sort(list2);
+
+List&lt;String&gt; list3 = List.of("B", "C", "A");
+Collections.sort(list3);
+</pre>
+Решение:<br/>
+С первой коллекцией все хорошо - сортировка выполнится<br/>
+Arrays.asList() возвращает другой ArrayList – fixed sized list, сортировка выполнится<br/>
+А вот List.of() - возвращает ImmutableList, поэтому Collections.sort(list3) упадет с UnsupportedOperationException<br/>
 </p>
 <p align="justify">
 <b>Удали дубликаты: String strings[] = {"u", "z", "c", "a", "a", "b"}</b><br/>
@@ -132,7 +137,11 @@ Collections.sort(list);<br/>
 Решение 2: new LinkedHashSet<>(Arrays.asList(strings))<br/>
 </p>
 <p align="justify">
-<b>Преобразовать: List<List<String>> lists ---> List<String> list</b><br/>
+<b>Преобразовать:</b><br/>
+<pre>
+List&lt;List&lt;String&gt;&gt; lists ---&gt; List&lt;String&gt; list
+</pre>
+Решение:<br/>
 <pre>
 lists.stream().flatMap(Collection::stream).collect(Collectors.toList())
 </pre>
@@ -200,10 +209,12 @@ Memory Analyzer categorizes garbage collection roots according to the following 
 </p>
 <p align="justify">
 <b>Что можешь сказать об этом коде:</b><br/>
-List<Integer> results = integers.stream()<br/>
-        .map(integer -> CompletableFuture.supplyAsync(() -> process(integer), executor))<br/>
-        .map(CompletableFuture::join)<br/>
-        .collect(Collectors.toList());<br/>
+<pre>
+List&lt;Integer&gt; results = integers.stream()
+        .map(integer -&gt; CompletableFuture.supplyAsync(() -&gt; process(integer), executor))
+        .map(CompletableFuture::join)
+        .collect(Collectors.toList());
+</pre>
 </p>
 <p align="justify">
 Подсказки от интервьюера: как можно исключить последовательный запуск и ожидание каждого потока? (ответ: разорвать stream, собрать CompletableFuture в List и заджойнить не на intах, потому что они будут конвейерно джойнится по одной, а надо собрать List<CompletableFuture> и заджойнить и тогда они выполнятся параллельно)<br/>
@@ -266,37 +277,33 @@ In some respects, you can think of the Spring containers role when talking about
 </p>
 <p align="justify">
 <b>Ты на код-ревью. Что не нравится? Что бы сделал иначе? Что вызывает подозрение? Как сделать self-injection? Что нужно дописать для этого?</b><br/>
-@Component<br/>
-@RequiredArgsConstructor<br/>
-Public class CachedPhotosService {<br/>
-    private static final String RESIZED_PHOTO_CACHE_NAME = "RESIZED_PHOTO_CACHE_NAME";<br/>
-</p>
-<p align="justify">
-	private final PhotoRepository photoRepository;<br/>
-    private final PhotoValidationService photoValidationService;<br/>
-    private final PhotoOperations photoOperations;<br/>
-</p>
-<p align="justify">
-    @Cacheable(cacheNames = RESIZED_PHOTO_CACHE_NAME)<br/>
-    public PhotoDTO resizedPhoto(String photoId, int width, int height) {<br/>
-        photoValidationService.validateSize(width, height);<br/>
-</p>
-<p align="justify">
-        Photo photo = photoRepository.findById(photoId);<br/>
-</p>
-<p align="justify">
-        PhotoDTO photoDto = ConversionUtils.convert(photo);<br/>
-        var resizedPhoto = photoOperations.resize(photoDto, width, height);<br/>
-</p>
-<p align="justify">
-        return resizedPhoto;<br/>
-    }<br/>
-</p>
-<p align="justify">
-    public PhotoDTO iconifiedPhoto(String photoId) {<br/>
-        return resizedPhoto(photoId, 100, 100);<br/>
-    }<br/>
-}<br/>
+<pre>
+@Component
+@RequiredArgsConstructor
+public class CachedPhotosService {
+    private static final String RESIZED_PHOTO_CACHE_NAME = "RESIZED_PHOTO_CACHE_NAME";
+
+	private final PhotoRepository photoRepository;
+    private final PhotoValidationService photoValidationService;
+    private final PhotoOperations photoOperations;
+
+    @Cacheable(cacheNames = RESIZED_PHOTO_CACHE_NAME)
+    public PhotoDTO resizedPhoto(String photoId, int width, int height) {
+        photoValidationService.validateSize(width, height);
+
+        Photo photo = photoRepository.findById(photoId);
+
+        PhotoDTO photoDto = ConversionUtils.convert(photo);
+        var resizedPhoto = photoOperations.resize(photoDto, width, height);
+
+        return resizedPhoto;
+    }
+
+    public PhotoDTO iconifiedPhoto(String photoId) {
+        return resizedPhoto(photoId, 100, 100);
+    }
+}
+</pre>
 = захардкоданы размеры в iconifiedPhoto(), вынес бы в константы<br/>
 = надо добавить @Transactional(readOnly=true) на resizedPhoto()<br/>
 = валидацию параметров width и height можно выполнять слоем выше, при помощи валидационных аннотаций<br/>
@@ -534,17 +541,18 @@ public class TestDeadlockExample1 {
 </p>
 <p align="justify">
 <b>Будет ли это нормально работать? Нужно чтобы вся коллекция элементов нормально обработалась, либо ни один элемент нормально не обработался:</b><br/>
-@Transactional<br/>
-Public void processCollection(Collection<Object> objects) {<br/>
-    objects.parallelStream()<br/>
-            .forEach(this::processOne);<br/>
-}<br/>
-</p>
-<p align="justify">
-@Transactional<br/>
-Public void processOne(Object o) {<br/>
-    ...<br/>
-}<br/>
+<pre>
+@Transactional
+public void processCollection(Collection&lt;Object&gt; objects) {
+    objects.parallelStream()
+            .forEach(this::processOne);
+}
+
+@Transactional
+public void processOne(Object o) {
+    ...
+}
+</pre>
 </p>
 <p align="justify">
 <b>Как сделать REST-запрос? Какие способы знаешь сделать это?</b><br/>

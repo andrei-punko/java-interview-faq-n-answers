@@ -69,28 +69,38 @@ https://habr.com/ru/post/237043/
 
 - Какие нововведения появились в Java 8?
 - Что стало возможно использовать в интерфейсах, начиная с Java 8?
-- Чем начиная с Java 8 отличаются абстрактные классы и интерфейсы. (ответ: в интерфейсе нельзя использовать не статические поля)
+- Чем начиная с Java 8 отличаются абстрактные классы и интерфейсы? 
 ?
 
 - Как инстанцировать экземпляр интерфейса?
 = создать анонимный класс, определив имплементацию нужных методов in-place
 = создать динамический прокси, передав ему интерфейс в качестве параметра
 
-- В каком варианте массив будет успешно отсортирован: (от 0 до 3 вариантов):
-1. List<String> list = new ArrayList<>(stirings);
-2. List<String> list = Arrays.asList(strings);
-3. List<String> list = List.of(strings);
-Collections.sort(list);
-?
+- В каком варианте массив будет успешно отсортирован?
+```
+List<String> list1 = new ArrayList<>(List.of("B", "C", "A"));
+Collections.sort(list1);
 
-Какую реализацию List возвращает Arrays.asList? (ответ: возвращает другой ArrayList – fixed sized list)
-Какую реализацию List возвращает List.of? (ответ: возвращает ImmutableList)
+List<String> list2 = Arrays.asList("B", "C", "A");
+Collections.sort(list2);
+
+List<String> list3 = List.of("B", "C", "A");
+Collections.sort(list3);
+```
+Решение:
+С первой коллекцией все хорошо - сортировка выполнится
+Arrays.asList() возвращает другой ArrayList – fixed sized list, сортировка выполнится
+А вот List.of() - возвращает ImmutableList, поэтому Collections.sort(list3) упадет с UnsupportedOperationException
 
 - Удали дубликаты: String strings[] = {"u", "z", "c", "a", "a", "b"}
 Решение 1: Arrays.stream(strings).distinct().collect(Collectors.toSet())
 Решение 2: new LinkedHashSet<>(Arrays.asList(strings))
 
-- Преобразовать: List<List<String>> lists ---> List<String> list
+- Преобразовать:
+```
+List<List<String>> lists ---> List<String> list
+```
+Решение:
 ```
 lists.stream().flatMap(Collection::stream).collect(Collectors.toList())
 ```
@@ -148,10 +158,12 @@ Memory Analyzer categorizes garbage collection roots according to the following 
 Синглтон в рамках отдельного треда
 
 - Что можешь сказать об этом коде:
+```
 List<Integer> results = integers.stream()
         .map(integer -> CompletableFuture.supplyAsync(() -> process(integer), executor))
         .map(CompletableFuture::join)
         .collect(Collectors.toList());
+```
 
 Подсказки от интервьюера: как можно исключить последовательный запуск и ожидание каждого потока? (ответ: разорвать stream, собрать CompletableFuture в List и заджойнить не на intах, потому что они будут конвейерно джойнится по одной, а надо собрать List<CompletableFuture> и заджойнить и тогда они выполнятся параллельно)
 
@@ -202,6 +214,7 @@ In some respects, you can think of the Spring containers role when talking about
 было уже
 
 - Ты на код-ревью. Что не нравится? Что бы сделал иначе? Что вызывает подозрение? Как сделать self-injection? Что нужно дописать для этого?
+```
 @Component
 @RequiredArgsConstructor
 public class CachedPhotosService {
@@ -227,6 +240,7 @@ public class CachedPhotosService {
         return resizedPhoto(photoId, 100, 100);
     }
 }
+```
 = захардкоданы размеры в iconifiedPhoto(), вынес бы в константы
 = надо добавить @Transactional(readOnly=true) на resizedPhoto()
 = валидацию параметров width и height можно выполнять слоем выше, при помощи валидационных аннотаций
@@ -432,6 +446,7 @@ public class TestDeadlockExample1 {
 ответ: @Qualifier, @Primary, по имени
 
 - Будет ли это нормально работать? Нужно чтобы вся коллекция элементов нормально обработалась, либо ни один элемент нормально не обработался:
+```
 @Transactional
 public void processCollection(Collection<Object> objects) {
     objects.parallelStream()
@@ -442,6 +457,7 @@ public void processCollection(Collection<Object> objects) {
 public void processOne(Object o) {
     ...
 }
+```
 
 - Как сделать REST-запрос? Какие способы знаешь сделать это?
 = При помощи RestTemplate: или вызовом соответствующего метода (get/post и т.п.) либо вызовом метода exchange с указанием, какой HTTP-метод использовать
