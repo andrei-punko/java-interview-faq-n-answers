@@ -3506,6 +3506,7 @@ Support 3 types of indexes: GIN, BTREE and HASH
 = If you are only interested in the "=" operator, then Hash indexes become interesting. For example, consider the case when we are looking for a particular tag on a book. The element to be indexed can be a top level element or deeply nested.
 
 - найти петли в древовидной структуре
+?
 
 - Для двух примеров, сказать чему будут равны b1 и b2
 ```
@@ -3521,10 +3522,12 @@ boolean b2 = i1.equals(i2); // false
 ```
 
 - Как запустить некоторый код асинхронно, предложить разные способы. Есть ли что-то для этого в Spring?
-
 - Задачка "запустить 3 работы параллельно"
+- Написать, как можно запустить код в отдельном потоке (несколько вариантов)
+?
 
 - Статическое и динамическое связывание. Рассказать на примере дженериков
+?
 
 - Привести примеры Immutable-классов в JDK
 Почти все классы обертки примитивных типов: Integer, String, Short, Boolean, BigInteger, BigDecimal и другие
