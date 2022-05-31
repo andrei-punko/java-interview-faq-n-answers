@@ -160,9 +160,6 @@ List<Integer> results = integers.stream()
 
 Подсказки от интервьюера: как можно исключить последовательный запуск и ожидание каждого потока? (ответ: разорвать stream, собрать CompletableFuture в List и заджойнить не на intах, потому что они будут конвейерно джойнится по одной, а надо собрать List<CompletableFuture> и заджойнить и тогда они выполнятся параллельно)
 
-- Работал ли со Spring Cloud? 
-было уже
-
 - Логгировал ли в проекте что-нибудь? Когда логгер что-то логгирует, откуда он берет все данные? Где они все хранятся?
 ?
 
@@ -212,12 +209,6 @@ In some respects, you can think of the Spring containers role when talking about
 - Расскажи про жизненный цикл бина
 было уже
 
-- Какие есть вариант инъекции бина?
-См. Ответы 4, вопрос 10
-
-- Как создать свой Spring Boot starter?
-См. Ответы 4, вопрос 8
-
 - Ты на код-ревью. Что не нравится? Что бы сделал иначе? Что вызывает подозрение? Как сделать self-injection? Что нужно дописать для этого?
 @Component
 @RequiredArgsConstructor
@@ -255,15 +246,6 @@ public class CachedPhotosService {
 интеграционные
 функциональные
 перфоманс тесты
-
-- Слышал про Testcontainers?
-да
-
-- Слышал про WireMock?
-да
-
-- Слышал про Mockito?
-да
 
 - Читал про Spring Test? @SpringBootTest, как написать, чтобы поднять только 1 bean? 
 https://stackoverflow.com/questions/51051994/spring-context-test-with-just-one-bean
@@ -347,9 +329,6 @@ ps aux | grep java
 
 - Можно ли обработать RuntimeException? Обрабатывал ли?
 Да. Это unchecked exception, и его отличие от checked лишь в том, что не надо отражать возможность его бросания в сигнатуре метода
-
-- Использовал ли Lombok?
-да
 
 - Для чего нужна аннотация @SneakyThrows в Lombok?
 чтобы избегнуть указания checked exceptions в сигнатуре метода, и потом быть обязанным их обрабатывать
@@ -459,17 +438,8 @@ public class TestDeadlockExample1 {
 - Отличие Spring от Spring Boot?
 было уже
 
-- Как устроен Spring Boot starter?
-было уже
-
-- Расскажи про жизненный цикл bean?
-!!!
-
 - Как донастроить bean? (вопрос про BeanPostProcessor)
 Написать свой BeanPostProcessor, там добавить нужную логику донастройки бина
-
-- Какие есть способы внедрения зависимостей? Какие использовал?
-было уже
 
 - Преимущества инъекции зависимости в конструктор?
 Это позволяет обнаруживать ошибки на ранней стадии: при отсутствии нужного бина в контексте, - все упадет на этапе старта приложения, а не позже, когда этот бин понадобится
@@ -493,9 +463,6 @@ public void processOne(Object o) {
 = При помощи RestTemplate: или вызовом соответствующего метода (get/post и т.п.) либо вызовом метода exchange с указанием, какой HTTP-метод использовать
 = При помощи библиотеки OkHttp
 = При помощи библиотеки OpenFeign
-
-- Иерархия коллекций в java?
-было уже
 
 - Как работает Hashtable?
 Hashtable - это потокобезопасный ассоциативный список.
@@ -564,9 +531,6 @@ The Garbage First or G1 garbage collector is available in Java 7 and is designed
 
 См. также ответ на вопрос "Как работает Garbage Collector в java?" в https://andrei-punko.github.io/java-interview-faq-n-answers
 
-- Какие есть способы инъекции бина?
-Отвечено в "Ответы 4 - Вопрос 10"
-
 - Преимущества @Autowired в конструктор?
 Если одного из бинов для инжекта нету - приложение упадет при поднятии контекста, на старте, а не потом, позже, когда дернут нужную операцию и этот бин понадобится.
 Такая архитектура позволяет устранять ошибки на ранней стадии.
@@ -592,9 +556,6 @@ Config - configuration management of distributed system
 Bus - uses lightweight message broker to link distributed system nodes. The primary usage is to broadcast configuration changes or other management information
 Stream - framework built on top of Spring Boot and Spring Integration that helps in creating event-driven or message-driven microservices
 Sleuth - provides Spring Boot auto-configuration for distributed tracing
-
-- Работал ли с ELK стэком?
-да
 
 - Оркестраторы?
 https://mcs.mail.ru/blog/what-are-container-orchestration-systems

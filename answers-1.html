@@ -212,10 +212,6 @@ List<Integer> results = integers.stream()<br/>
 Подсказки от интервьюера: как можно исключить последовательный запуск и ожидание каждого потока? (ответ: разорвать stream, собрать CompletableFuture в List и заджойнить не на intах, потому что они будут конвейерно джойнится по одной, а надо собрать List<CompletableFuture> и заджойнить и тогда они выполнятся параллельно)<br/>
 </p>
 <p align="justify">
-<b>Работал ли со Spring Cloud? </b><br/>
-Было уже<br/>
-</p>
-<p align="justify">
 <b>Логгировал ли в проекте что-нибудь? Когда логгер что-то логгирует, откуда он берет все данные? Где они все хранятся?</b><br/>
 ?<br/>
 </p>
@@ -276,14 +272,6 @@ In some respects, you can think of the Spring containers role when talking about
 Было уже<br/>
 </p>
 <p align="justify">
-<b>Какие есть вариант инъекции бина?</b><br/>
-См. Ответы 4, вопрос 10<br/>
-</p>
-<p align="justify">
-<b>Как создать свой Spring Boot starter?</b><br/>
-См. Ответы 4, вопрос 8<br/>
-</p>
-<p align="justify">
 <b>Ты на код-ревью. Что не нравится? Что бы сделал иначе? Что вызывает подозрение? Как сделать self-injection? Что нужно дописать для этого?</b><br/>
 @Component<br/>
 @RequiredArgsConstructor<br/>
@@ -328,18 +316,6 @@ Public class CachedPhotosService {<br/>
 Интеграционные<br/>
 Функциональные<br/>
 Перфоманс тесты<br/>
-</p>
-<p align="justify">
-<b>Слышал про Testcontainers?</b><br/>
-Да<br/>
-</p>
-<p align="justify">
-<b>Слышал про WireMock?</b><br/>
-Да<br/>
-</p>
-<p align="justify">
-<b>Слышал про Mockito?</b><br/>
-Да<br/>
 </p>
 <p align="justify">
 <b>Читал про Spring Test? @SpringBootTest, как написать, чтобы поднять только 1 bean? </b><br/>
@@ -445,10 +421,6 @@ Ps aux | grep java<br/>
 <p align="justify">
 <b>Можно ли обработать RuntimeException? Обрабатывал ли?</b><br/>
 Да. Это unchecked exception, и его отличие от checked лишь в том, что не надо отражать возможность его бросания в сигнатуре метода<br/>
-</p>
-<p align="justify">
-<b>Использовал ли Lombok?</b><br/>
-Да<br/>
 </p>
 <p align="justify">
 <b>Для чего нужна аннотация @SneakyThrows в Lombok?</b><br/>
@@ -569,20 +541,8 @@ public class TestDeadlockExample1 {
 Было уже<br/>
 </p>
 <p align="justify">
-<b>Как устроен Spring Boot starter?</b><br/>
-Было уже<br/>
-</p>
-<p align="justify">
-<b>Расскажи про жизненный цикл bean?</b><br/>
-!!!<br/>
-</p>
-<p align="justify">
 <b>Как донастроить bean? (вопрос про BeanPostProcessor)</b><br/>
 Написать свой BeanPostProcessor, там добавить нужную логику донастройки бина<br/>
-</p>
-<p align="justify">
-<b>Какие есть способы внедрения зависимостей? Какие использовал?</b><br/>
-Было уже<br/>
 </p>
 <p align="justify">
 <b>Преимущества инъекции зависимости в конструктор?</b><br/>
@@ -611,10 +571,6 @@ Public void processOne(Object o) {<br/>
 = При помощи RestTemplate: или вызовом соответствующего метода (get/post и т.п.) либо вызовом метода exchange с указанием, какой HTTP-метод использовать<br/>
 = При помощи библиотеки OkHttp<br/>
 = При помощи библиотеки OpenFeign<br/>
-</p>
-<p align="justify">
-<b>Иерархия коллекций в java?</b><br/>
-Было уже<br/>
 </p>
 <p align="justify">
 <b>Как работает Hashtable?</b><br/>
@@ -698,10 +654,6 @@ The Garbage First or G1 garbage collector is available in Java 7 and is designed
 См. также ответ на вопрос "Как работает Garbage Collector в java?" в https://andrei-punko.github.io/java-interview-faq-n-answers<br/>
 </p>
 <p align="justify">
-<b>Какие есть способы инъекции бина?</b><br/>
-Отвечено в "Ответы 4 - Вопрос 10"<br/>
-</p>
-<p align="justify">
 <b>Преимущества @Autowired в конструктор?</b><br/>
 Если одного из бинов для инжекта нету - приложение упадет при поднятии контекста, на старте, а не потом, позже, когда дернут нужную операцию и этот бин понадобится.<br/>
 Такая архитектура позволяет устранять ошибки на ранней стадии.<br/>
@@ -730,10 +682,6 @@ Config - configuration management of distributed system<br/>
 Bus - uses lightweight message broker to link distributed system nodes. The primary usage is to broadcast configuration changes or other management information<br/>
 Stream - framework built on top of Spring Boot and Spring Integration that helps in creating event-driven or message-driven microservices<br/>
 Sleuth - provides Spring Boot auto-configuration for distributed tracing<br/>
-</p>
-<p align="justify">
-<b>Работал ли с ELK стэком?</b><br/>
-Да<br/>
 </p>
 <p align="justify">
 <b>Оркестраторы?</b><br/>
