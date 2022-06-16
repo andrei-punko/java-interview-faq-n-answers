@@ -2973,22 +2973,12 @@ Imagine that the shared object is initially stored in main memory. A thread runn
 Как я это понимаю: Spring парсит названия методов и анализирует JPA классы; при наличии соответствующих полей - создает прокси инстанс с нужными методами, внутри которых производит вызовы соответствующих SQL-запросов<br/>
 </p>
 <p align="justify">
-<b>Деловая активность как замена продуктивности:</b><br/>
-В отсутствие четких индикаторов того, что значить быть продуктивным и ценным на своем рабочем месте, многие интеллектуальные работники возвращаются к индикаторам продуктивности времен индустриальной эпохи, а именно пытаются производить большое количество материала максимально наглядным образом (Кэл Ньюпорт)<br/>
-</p>
-<p align="justify">
 <b>Понимание устройства ORM-фреймворков</b><br/>
 Через reflection читаются аннотации на классах, методах; по ним генерируются соответствующие sql-запросы для взаимодействия с нужными таблицами в БД<br/>
 </p>
 <p align="justify">
 <b>Kubernetes</b><br/>
 <a href="https://eax.me/kubernetes/">https://eax.me/kubernetes/</a><br/>
-</p>
-<p align="justify">
-<b>Проблема распознавания символов церковнославянских текстов</b><br/>
-<a href="http://slavtype.ru/">http://slavtype.ru/</a><br/>
-<a href="https://sci.ponomar.net/ru/fonts.html">https://sci.ponomar.net/ru/fonts.html</a><br/>
-Нужные символы в таблицы Unicode добавлены, преобразователи текстов (в виде приложения или онлайн) из старых форматов в Unicode существуют; все уже сделано, в общем<br/>
 </p>
 <p align="justify">
 <b>Синхронизаторы</b><br/>
@@ -4289,9 +4279,11 @@ services:
 </p>
 <p align="justify">
 <b>Native Spring application</b><br/>
+?<br/>
 </p>
 <p align="justify">
 <b>R2dbc driver</b><br/>
+?<br/>
 </p>
 <p align="justify">
 <b>Low & high cardinality</b><br/>
@@ -4473,12 +4465,10 @@ Arrays.asList() возвращает другой ArrayList – fixed sized list
 Решение 2: new LinkedHashSet<>(Arrays.asList(strings))<br/>
 </p>
 <p align="justify">
-<b>Преобразовать:</b><br/>
+<b>Преобразовать список списков строк в список строк</b><br/>
 <pre>
 List&lt;List&lt;String&gt;&gt; lists ---&gt; List&lt;String&gt; list
-</pre>
-Решение:<br/>
-<pre>
+
 lists.stream().flatMap(Collection::stream).collect(Collectors.toList())
 </pre>
 </p>
@@ -4552,11 +4542,7 @@ List&lt;Integer&gt; results = integers.stream()
 Подсказки от интервьюера: как можно исключить последовательный запуск и ожидание каждого потока? (ответ: разорвать stream, собрать CompletableFuture в List и заджойнить не на intах, потому что они будут конвейерно джойнится по одной, а надо собрать List<CompletableFuture> и заджойнить и тогда они выполнятся параллельно)<br/>
 </p>
 <p align="justify">
-<b>Логгировал ли в проекте что-нибудь? Когда логгер что-то логгирует, откуда он берет все данные? Где они все хранятся?</b><br/>
-?<br/>
-</p>
-<p align="justify">
-<b>Слышал когда-нибудь про MDC?</b><br/>
+<b>Откуда logger берет данные при логировании? Слышал ли про MDC?</b><br/>
 <a href="https://www.baeldung.com/mdc-in-log4j-2-logback">https://www.baeldung.com/mdc-in-log4j-2-logback</a><br/>
 MDC (Mapped Diagnostic Context) provides a way to enrich log messages with information that could be unavailable in the scope where the logging actually occurs but that can be indeed useful to better track the execution of the program.<br/>
 MDC allows us to fill a map-like structure with pieces of information that are accessible to the appender when the log message is actually written.<br/>
@@ -4598,10 +4584,6 @@ In some respects, you can think of the Spring containers role when talking about
 <p align="justify">
 <b>Где хранится singleton бин?</b><br/>
 Доступ к нему можно получить из bean registry<br/>
-</p>
-<p align="justify">
-<b>Расскажи про жизненный цикл бина</b><br/>
-Было уже<br/>
 </p>
 <p align="justify">
 <b>Ты на код-ревью. Что не нравится? Что бы сделал иначе? Что вызывает подозрение? Как сделать self-injection? Что нужно дописать для этого?</b><br/>

@@ -2592,19 +2592,11 @@ Imagine that the shared object is initially stored in main memory. A thread runn
 - как работает магия Spring Data?
 как я это понимаю: Spring парсит названия методов и анализирует JPA классы; при наличии соответствующих полей - создает прокси инстанс с нужными методами, внутри которых производит вызовы соответствующих SQL-запросов
 
-- Деловая активность как замена продуктивности:
-в отсутствие четких индикаторов того, что значить быть продуктивным и ценным на своем рабочем месте, многие интеллектуальные работники возвращаются к индикаторам продуктивности времен индустриальной эпохи, а именно пытаются производить большое количество материала максимально наглядным образом (Кэл Ньюпорт)
-
 - понимание устройства ORM-фреймворков
 через reflection читаются аннотации на классах, методах; по ним генерируются соответствующие sql-запросы для взаимодействия с нужными таблицами в БД
 
 - Kubernetes
 https://eax.me/kubernetes/
-
-- проблема распознавания символов церковнославянских текстов
-http://slavtype.ru/
-https://sci.ponomar.net/ru/fonts.html
-Нужные символы в таблицы Unicode добавлены, преобразователи текстов (в виде приложения или онлайн) из старых форматов в Unicode существуют; все уже сделано, в общем
 
 - синхронизаторы
 https://habr.com/ru/post/277669/
@@ -3734,8 +3726,10 @@ services:
 (для версий более ранних, чем 3 - см. ссылку выше)
 
 - native Spring application
+?
 
 - r2dbc driver
+?
 
 - Low & high cardinality
 Низкая/высокая кардинальность - число уникальных записей в таблице мало/велико при большом размере таблицы.
@@ -3893,12 +3887,10 @@ Arrays.asList() возвращает другой ArrayList – fixed sized list
 Решение 1: Arrays.stream(strings).distinct().collect(Collectors.toSet())
 Решение 2: new LinkedHashSet<>(Arrays.asList(strings))
 
-- Преобразовать:
+- Преобразовать список списков строк в список строк
 ```
 List<List<String>> lists ---> List<String> list
-```
-Решение:
-```
+
 lists.stream().flatMap(Collection::stream).collect(Collectors.toList())
 ```
 
@@ -3961,10 +3953,7 @@ List<Integer> results = integers.stream()
 
 Подсказки от интервьюера: как можно исключить последовательный запуск и ожидание каждого потока? (ответ: разорвать stream, собрать CompletableFuture в List и заджойнить не на intах, потому что они будут конвейерно джойнится по одной, а надо собрать List<CompletableFuture> и заджойнить и тогда они выполнятся параллельно)
 
-- Логгировал ли в проекте что-нибудь? Когда логгер что-то логгирует, откуда он берет все данные? Где они все хранятся?
-?
-
-- Слышал когда-нибудь про MDC?
+- Откуда logger берет данные при логировании? Слышал ли про MDC?
 https://www.baeldung.com/mdc-in-log4j-2-logback
 MDC (Mapped Diagnostic Context) provides a way to enrich log messages with information that could be unavailable in the scope where the logging actually occurs but that can be indeed useful to better track the execution of the program.
 MDC allows us to fill a map-like structure with pieces of information that are accessible to the appender when the log message is actually written.
@@ -4000,9 +3989,6 @@ In some respects, you can think of the Spring containers role when talking about
 
 - Где хранится singleton бин?
 Доступ к нему можно получить из bean registry
-
-- Расскажи про жизненный цикл бина
-было уже
 
 - Ты на код-ревью. Что не нравится? Что бы сделал иначе? Что вызывает подозрение? Как сделать self-injection? Что нужно дописать для этого?
 ```
