@@ -4758,6 +4758,134 @@ https://itsobes.ru/JavaSobes/chto-takoe-kovariantnost-i-kontravariantnost/
 В HashSet можно
 В TreeSet нельзя. Чтобы было можно - надо указать такой компаратор, который позволяет сравнивать с null.
 
+- Рассказать об утечках памяти в Java. Могут ли циклические ссылки создать утечку мусора?
+?
+
+- Рассказать, что такое JIT.
+?
+
+- Разворачиваем проект в докере, лимит памяти контейнера прописан в 8Gb, а Xmx=4Gb, падает с OOM. С чего бы начал анализ проблемы?
+?
+
+- Один из запросов сервиса стал работать медленно. Предложить, что делать, куда смотреть, чтобы расследовать проблему. Ускорили этот запрос на чтение, стала работать медленнее вставка, как быть?
+?
+
+- Есть приложение, которое занимается расходными/приходными операциями по данной карте. Могут быть несколько инстансов этого приложения. Как сделать, чтобы все операции были выполнены гарантированно (и в правильном порядке) и не были потеряны?
+?
+
+- Какой будет вывод в консоль и будет ли он вообще?
+```
+public class Increment {
+    private static int counter1 = 0;
+    private static int counter2 = 0;
+
+    public static void main(String[] args) throws InterruptedException {
+        final String LOCK = "lock";
+        int tasksCount = 100000;
+        CountDownLatch latch = new CountDownLatch(tasksCount);
+        ExecutorService executor = Executors.newFixedThreadPool(100);
+        for (int i = 0; i < tasksCount; i++) {
+            executor.submit(() -> {
+                synchronized (LOCK) {
+                    counter1++;
+                    counter2++;    
+                }                
+                latch.countDown();
+            });
+        }
+
+        latch.await();
+
+        System.out.println(counter1);
+        System.out.println(counter2);
+        System.exit(0);
+    }
+}
+```
+
+- Код-ревью - рассказать свои мысли о данном коде.
+```
+/**
+ * Компонент проведения платежей.
+ * <p>
+ * Платеж - это сумма в валюте, которая переводится от одного клиента другому.
+ * <p>
+ * Сумма платежа при сохранении должна быть пересчитана в рубли по курсу ЦБ на текущую дату.
+ * <p>
+ * При платеже должна быть выставлена комиссия, которая зависит от суммы платежа.
+ * <p>
+ * После платежа надо вызвать сервис нотификаций, который отправит уведомления пользователям --
+ * для клиентов это будет выглядеть как push уведомление.
+ * <p>
+ * Компонент переводит деньги от авторизованного пользователя переданному на вход.
+ */
+@Service
+public class PaymentService {
+    @Autowired
+    private PaymentRepository paymentRepository;
+    @Autowired
+    private FeeRepository feeRepository;
+    @Autowired
+    private UserRepository userRepository;
+
+    private NotificationRestClient notificationRestClient = new NotificationRestClient();
+    private CbrRestClient cbrRestClient = new CbrRestClient();
+
+    @Transactional
+    public void processPayment(double amount, Currency currency, Long recipientId) {
+        double amountInRub = amount * cbrRestClient.doRequest().getRates().get(currency.getCode());
+        Long userId = (Long) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User user = userRepository.findUserById(userId).get();
+        Payment payment = new Payment(amountInRub, user, recipientId);
+        paymentRepository.save(payment);
+        if (amountInRub < 1000) {
+            Fee fee = new Fee(amountInRub * 0.015, user);
+            feeRepository.save(fee);
+        }
+        if (amountInRub > 1000) {
+            Fee fee = new Fee(amountInRub * 0.01, user);
+            feeRepository.save(fee);
+        }
+        if (amountInRub > 5000) {
+            Fee fee = new Fee(amountInRub * 0.005, user);
+            feeRepository.save(fee);
+        }
+        try {
+            notificationRestClient.notify(payment);
+        } catch (Throwable t) {
+            // do nothing
+        }
+    }
+
+    @Entity
+    class Fee {
+        private Double value;
+
+        @ManyToOne
+        private User user;
+
+        public Fee() {
+        }
+
+        public Fee(Double value, User user) {
+            this.value = value;
+            this.user = user;
+        }
+
+        public void setValue(Double value) {
+            this.value = value;
+        }
+
+        public void setUser(User user) {
+            this.user = user;
+        }
+    }
+}
+```
+В ходе обсуждения вопросы:
+= почему инжект через конструктор - это хорошо?
+= всегда ли будет отправлена нотификация в notificationRestClient.notify()?
+= вопрос об экстернализации конфигурации
 
 * Links
 http://javamex.com
