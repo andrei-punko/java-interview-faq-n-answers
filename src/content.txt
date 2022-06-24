@@ -2622,13 +2622,13 @@ https://habr.com/ru/post/277669/
 
 = Phaser (фазер), как и CyclicBarrier, является реализацией шаблона синхронизации Барьер, но, в отличии от CyclicBarrier, предоставляет больше гибкости. Этот класс позволяет синхронизировать потоки, представляющие отдельную фазу или стадию выполнения общего действия. Как и CyclicBarrier, Phaser является точкой синхронизации, в которой встречаются потоки-участники. Когда все стороны прибыли, Phaser переходит к следующей фазе и снова ожидает ее завершения.
 
-- Difference Between Mocks and Stubs
+- Difference Between Mocks and Stubs (and Dummy/Fake/Spies)
 https://www.martinfowler.com/articles/mocksArentStubs.html
-= Dummy objects are passed around but never actually used. Usually they are just used to fill parameter lists.
-= Fake objects actually have working implementations, but usually take some shortcut which makes them not suitable for production (an in memory database is a good example).
-= Stubs provide canned answers to calls made during the test, usually not responding at all to anything outside what's programmed in for the test.
-= Spies are stubs that also record some information based on how they were called. One form of this might be an email service that records how many messages it was sent.
-= Mocks are what we are talking about here: objects pre-programmed with expectations which form a specification of the calls they are expected to receive.
+= DUMMY objects are passed around but never actually used. Usually they are just used to fill parameter lists.
+= FAKE objects actually have working implementations, but usually take some shortcut which makes them not suitable for production (an in memory database is a good example).
+= STUBS provide canned answers to calls made during the test, usually not responding at all to anything outside what's programmed in for the test.
+= SPIES are stubs that also record some information based on how they were called. One form of this might be an email service that records how many messages it was sent.
+= MOCKS pre-programmed with expectations which form a specification of the calls they are expected to receive.
 
 - Which sorting algorithm is stable?
 https://stackoverflow.com/questions/1517793/what-is-stability-in-sorting-algorithms-and-why-is-it-important

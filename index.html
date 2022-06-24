@@ -3011,13 +3011,13 @@ Imagine that the shared object is initially stored in main memory. A thread runn
 = Phaser (фазер), как и CyclicBarrier, является реализацией шаблона синхронизации Барьер, но, в отличии от CyclicBarrier, предоставляет больше гибкости. Этот класс позволяет синхронизировать потоки, представляющие отдельную фазу или стадию выполнения общего действия. Как и CyclicBarrier, Phaser является точкой синхронизации, в которой встречаются потоки-участники. Когда все стороны прибыли, Phaser переходит к следующей фазе и снова ожидает ее завершения.<br/>
 </p>
 <p align="justify">
-<b>Difference Between Mocks and Stubs</b><br/>
+<b>Difference Between Mocks and Stubs (and Dummy/Fake/Spies)</b><br/>
 <a href="https://www.martinfowler.com/articles/mocksArentStubs.html">https://www.martinfowler.com/articles/mocksArentStubs.html</a><br/>
-= Dummy objects are passed around but never actually used. Usually they are just used to fill parameter lists.<br/>
-= Fake objects actually have working implementations, but usually take some shortcut which makes them not suitable for production (an in memory database is a good example).<br/>
-= Stubs provide canned answers to calls made during the test, usually not responding at all to anything outside what's programmed in for the test.<br/>
-= Spies are stubs that also record some information based on how they were called. One form of this might be an email service that records how many messages it was sent.<br/>
-= Mocks are what we are talking about here: objects pre-programmed with expectations which form a specification of the calls they are expected to receive.<br/>
+= DUMMY objects are passed around but never actually used. Usually they are just used to fill parameter lists.<br/>
+= FAKE objects actually have working implementations, but usually take some shortcut which makes them not suitable for production (an in memory database is a good example).<br/>
+= STUBS provide canned answers to calls made during the test, usually not responding at all to anything outside what's programmed in for the test.<br/>
+= SPIES are stubs that also record some information based on how they were called. One form of this might be an email service that records how many messages it was sent.<br/>
+= MOCKS pre-programmed with expectations which form a specification of the calls they are expected to receive.<br/>
 </p>
 <p align="justify">
 <b>Which sorting algorithm is stable?</b><br/>
