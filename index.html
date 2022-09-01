@@ -5632,6 +5632,51 @@ public class PaymentService {
 = вопрос об экстернализации конфигурации<br/>
 </p>
 <p align="justify">
+<b>Рассказать, что будет при вызове ServiceA.doIt() и откатится ли транзакция?</b><br/>
+<pre>
+@Service
+public class ServiceA {
+
+    @Autowired
+    private TestRepository testRepository;
+    @Autowired
+    private ServiceB serviceB;
+
+    @Transactional
+    public TestEntity doIt(TestEntity testEntity) {
+        final var saved = testRepository.save(testEntity);
+        serviceB.doIt();
+        return saved;
+    }
+}
+
+@Service
+public class ServiceB {
+
+    @Autowired
+    private ServiceC serviceC;
+
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
+    public void doIt() {
+        try {
+            serviceC.throwException();
+        } catch (Exception e) {
+            System.out.println("We have caught it" + e);
+        }
+    }
+}
+
+@Service
+public class ServiceC {
+
+    @Transactional
+    public void throwException() {
+        throw new RuntimeException();
+    }
+}
+</pre>
+</p>
+<p align="justify">
 <b>Links</b><br/>
 <a href="http://javamex.com">http://javamex.com</a><br/>
 <a href="http://javarevisited.blogspot.com">http://javarevisited.blogspot.com</a><br/>
