@@ -1076,13 +1076,13 @@ ArrayList реализует интерфейс List. Только что соз
 <b>Реализация HashMap.</b><br/>
 Объект HashMap содержит ряд св-в:<br/>
 • table – массив типа Entry[], который является хранилищем ссылок на списки (цепочки) значений<br/>
-• loadFactor – коэфф-т загрузки, по умолчанию =0.75<br/>
-• threshold – предельное кол-во эл-тов, при достижению которого размер хэш-таблицы увеличивается вдвое; =(capacity * loadFactor)<br/>
-• size – кол-во эл-тов HashMap-а<br/>
-Можно указать свои емкость и коэфф-т загрузки конструкторами HashMap(capacity) и HashMap(capacity, loadFactor). Максимальная емкость равна половине макс. значения int.<br/>
-• При добавлении эл-та ключ проверяется на null (если ==null, то просматривается цепочка, привязанная к table[0]; при нахождении эл-та с ключом null его значение перезаписывается; при ненахождении - добавляется в цепочку, привязанную к table[0]).<br/>
-• Рассчитывается хэш ключа и позиция в массиве, куда будет помещен элемент. Перезапись происходит только если хэш и ключ нового элемента совпадают с хэшем и ключом существующего элемента, в обратном случае – происходит добавление эл-та в цепочку, соответствующую расчетной позиции в массиве.<br/>
-Когда массив table[] заполняется до предельного значения, его размер увеличивается вдвое и происходит перераспределение эл-тов. При удалении эл-тов размер массива table[] не уменьшается (можно пересоздать HashMap конструктором копирования). <br/>
+• loadFactor – коэффициент загрузки, по умолчанию =0.75<br/>
+• threshold – предельное кол-во элементов, при достижению которого размер хэш-таблицы увеличивается вдвое; =(capacity * loadFactor)<br/>
+• size – кол-во элементов HashMap-а<br/>
+Можно указать свои емкость и коэффициент загрузки конструкторами HashMap(capacity) и HashMap(capacity, loadFactor). Максимальная емкость равна половине макс. значения int.<br/>
+• При добавлении элемента ключ проверяется на null (если ==null, то просматривается цепочка, привязанная к table[0]; при нахождении элемента с ключом null его значение перезаписывается; при ненахождении - добавляется в цепочку, привязанную к table[0]).<br/>
+• Рассчитывается хэш ключа и позиция в массиве, куда будет помещен элемент. Перезапись происходит только если хэш и ключ нового элемента совпадают с хэшем и ключом существующего элемента, в обратном случае – происходит добавление элемента в цепочку, соответствующую расчетной позиции в массиве.<br/>
+Когда массив table[] заполняется до предельного значения, его размер увеличивается вдвое и происходит перераспределение элементов. При удалении элементов размер массива table[] не уменьшается (можно пересоздать HashMap конструктором копирования). <br/>
 </p>
 <p align="justify">
 <b>Внутренние классы, цели использования. Области видимости данных при определенных ситуациях</b><br/>
@@ -1279,7 +1279,7 @@ Classloader-наследник видит все свои классы и кла
 Использовать класс из другого Classloader-а можно только при помощи reflection API.<br/>
 Статическая загрузка класса – загрузка при помощи оператора “new”.<br/>
 Динамическая загрузка класса – программный вызов функций classloader-а во время выполнения:<br/>
-Class vehicleClass = Class.forName(“com.epam.autoshop.Vehicle”);<br/>
+Class vehicleClass = Class.forName("com.autoshop.Vehicle");<br/>
 Jeep myJeep = (Jeep)vehicleClass.newInstance();<br/>
 </p>
 <p align="justify">
@@ -1297,14 +1297,14 @@ If(s1.intern() == s2.intern()) {...} //производительность вы
 <p align="justify">
 <b>Что входит в J2EE?</b><br/>
 Кратко: J2SE используется для разработки настольных приложений, J2EE - для серверных.<br/>
-JRE (Java Runtime Environment) - cреда выполнения Java-приложений.<br/>
+JRE (Java Runtime Environment) - среда выполнения Java-приложений.<br/>
 J2SE - стандартный JDK, включающий JRE, транслятор языка, стандартные библиотеки классов и некоторые важные утилиты.<br/>
 J2EE - надстройка над J2SE, включающая библиотеки и утилиты для разработки в основном связанной с построением серверных приложений. В состав J2EE входят EJB (Enterprise Java Beans), сервлеты, JSP, JMS (Java Message Service), etc.<br/>
 Хотя такие фреймворки как hibernate, spring вместе с J2SE позволяют реализовать ту же функциональность без использования J2EE.<br/>
 </p>
 <p align="justify">
 <b>Что такое two-phase commit?</b><br/>
-Когда транзакция подразумевает изменения сразу в нескольких БД, используется two-phase commit: изменения, соответствующие транзакции, сохраняются временно в каждой БД. Монитор транзакций посылает “pre-commit” команду каждой БД, и ожидает подтверждения. Если монитор получает соответствующий ответ от каждой БД, он посылает “commit” команду, после чего все БД делают транзакционные изменения постоянными.<br/>
+Когда транзакция подразумевает изменения сразу в нескольких БД, используется two-phase commit: изменения, соответствующие транзакции, сохраняются временно в каждой БД. Монитор транзакций посылает "pre-commit" команду каждой БД, и ожидает подтверждения. Если монитор получает соответствующий ответ от каждой БД, он посылает “commit” команду, после чего все БД делают транзакционные изменения постоянными.<br/>
 </p>
 <p align="justify">
 <b>В чём отличия Statement от PrepareStatement? Будет ли тот же эффект как и от PrepareStatement, если формировать запрос просто в строке и отправлять его в  Statement? В чем отличия executeUpdate от executeQuery?</b><br/>
@@ -2555,7 +2555,7 @@ JWT состоит из трех частей: заголовок header, пол
 CPU: time/calls, sampling<br/>
 	= Wall clock time/calls. Быстро, прямо в коде, функцией currentTimeMillis(); но она не точная, меряет только в мсек<br/>
 	= Short/fast calls. Есть вариант использовать нативный код, слинковать с жава-кодом и так измерять<br/>
-	= Sampling. Делать треддампы и смотреть, в каких местах застаем программу часто. Если у вас в программе есть строчка, в которой она тратит все, или по крайней мере 90% своего времени, например, какой-нибудь цикл, а там, в глубине, какая-то строчка, то скорее всего, при остановке исполнения вы ее в этой строчке и застанете. Такое место в программе называется "горячей точкой". Это всегда замечательный кандидат для оптимизации. Что классно — есть встроенная фукнция под названием "thread dump", чтобы получить дамп всех потоков. В Windows она делается путем нажатия CTRL-Break на консоли, а на Linux и других юниксах это делается посылкой третьего сигнала, командой "kill -3".<br/>
+	= Sampling. Делать треддампы и смотреть, в каких местах застаем программу часто. Если у вас в программе есть строчка, в которой она тратит все, или по крайней мере 90% своего времени, например, какой-нибудь цикл, а там, в глубине, какая-то строчка, то скорее всего, при остановке исполнения вы ее в этой строчке и застанете. Такое место в программе называется "горячей точкой". Это всегда замечательный кандидат для оптимизации. Что классно — есть встроенная функция под названием "thread dump", чтобы получить дамп всех потоков. В Windows она делается путем нажатия CTRL-Break на консоли, а на Linux и других юниксах это делается посылкой третьего сигнала, командой "kill -3".<br/>
 	Также в современных Java-машинах есть замечательная утилита jstack, ей можно передать идентификатор процесса, и получить на выходе thread dump.<br/>
 	Сделайте не один thread dump, сделайте несколько thread dumpов. Если первый ничего не выловит, посмотрите еще на пару-тройку. Может у вас в горячей точке не сто процентов времени программа проводит, а 50%.<br/>
 	Эту идею можно развить дальше. Можно, запустив JVM, перенаправить ее выход в файл, и запустить скрипт, который делает thread dump каждые три секунды. Это можно делать совершенно спокойно на живой системе, без какого либо риска что-то с ней сделать. Потому что сам сбор thread dump достаточно быстрая процедура, занимает от силы 100 миллисекунд, даже при очень большом количестве тредов. Т.е. это совершенно безопасный инструмент профилирования живых и работающих систем. После этого, получив файл thread dump, его можно посмотреть глазками, а можно написать несложный кусок кода, который анализирует, считает какие-нибудь статистики → хотя бы тупо, посмотреть, какие методы проявились и сколько раз, посмотреть, в каком состоянии находились потоки.<br/>
@@ -2575,7 +2575,7 @@ Memory: usage, allocation<br/>
 Если всё в порядке, браузер генерирует сеансовый ключ, зашифровывает его публичным ключом и отправляет на сервер. <br/>
 Сервер расшифровывает сообщение и сохраняет сеансовый ключ. <br/>
 После этого между браузером и сайтом устанавливается безопасное соединение через протокол HTTPS.<br/>
-Для взаимодействовия в течение установленного сеанса теперь используется данный сеансовый ключ.<br/>
+Для взаимодействия в течение установленного сеанса теперь используется данный сеансовый ключ.<br/>
 </p>
 <p align="justify">
 <b>Aspects for private methods</b><br/>
@@ -2665,10 +2665,10 @@ B*-дерево — разновидность B-дерева, в которой
 B+-дерево — структура данных на основе B-дерева, сбалансированное n-арное дерево поиска с переменным, но зачастую большим количеством потомков в узле. B+-дерево состоит из корня, внутренних узлов и листьев, корень может быть либо листом, либо узлом с двумя и более потомками)<br/>
 </p>
 <p align="justify">
-<b>Ускоряет ли индекс работу с бд для запросов вида like?</b><br/>
+<b>Ускоряет ли индекс работу с БД для запросов вида like?</b><br/>
 <a href="https://ru.wikipedia.org/wiki/%D0%98%D0%BD%D0%B4%D0%B5%D0%BA%D1%81_(%D0%B1%D0%B0%D0%B7%D1%8B_%D0%B4%D0%B0%D0%BD%D0%BD%D1%8B%D1%85)">https://ru.wikipedia.org/wiki/%D0%98%D0%BD%D0%B4%D0%B5%D0%BA%D1%81_(%D0%B1%D0%B0%D0%B7%D1%8B_%D0%B4%D0%B0%D0%BD%D0%BD%D1%8B%D1%85)</a><br/>
 Для запроса вида: SELECT email_address FROM customers WHERE email_address LIKE '%@yahoo.com'; наличие индекса для столбца email_address не ускоряет поиск.<br/>
-Этот запрос должен нам найти всех клиентов, у которых е-мейл заканчивается на @yahoo.com, однако даже если по столбцу email_address есть индекс, СУБД всё равно будет использовать полный перебор таблицы. Это связано с тем, что индексы строятся в предположении, что слова/символы идут слева направо. Использование символа подстановки в начале условия поиска исключает для СУБД возможность использования поиска по B-дереву. Эта проблема может быть решена созданием дополнительного индекса по выражению reverse(email_address) и формированием запроса вида: SELECT email_address FROM customers WHERE reverse(email_address) LIKE reverse('%@yahoo.com');.<br/>
+Этот запрос должен нам найти всех клиентов, у которых e-mail заканчивается на @yahoo.com, однако даже если по столбцу email_address есть индекс, СУБД всё равно будет использовать полный перебор таблицы. Это связано с тем, что индексы строятся в предположении, что слова/символы идут слева направо. Использование символа подстановки в начале условия поиска исключает для СУБД возможность использования поиска по B-дереву. Эта проблема может быть решена созданием дополнительного индекса по выражению reverse(email_address) и формированием запроса вида: SELECT email_address FROM customers WHERE reverse(email_address) LIKE reverse('%@yahoo.com');.<br/>
 В данном случае символ подстановки окажется в самой правой позиции (moc.oohay@%), что не исключает использование индекса по reverse(email_address). <br/>
 </p>
 <p align="justify">
@@ -2828,7 +2828,7 @@ How to establish happens-before relation?<br/>
 Followings are the rules for happens-before:<br/>
 = Single thread rule: Each action in a single thread happens-before every action in that thread that comes later in the program order.<br/>
 = Monitor lock rule: An unlock on a monitor lock (exiting synchronized method/block) happens-before every subsequent acquiring on the same monitor lock.<br/>
-= Volatile variable rule: A write to a volatile field happens-before every subsequent read of that same field. Writes and reads of volatile fields have similar memory consistency effects as entering and exiting monitors (synchronized block around reads and writes), but without actually aquiring monitors/locks.<br/>
+= Volatile variable rule: A write to a volatile field happens-before every subsequent read of that same field. Writes and reads of volatile fields have similar memory consistency effects as entering and exiting monitors (synchronized block around reads and writes), but without actually acquiring monitors/locks.<br/>
 = Thread start rule: A call to Thread.start() on a thread happens-before every action in the started thread. Say thread A spawns a new thread B by calling threadA.start(). All actions performed in thread B's run method will see thread A's calling threadA.start() method and before that (only in thread A) happened before them.<br/>
 = Thread join rule: All actions in a thread happen-before any other thread successfully returns from a join on that thread. Say thread A spawns a new thread B by calling threadA.start() then calls threadA.join(). Thread A will wait at join() call until thread B's run method finishes. After join method returns, all subsequent actions in thread A will see all actions performed in thread B's run method happened before them.<br/>
 = Transitivity: If A happens-before B, and B happens-before C, then A happens-before C.<br/>
@@ -3227,7 +3227,7 @@ Git merge hotfix_branch<br/>
 = Кодирование длинного урла (1й вариант):<br/>
 1. из исходного url отбрасываем 'http://' вначале, берем 1+ первых букв (сколько - зависит от кол-ва шард N у нас), кодируем эту пару букв в число (с основанием 26), берем остаток от деления числа этого на N - это будет номер шарды<br/>
 2. добавляем в таблицу БД новую запись вида (ID, LONG_STRING), генерируем короткую строку SHORT_STRING по ID, дописываем SHORT_STRING в эту строку.<br/>
-3. возвращаем пользователю строку вида 'http://' + домен кодировщика урлов + '/' + (использованые первые буквы исх. урла) + SHORT_STRING<br/>
+3. возвращаем пользователю строку вида 'http://' + домен кодировщика урлов + '/' + (использованные первые буквы исх. урла) + SHORT_STRING<br/>
 </p>
 <p align="justify">
 = Декодирование короткого урла (1й вариант):<br/>
@@ -4034,7 +4034,7 @@ Types of partitioning:<br/>
 </p>
 <p align="justify">
 = Composite partitioning combines several partitioning types<br/>
-Composite partitioning partitions data using the range method, and within each partition, subpartitions it using the hash or list method. Composite range-hash partitioning provides the improved manageability of range partitioning and the data placement, striping, and parallelism advantages of hash partitioning. Composite range-list partitioning provides the manageability of range partitioning and the explicit control of list partitioning for the subpartitions.<br/>
+Composite partitioning partitions data using the range method, and within each partition, sub-partitions it using the hash or list method. Composite range-hash partitioning provides the improved manageability of range partitioning and the data placement, striping, and parallelism advantages of hash partitioning. Composite range-list partitioning provides the manageability of range partitioning and the explicit control of list partitioning for the sub-partitions.<br/>
 </p>
 <p align="justify">
 Composite partitioning supports historical operations, such as adding new range partitions, but also provides higher degrees of parallelism for DML operations and finer granularity of data placement through subpartitioning.<br/>
@@ -4802,7 +4802,7 @@ public static void main(String[] args) {
     Stream&lt;String&gt; result = bar(stream);
 }
 </pre>
-Кажется, что будет выведено 'foofoo', но на стриме не вызвана терминальная операция, поэтмоу ничего не будет выведено.<br/>
+Кажется, что будет выведено 'foofoo', но на стриме не вызвана терминальная операция, поэтому ничего не будет выведено.<br/>
 </p>
 <p align="justify">
 <b>Вернуть список пользователей, у которых какая-либо группа начинается на "А":</b><br/>
