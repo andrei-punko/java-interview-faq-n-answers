@@ -1,0 +1,3 @@
+[submodule "github-pages-content-generator"]
+	path = github-pages-content-generator
+	url = https://github.com/andrei-punko/github-pages-content-generator
