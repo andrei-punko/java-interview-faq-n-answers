@@ -2834,8 +2834,12 @@ Followings are the rules for happens-before:<br/>
 </p>
 <p align="justify">
 <b id="q251">Different loggers configuration</b>&nbsp;<a href="#q251" style="text-decoration:none">🔗</a><br/>
-<a href="https://habr.com/ru/post/247647/	Java logging. Hello World">https://habr.com/ru/post/247647/	Java logging. Hello World</a><br/>
-<a href="https://habr.com/ru/post/113145/	Java Logging: история кошмара">https://habr.com/ru/post/113145/	Java Logging: история кошмара</a><br/>
+Java logging. Hello World<br/>
+<a href="https://habr.com/ru/post/247647">https://habr.com/ru/post/247647</a><br/>
+</p>
+<p align="justify">
+Java Logging: история кошмара<br/>
+<a href="https://habr.com/ru/post/113145">https://habr.com/ru/post/113145</a><br/>
 </p>
 <p align="justify">
 <b id="q252">MQTT</b>&nbsp;<a href="#q252" style="text-decoration:none">🔗</a><br/>
@@ -4418,22 +4422,19 @@ PermGen (permanent generation) – в этой области хранятся �
 Множество - содержит только уникальные элементы<br/>
 </p>
 <p align="justify">
-<b id="q358">Какие нововведения появились в Java 8?</b>&nbsp;<a href="#q358" style="text-decoration:none">🔗</a><br/>
+<b id="q358">Что стало возможно использовать в интерфейсах, начиная с Java 8?</b>&nbsp;<a href="#q358" style="text-decoration:none">🔗</a><br/>
 </p>
 <p align="justify">
-<b id="q359">Что стало возможно использовать в интерфейсах, начиная с Java 8?</b>&nbsp;<a href="#q359" style="text-decoration:none">🔗</a><br/>
+<b id="q359">Чем, начиная с Java 8 отличаются абстрактные классы и интерфейсы?</b>&nbsp;<a href="#q359" style="text-decoration:none">🔗</a><br/>
+Появились default-методы в интерфейсах<br/>
 </p>
 <p align="justify">
-<b id="q360">Чем начиная с Java 8 отличаются абстрактные классы и интерфейсы? </b>&nbsp;<a href="#q360" style="text-decoration:none">🔗</a><br/>
-?<br/>
-</p>
-<p align="justify">
-<b id="q361">Как инстанцировать экземпляр интерфейса?</b>&nbsp;<a href="#q361" style="text-decoration:none">🔗</a><br/>
+<b id="q360">Как инстанцировать экземпляр интерфейса?</b>&nbsp;<a href="#q360" style="text-decoration:none">🔗</a><br/>
 = создать анонимный класс, определив имплементацию нужных методов in-place<br/>
 = создать динамический прокси, передав ему интерфейс в качестве параметра<br/>
 </p>
 <p align="justify">
-<b id="q362">В каком варианте массив будет успешно отсортирован?</b>&nbsp;<a href="#q362" style="text-decoration:none">🔗</a><br/>
+<b id="q361">В каком варианте массив будет успешно отсортирован?</b>&nbsp;<a href="#q361" style="text-decoration:none">🔗</a><br/>
 <pre>
 List&lt;String&gt; list1 = new ArrayList&lt;&gt;(List.of("B", "C", "A"));
 Collections.sort(list1);
@@ -4450,12 +4451,12 @@ Arrays.asList() возвращает другой ArrayList – fixed sized list
 А вот List.of() - возвращает ImmutableList, поэтому Collections.sort(list3) упадет с UnsupportedOperationException<br/>
 </p>
 <p align="justify">
-<b id="q363">Удали дубликаты: String strings[] = {"u", "z", "c", "a", "a", "b"}</b>&nbsp;<a href="#q363" style="text-decoration:none">🔗</a><br/>
+<b id="q362">Удали дубликаты: String strings[] = {"u", "z", "c", "a", "a", "b"}</b>&nbsp;<a href="#q362" style="text-decoration:none">🔗</a><br/>
 Решение 1: Arrays.stream(strings).distinct().collect(Collectors.toSet())<br/>
 Решение 2: new LinkedHashSet<>(Arrays.asList(strings))<br/>
 </p>
 <p align="justify">
-<b id="q364">Преобразовать список списков строк в список строк</b>&nbsp;<a href="#q364" style="text-decoration:none">🔗</a><br/>
+<b id="q363">Преобразовать список списков строк в список строк</b>&nbsp;<a href="#q363" style="text-decoration:none">🔗</a><br/>
 <pre>
 List&lt;List&lt;String&gt;&gt; lists ---&gt; List&lt;String&gt; list
 
@@ -4463,7 +4464,7 @@ lists.stream().flatMap(Collection::stream).collect(Collectors.toList())
 </pre>
 </p>
 <p align="justify">
-<b id="q365">Что будет напечатано в консоль?</b>&nbsp;<a href="#q365" style="text-decoration:none">🔗</a><br/>
+<b id="q364">Что будет напечатано в консоль?</b>&nbsp;<a href="#q364" style="text-decoration:none">🔗</a><br/>
 <pre>
 Stream.of("d2", "a2", "b1", "b3", "c")
         .map(s -&gt; {
@@ -4482,27 +4483,27 @@ Map: a2<br/>
 AnyMatch: A2<br/>
 </p>
 <p align="justify">
-<b id="q366">С каким GC работал больше всего?</b>&nbsp;<a href="#q366" style="text-decoration:none">🔗</a><br/>
+<b id="q365">С каким GC работал больше всего?</b>&nbsp;<a href="#q365" style="text-decoration:none">🔗</a><br/>
 Видимо G1, потому что он используется по умолчанию в последних Java<br/>
 </p>
 <p align="justify">
-<b id="q367">Создается новый объект. Есть вероятность того, что он будет создан сразу в Old Generation?</b>&nbsp;<a href="#q367" style="text-decoration:none">🔗</a><br/>
+<b id="q366">Создается новый объект. Есть вероятность того, что он будет создан сразу в Old Generation?</b>&nbsp;<a href="#q366" style="text-decoration:none">🔗</a><br/>
 Если размер объекта превышает определенную величину, JVM считает, что он очень большой, и сразу помещает объект его в Old Generation часть кучи.<br/>
 </p>
 <p align="justify">
-<b id="q368">Что такое OutOfMemoryException и когда он случается? Типы OutOfMemoryException?</b>&nbsp;<a href="#q368" style="text-decoration:none">🔗</a><br/>
+<b id="q367">Что такое OutOfMemoryException и когда он случается? Типы OutOfMemoryException?</b>&nbsp;<a href="#q367" style="text-decoration:none">🔗</a><br/>
 Когда нет памяти в heap и когда невозможно создать нативный Thread<br/>
 </p>
 <p align="justify">
-<b id="q369">Что делает Java машина перед тем, как выкинуть OOM?</b>&nbsp;<a href="#q369" style="text-decoration:none">🔗</a><br/>
+<b id="q368">Что делает Java машина перед тем, как выкинуть OOM?</b>&nbsp;<a href="#q368" style="text-decoration:none">🔗</a><br/>
 GC попробует сделать сборку мусора<br/>
 </p>
 <p align="justify">
-<b id="q370">Как GC определяет, что какой-то объект не используется? </b>&nbsp;<a href="#q370" style="text-decoration:none">🔗</a><br/>
+<b id="q369">Как GC определяет, что какой-то объект не используется? </b>&nbsp;<a href="#q369" style="text-decoration:none">🔗</a><br/>
 В ходе сборки мусора обнаруживает, что на него нет ссылок от других объектов<br/>
 </p>
 <p align="justify">
-<b id="q371">Что такое GC Root?</b>&nbsp;<a href="#q371" style="text-decoration:none">🔗</a><br/>
+<b id="q370">Что такое GC Root?</b>&nbsp;<a href="#q370" style="text-decoration:none">🔗</a><br/>
 <a href="https://stackoverflow.com/questions/27186799/what-are-gc-roots-for-classes">https://stackoverflow.com/questions/27186799/what-are-gc-roots-for-classes</a><br/>
 A garbage collection root is an object that is accessible from outside the heap.<br/>
 Memory Analyzer categorizes garbage collection roots according to the following list:<br/>
@@ -4516,11 +4517,11 @@ Memory Analyzer categorizes garbage collection roots according to the following 
 = JVM specials...<br/>
 </p>
 <p align="justify">
-<b id="q372">Что такое ThreadLocal поля?</b>&nbsp;<a href="#q372" style="text-decoration:none">🔗</a><br/>
+<b id="q371">Что такое ThreadLocal поля?</b>&nbsp;<a href="#q371" style="text-decoration:none">🔗</a><br/>
 Синглтон в рамках отдельного треда<br/>
 </p>
 <p align="justify">
-<b id="q373">Что можешь сказать об этом коде:</b>&nbsp;<a href="#q373" style="text-decoration:none">🔗</a><br/>
+<b id="q372">Что можешь сказать об этом коде:</b>&nbsp;<a href="#q372" style="text-decoration:none">🔗</a><br/>
 <pre>
 List&lt;Integer&gt; results = integers.stream()
         .map(integer -&gt; CompletableFuture.supplyAsync(() -&gt; process(integer), executor))
@@ -4532,7 +4533,7 @@ List&lt;Integer&gt; results = integers.stream()
 Подсказки от интервьюера: как можно исключить последовательный запуск и ожидание каждого потока? (ответ: разорвать stream, собрать CompletableFuture в List и заджойнить не на intах, потому что они будут конвейерно джойнится по одной, а надо собрать List<CompletableFuture> и заджойнить и тогда они выполнятся параллельно)<br/>
 </p>
 <p align="justify">
-<b id="q374">Откуда logger берет данные при логировании? Слышал ли про MDC?</b>&nbsp;<a href="#q374" style="text-decoration:none">🔗</a><br/>
+<b id="q373">Откуда logger берет данные при логировании? Слышал ли про MDC?</b>&nbsp;<a href="#q373" style="text-decoration:none">🔗</a><br/>
 <a href="https://www.baeldung.com/mdc-in-log4j-2-logback">https://www.baeldung.com/mdc-in-log4j-2-logback</a><br/>
 MDC (Mapped Diagnostic Context) provides a way to enrich log messages with information that could be unavailable in the scope where the logging actually occurs but that can be indeed useful to better track the execution of the program.<br/>
 MDC allows us to fill a map-like structure with pieces of information that are accessible to the appender when the log message is actually written.<br/>
@@ -4549,41 +4550,41 @@ log4j.appender.consoleAppender.layout.ConversionPattern=
 Always remember to clean up the MDC context at the end of each execution. Another approach is to use ThreadPoolExecutor hooks and perform necessary cleanups after each execution. <br/>
 </p>
 <p align="justify">
-<b id="q375">Какие есть стереотипные аннотации в Spring?</b>&nbsp;<a href="#q375" style="text-decoration:none">🔗</a><br/>
+<b id="q374">Какие есть стереотипные аннотации в Spring?</b>&nbsp;<a href="#q374" style="text-decoration:none">🔗</a><br/>
 @Component, @Repository, @Service и @Controller<br/>
 </p>
 <p align="justify">
-<b id="q376">Чем отличается @Controller от @RestController?</b>&nbsp;<a href="#q376" style="text-decoration:none">🔗</a><br/>
+<b id="q375">Чем отличается @Controller от @RestController?</b>&nbsp;<a href="#q375" style="text-decoration:none">🔗</a><br/>
 @RestController - это сочетание аннотации @Controller и @ResponseBody<br/>
 Controller – это класс, который отвечает за подготовку модели с данными, отображаемыми представлением, а также за выбор правильного представления.<br/>
 </p>
 <p align="justify">
-<b id="q377">Чем отличается @Service от @Component?</b>&nbsp;<a href="#q377" style="text-decoration:none">🔗</a><br/>
+<b id="q376">Чем отличается @Service от @Component?</b>&nbsp;<a href="#q376" style="text-decoration:none">🔗</a><br/>
 В данный момент это одно и то же, но рекомендуется помечать аннотацией @Service именно классы, выполняющие сервисные функции<br/>
 </p>
 <p align="justify">
-<b id="q378">Чем отличается @Component от @Repository?</b>&nbsp;<a href="#q378" style="text-decoration:none">🔗</a><br/>
+<b id="q377">Чем отличается @Component от @Repository?</b>&nbsp;<a href="#q377" style="text-decoration:none">🔗</a><br/>
 Для @Repository выполняется дополнительная трансляция исключений из persistence layer<br/>
 </p>
 <p align="justify">
-<b id="q379">Чем отличается scope prototype если смотреть в разрезе жизненного цикла бина?</b>&nbsp;<a href="#q379" style="text-decoration:none">🔗</a><br/>
+<b id="q378">Чем отличается scope prototype если смотреть в разрезе жизненного цикла бина?</b>&nbsp;<a href="#q378" style="text-decoration:none">🔗</a><br/>
 <a href="https://docs.spring.io/spring-framework/docs/3.0.0.M3/reference/html/ch04s04.html">https://docs.spring.io/spring-framework/docs/3.0.0.M3/reference/html/ch04s04.html</a><br/>
 There is one quite important thing to be aware of when deploying a bean in the prototype scope, in that the lifecycle of the bean changes slightly. Spring does not manage the complete lifecycle of a prototype bean: the container instantiates, configures, decorates and otherwise assembles a prototype object, hands it to the client and then has no further knowledge of that prototype instance. This means that while initialization lifecycle callback methods will be called on all objects regardless of scope, in the case of prototypes, _any configured destruction lifecycle callbacks will not be called_. It is the responsibility of the client code to clean up prototype scoped objects and release any expensive resources that the prototype bean(s) are holding onto. (One possible way to get the Spring container to release resources used by prototype-scoped beans is through the use of a custom bean post-processor which would hold a reference to the beans that need to be cleaned up)<br/>
 In some respects, you can think of the Spring containers role when talking about a prototype-scoped bean as somewhat of a replacement for the Java 'new' operator. All lifecycle aspects past that point have to be handled by the client.<br/>
 </p>
 <p align="justify">
-<b id="q380">Где хранится singleton бин?</b>&nbsp;<a href="#q380" style="text-decoration:none">🔗</a><br/>
+<b id="q379">Где хранится singleton бин?</b>&nbsp;<a href="#q379" style="text-decoration:none">🔗</a><br/>
 Доступ к нему можно получить из bean registry<br/>
 </p>
 <p align="justify">
-<b id="q381">Ты на код-ревью. Что не нравится? Что бы сделал иначе? Что вызывает подозрение? Как сделать self-injection? Что нужно дописать для этого?</b>&nbsp;<a href="#q381" style="text-decoration:none">🔗</a><br/>
+<b id="q380">Ты на код-ревью. Что не нравится? Что бы сделал иначе? Что вызывает подозрение? Как сделать self-injection? Что нужно дописать для этого?</b>&nbsp;<a href="#q380" style="text-decoration:none">🔗</a><br/>
 <pre>
 @Component
 @RequiredArgsConstructor
 public class CachedPhotosService {
     private static final String RESIZED_PHOTO_CACHE_NAME = "RESIZED_PHOTO_CACHE_NAME";
 
-	private final PhotoRepository photoRepository;
+    private final PhotoRepository photoRepository;
     private final PhotoValidationService photoValidationService;
     private final PhotoOperations photoOperations;
 
@@ -4611,14 +4612,14 @@ public class CachedPhotosService {
 = @Cacheable видимо не будет работать при вызовах iconifiedPhoto, для этого можно сделать self-injection: надо дописать getter для this и вызывать на нем resizedPhoto() из iconifiedPhoto()<br/>
 </p>
 <p align="justify">
-<b id="q382">Расскажи какие тесты писал? </b>&nbsp;<a href="#q382" style="text-decoration:none">🔗</a><br/>
+<b id="q381">Расскажи какие тесты писал? </b>&nbsp;<a href="#q381" style="text-decoration:none">🔗</a><br/>
 Юнит-тесты<br/>
 Интеграционные<br/>
 Функциональные<br/>
 Перфоманс тесты<br/>
 </p>
 <p align="justify">
-<b id="q383">Читал про Spring Test? @SpringBootTest, как написать, чтобы поднять только 1 bean? </b>&nbsp;<a href="#q383" style="text-decoration:none">🔗</a><br/>
+<b id="q382">Читал про Spring Test? @SpringBootTest, как написать, чтобы поднять только 1 bean? </b>&nbsp;<a href="#q382" style="text-decoration:none">🔗</a><br/>
 <a href="https://stackoverflow.com/questions/51051994/spring-context-test-with-just-one-bean">https://stackoverflow.com/questions/51051994/spring-context-test-with-just-one-bean</a><br/>
 Нужно аннотировать тест аннотацией, где указать в конфигурации только этот 1 бин:<br/>
 <pre>
@@ -4629,52 +4630,52 @@ public class CachedPhotosService {
 В данной статье также указывается на необычность такого подхода: "It is in fact a valid way to achieve that goal; however, it is also a bit unusual to load an ApplicationContext that contains a single user bean"<br/>
 </p>
 <p align="justify">
-<b id="q384">С какими NoSQL базами данных работал?</b>&nbsp;<a href="#q384" style="text-decoration:none">🔗</a><br/>
+<b id="q383">С какими NoSQL базами данных работал?</b>&nbsp;<a href="#q383" style="text-decoration:none">🔗</a><br/>
 Redis, Amazon ElastiCache, Tarantool<br/>
 </p>
 <p align="justify">
-<b id="q385">За счёт чего удается добиваться NoSQL БД большей производительности и масштабируемости?</b>&nbsp;<a href="#q385" style="text-decoration:none">🔗</a><br/>
+<b id="q384">За счёт чего удается добиваться NoSQL БД большей производительности и масштабируемости?</b>&nbsp;<a href="#q384" style="text-decoration:none">🔗</a><br/>
 Большей производительности добиваются за счет eventual consistency, когда при записи в БД клиенту отвечают, что запись уже проведена, хотя в реальности данные изменения еще не распространились по всему кластеру.<br/>
 Большей масштабируемости добиваются за счет горизонтального масштабирования, которое в отличие от вертикального, можно проводить в более широким пределах.<br/>
 </p>
 <p align="justify">
-<b id="q386">Какую аббревиатуру похожую на ACID используют относительно NoSQL БД?</b>&nbsp;<a href="#q386" style="text-decoration:none">🔗</a><br/>
+<b id="q385">Какую аббревиатуру похожую на ACID используют относительно NoSQL БД?</b>&nbsp;<a href="#q385" style="text-decoration:none">🔗</a><br/>
 ACID - Atomicity, Consistency, Isolation, Durability<br/>
 BASE - Basically Available, Soft State, Eventually Consistent («базовая доступность, неустойчивое состояние, согласованность в конечном счете»).<br/>
 Согласованность в конечном счете обеспечивает более высокую скорость записи, поскольку приложению не приходится дожидаться подтверждения того, что запись сохранилась. Как только хранилище данных приняло запись, но еще до того, как данные попали в долговременное хранение на ее диск или на диск другой машины, база данных может сообщить приложению, что операция записи прошла успешно, и приложение может переходить к следующей операции. Так вы выигрываете в производительности, правда, рискуете не увидеть тех данных, которые только что записали, либо данные могут совсем потеряться из-за какой-нибудь ошибки.<br/>
 BASE has roots in Eric Brewer's Consistency, Availability and Partition-tolerance (CAP) Theorem, and eventual consistency is the underpinning of any distributed system that aims to provide high availability and partition tolerance.<br/>
 </p>
 <p align="justify">
-<b id="q387">Слышал ли про инфраструктуру как код? Имел ли дело с Ansible?</b>&nbsp;<a href="#q387" style="text-decoration:none">🔗</a><br/>
+<b id="q386">Слышал ли про инфраструктуру как код? Имел ли дело с Ansible?</b>&nbsp;<a href="#q386" style="text-decoration:none">🔗</a><br/>
 Да, например в Openshift инфраструктура была описана в конфигах и лежала под контролем версий<br/>
 Ansible был на одном проекте: были описаны функции в скриптах, которые вызывались с параметрами из TeamCity джоб<br/>
 </p>
 <p align="justify">
-<b id="q388">Какие есть способы автоматизации развертывания Kubernetes?</b>&nbsp;<a href="#q388" style="text-decoration:none">🔗</a><br/>
+<b id="q387">Какие есть способы автоматизации развертывания Kubernetes?</b>&nbsp;<a href="#q387" style="text-decoration:none">🔗</a><br/>
 Helm<br/>
 </p>
 <p align="justify">
-<b id="q389">Зачем нужен Docker?</b>&nbsp;<a href="#q389" style="text-decoration:none">🔗</a><br/>
+<b id="q388">Зачем нужен Docker?</b>&nbsp;<a href="#q388" style="text-decoration:none">🔗</a><br/>
 Контейнер позволяет создать изолированное окружение, в котором протестировать приложение<br/>
 Также позволяет развернуть необходимую инфраструктуру, например БД, брокеры сообщений и т.д.<br/>
 По сравнению с виртуалкой - требует намного меньше ресурсов<br/>
 </p>
 <p align="justify">
-<b id="q390">Со временем запрос стал выполняться дольше. Какие есть способы ускорения?</b>&nbsp;<a href="#q390" style="text-decoration:none">🔗</a><br/>
+<b id="q389">Со временем запрос стал выполняться дольше. Какие есть способы ускорения?</b>&nbsp;<a href="#q389" style="text-decoration:none">🔗</a><br/>
 Посмотреть, какие изменения были сделаны недавно, если деградация произошла не так давно. Возможны виноваты свежие изменения.<br/>
 Посмотреть план запроса, убедиться, что используются те индексы, на которые рассчитываем. Либо добавить индексы, если их нет.<br/>
 Также проблема может быть в данных: их стало столько, что индекс перестал использоваться. Также убедиться в этом при помощи плана запроса.<br/>
 </p>
 <p align="justify">
-<b id="q391">Зачем нужны индексы?</b>&nbsp;<a href="#q391" style="text-decoration:none">🔗</a><br/>
+<b id="q390">Зачем нужны индексы?</b>&nbsp;<a href="#q390" style="text-decoration:none">🔗</a><br/>
 Для ускорения поиска<br/>
 </p>
 <p align="justify">
-<b id="q392">Почему бы не сделать индексы на все поля сразу?</b>&nbsp;<a href="#q392" style="text-decoration:none">🔗</a><br/>
+<b id="q391">Почему бы не сделать индексы на все поля сразу?</b>&nbsp;<a href="#q391" style="text-decoration:none">🔗</a><br/>
 Индекс надо в том числе обновлять. в какой-то момент затраты на это могут стать критичными и замедлять выполнение запросов<br/>
 </p>
 <p align="justify">
-<b id="q393">Обычный брокер, Apache Kafka & NATS</b>&nbsp;<a href="#q393" style="text-decoration:none">🔗</a><br/>
+<b id="q392">Обычный брокер, Apache Kafka & NATS</b>&nbsp;<a href="#q392" style="text-decoration:none">🔗</a><br/>
 <a href="https://habr.com/ru/post/326880/">https://habr.com/ru/post/326880/</a><br/>
 = Лидером по популярности у разработчиков является RabbitMQ. Это проверенное временем решение класса Enterprise с гарантиями доставки, гибкой системой маршрутизации и поддержкой всевозможных стандартов. Производительность RabbitMQ не превышает десятки тысяч сообщений в секунду.<br/>
 = Apache Kafka, которая родилась внутри компании LinkedIn как система агрегации логов. Kafka умеет выжимать бОльшую производительность из дисковой подсистемы, чем RabbitMQ, поскольку она пишет данные последовательно (sequential I/O), а не случайно (random I/O).<br/>
@@ -4683,7 +4684,7 @@ Helm<br/>
 = NATS — относительно молодой проект, созданный Derek Collison, за плечами которого более 20 лет работы над распределенными очередями сообщений. По производительности NATS опережает все очереди с “гарантированной доставкой”. NATS написан на языке Go, но имеет клиентские библиотеки для всех популярных языков. Кроме того, клиенты NATS также знают топологию кластера и способны самостоятельно переподключаться в случае потери связи со своим узлом.<br/>
 </p>
 <p align="justify">
-<b id="q394">Kafka</b>&nbsp;<a href="#q394" style="text-decoration:none">🔗</a><br/>
+<b id="q393">Kafka</b>&nbsp;<a href="#q393" style="text-decoration:none">🔗</a><br/>
 <a href="https://slurm.io/tpost/pnyjznpvr1-apache-kafka-osnovi-tehnologii">https://slurm.io/tpost/pnyjznpvr1-apache-kafka-osnovi-tehnologii</a><br/>
 = Из чего состоит Kafka?<br/>
 Kafka условно состоит из трёх компонентов:<br/>
@@ -4753,42 +4754,42 @@ ZooKeeper выполняет роль консистентного хранил�
 Традиционно ZooKeeper раскатывается отдельно от брокеров Kafka, чтобы разделить границы возможных отказов. Помните, что падение ZooKeeper — это практически падение всего кластера Kafka. К счастью, нагрузка на ZooKeeper при нормальной работе кластера минимальна. Клиенты Kafka никогда не коннектятся к ZooKeeper напрямую.<br/>
 </p>
 <p align="justify">
-<b id="q395">Во сколько раз увеличится скорость обработки в Кафка, если в одном топике есть 5 партиций и будет 10 consumer-ов?</b>&nbsp;<a href="#q395" style="text-decoration:none">🔗</a><br/>
+<b id="q394">Во сколько раз увеличится скорость обработки в Кафка, если в одном топике есть 5 партиций и будет 10 consumer-ов?</b>&nbsp;<a href="#q394" style="text-decoration:none">🔗</a><br/>
 Есди данные 10 consumer-ов находятся в одной консьюмер-группе (судя из вопроса - это подразумевается) - читать будут только первые 5 (т.к. есть 5 партиций), а последние 5 консьюмеров будут незадействованы. Значит в 5 раз<br/>
 "внутри одной консьюмер-группы партиции назначаются консьюмерам уникально, чтобы избежать повторной обработки"<br/>
 </p>
 <p align="justify">
-<b id="q396">Как несколько раз обработать одно и то же сообщение в очереди Kafka?</b>&nbsp;<a href="#q396" style="text-decoration:none">🔗</a><br/>
+<b id="q395">Как несколько раз обработать одно и то же сообщение в очереди Kafka?</b>&nbsp;<a href="#q395" style="text-decoration:none">🔗</a><br/>
 <a href="https://habr.com/ru/post/466585/">https://habr.com/ru/post/466585/</a><br/>
 Прочитанные сообщения в Kafka все равно не удаляются, в отличие от обычного брокера, и клиент может перемотать (rewind) смещение, чтобы повторно обработать уже просмотренные сообщения.<br/>
 </p>
 <p align="justify">
-<b id="q397">Как реализовать параллельное вычитывание месседжей из Kafka?</b>&nbsp;<a href="#q397" style="text-decoration:none">🔗</a><br/>
+<b id="q396">Как реализовать параллельное вычитывание месседжей из Kafka?</b>&nbsp;<a href="#q396" style="text-decoration:none">🔗</a><br/>
 <a href="https://habr.com/ru/post/466585/">https://habr.com/ru/post/466585/</a><br/>
 В Кафка партиции являются основным механизмом распараллеливания чтения и масштабирования топика за пределы пропускной способности одного экземпляра брокера.<br/>
 В то время, как в JMS мы используем структуру сообщения с метаданными (заголовками и свойствами) и телом, содержащим полезную нагрузку (payload), в Kafka сообщение является парой «ключ-значение». Полезная нагрузка сообщения отправляется как значение (value). Ключ, с другой стороны, используется главным образом для партиционирования и должен содержать специфичный для бизнес-логики ключ, чтобы поместить связанные сообщения в ту же партицию.<br/>
 </p>
 <p align="justify">
-<b id="q398">Команда Linux для просмотра java процессов</b>&nbsp;<a href="#q398" style="text-decoration:none">🔗</a><br/>
+<b id="q397">Команда Linux для просмотра java процессов</b>&nbsp;<a href="#q397" style="text-decoration:none">🔗</a><br/>
 <pre>
 ps aux | grep java
 </pre>
 </p>
 <p align="justify">
-<b id="q399">Разница между checked и unchecked exceptions</b>&nbsp;<a href="#q399" style="text-decoration:none">🔗</a><br/>
+<b id="q398">Разница между checked и unchecked exceptions</b>&nbsp;<a href="#q398" style="text-decoration:none">🔗</a><br/>
 Checked exception принуждает нас или обработать его в месте вызова метода, бросающего его, либо добавить к сигнатуре текущего метода явное упоминание этого исключения, чтобы его обработали на вышележащем слое.<br/>
 В случае unchecked exception - этого нету.<br/>
 </p>
 <p align="justify">
-<b id="q400">Можно ли обработать RuntimeException? Обрабатывал ли?</b>&nbsp;<a href="#q400" style="text-decoration:none">🔗</a><br/>
+<b id="q399">Можно ли обработать RuntimeException? Обрабатывал ли?</b>&nbsp;<a href="#q399" style="text-decoration:none">🔗</a><br/>
 Да. Это unchecked exception, и его отличие от checked лишь в том, что не надо отражать возможность его бросания в сигнатуре метода<br/>
 </p>
 <p align="justify">
-<b id="q401">Для чего нужна аннотация @SneakyThrows в Lombok?</b>&nbsp;<a href="#q401" style="text-decoration:none">🔗</a><br/>
+<b id="q400">Для чего нужна аннотация @SneakyThrows в Lombok?</b>&nbsp;<a href="#q400" style="text-decoration:none">🔗</a><br/>
 Чтобы избегнуть указания checked exceptions в сигнатуре метода, и потом быть обязанным их обрабатывать<br/>
 </p>
 <p align="justify">
-<b id="q402">Что будет выведено в консоль?</b>&nbsp;<a href="#q402" style="text-decoration:none">🔗</a><br/>
+<b id="q401">Что будет выведено в консоль?</b>&nbsp;<a href="#q401" style="text-decoration:none">🔗</a><br/>
 <pre>
 public static Stream&lt;String&gt; bar(Stream&lt;String&gt; stream) {
     System.out.println("start bar");
@@ -4804,7 +4805,7 @@ public static void main(String[] args) {
 Кажется, что будет выведено 'foofoo', но на стриме не вызвана терминальная операция, поэтому ничего не будет выведено.<br/>
 </p>
 <p align="justify">
-<b id="q403">Вернуть список пользователей, у которых какая-либо группа начинается на "А":</b>&nbsp;<a href="#q403" style="text-decoration:none">🔗</a><br/>
+<b id="q402">Вернуть список пользователей, у которых какая-либо группа начинается на "А":</b>&nbsp;<a href="#q402" style="text-decoration:none">🔗</a><br/>
 <pre>
 @Data
 class User {
@@ -4840,11 +4841,11 @@ public List&lt;User&gt; foo(Stream&lt;User&gt; usersStream) {
 </pre>
 </p>
 <p align="justify">
-<b id="q404">Написать ExecutorService. Какие есть преимущества у ExecutorService перед Thread?</b>&nbsp;<a href="#q404" style="text-decoration:none">🔗</a><br/>
+<b id="q403">Написать ExecutorService. Какие есть преимущества у ExecutorService перед Thread?</b>&nbsp;<a href="#q403" style="text-decoration:none">🔗</a><br/>
 ?<br/>
 </p>
 <p align="justify">
-<b id="q405">Написать deadlock</b>&nbsp;<a href="#q405" style="text-decoration:none">🔗</a><br/>
+<b id="q404">Написать deadlock</b>&nbsp;<a href="#q404" style="text-decoration:none">🔗</a><br/>
 Deadlock или взаимная блокировка — это ошибка, которая происходит когда потоки имеют циклическую зависимость от пары синхронизированных объектов.<br/>
 <a href="https://www.javatpoint.com/deadlock-in-java">https://www.javatpoint.com/deadlock-in-java</a><br/>
 <pre>
@@ -4892,24 +4893,24 @@ public class TestDeadlockExample1 {
 </pre>
 </p>
 <p align="justify">
-<b id="q406">Зачем нужно ключевое слово volatile?</b>&nbsp;<a href="#q406" style="text-decoration:none">🔗</a><br/>
+<b id="q405">Зачем нужно ключевое слово volatile?</b>&nbsp;<a href="#q405" style="text-decoration:none">🔗</a><br/>
 Для многопоточной оптимизации переменная может быть скопирована, для реализации так называемого "кэша потока". Тогда разные потоки будут работать с разными ее копиями.<br/>
 Использование volatile приводит к тому, что все потоки работают с одной и той же копией этой переменной.<br/>
 </p>
 <p align="justify">
-<b id="q407">Как донастроить bean? (вопрос про BeanPostProcessor)</b>&nbsp;<a href="#q407" style="text-decoration:none">🔗</a><br/>
+<b id="q406">Как донастроить bean? (вопрос про BeanPostProcessor)</b>&nbsp;<a href="#q406" style="text-decoration:none">🔗</a><br/>
 Написать свой BeanPostProcessor, там добавить нужную логику донастройки бина<br/>
 </p>
 <p align="justify">
-<b id="q408">Преимущества инъекции зависимости в конструктор?</b>&nbsp;<a href="#q408" style="text-decoration:none">🔗</a><br/>
+<b id="q407">Преимущества инъекции зависимости в конструктор?</b>&nbsp;<a href="#q407" style="text-decoration:none">🔗</a><br/>
 Это позволяет обнаруживать ошибки на ранней стадии: при отсутствии нужного бина в контексте, - все упадет на этапе старта приложения, а не позже, когда этот бин понадобится<br/>
 </p>
 <p align="justify">
-<b id="q409">Какие есть 3 способа заинжектить несколько имплементаций одного интерфейса?</b>&nbsp;<a href="#q409" style="text-decoration:none">🔗</a><br/>
+<b id="q408">Какие есть 3 способа заинжектить несколько имплементаций одного интерфейса?</b>&nbsp;<a href="#q408" style="text-decoration:none">🔗</a><br/>
 Ответ: @Qualifier, @Primary, по имени<br/>
 </p>
 <p align="justify">
-<b id="q410">Будет ли это нормально работать? Нужно чтобы вся коллекция элементов нормально обработалась, либо ни один элемент нормально не обработался:</b>&nbsp;<a href="#q410" style="text-decoration:none">🔗</a><br/>
+<b id="q409">Будет ли это нормально работать? Нужно чтобы вся коллекция элементов нормально обработалась, либо ни один элемент нормально не обработался:</b>&nbsp;<a href="#q409" style="text-decoration:none">🔗</a><br/>
 <pre>
 @Transactional
 public void processCollection(Collection&lt;Object&gt; objects) {
@@ -4924,18 +4925,18 @@ public void processOne(Object o) {
 </pre>
 </p>
 <p align="justify">
-<b id="q411">Как сделать REST-запрос? Какие способы знаешь сделать это?</b>&nbsp;<a href="#q411" style="text-decoration:none">🔗</a><br/>
+<b id="q410">Как сделать REST-запрос? Какие способы знаешь сделать это?</b>&nbsp;<a href="#q410" style="text-decoration:none">🔗</a><br/>
 = При помощи RestTemplate: или вызовом соответствующего метода (get/post и т.п.) либо вызовом метода exchange с указанием, какой HTTP-метод использовать<br/>
 = При помощи библиотеки OkHttp<br/>
 = При помощи библиотеки OpenFeign<br/>
 </p>
 <p align="justify">
-<b id="q412">Как работает Hashtable?</b>&nbsp;<a href="#q412" style="text-decoration:none">🔗</a><br/>
+<b id="q411">Как работает Hashtable?</b>&nbsp;<a href="#q411" style="text-decoration:none">🔗</a><br/>
 Hashtable - это потокобезопасный ассоциативный список.<br/>
 Методы помечены как synchronized, т.е. при добавлении/извлечении элемента блокируется вся коллекция, что не оптимально.<br/>
 </p>
 <p align="justify">
-<b id="q413">Как работает ConcurrentHashMap?</b>&nbsp;<a href="#q413" style="text-decoration:none">🔗</a><br/>
+<b id="q412">Как работает ConcurrentHashMap?</b>&nbsp;<a href="#q412" style="text-decoration:none">🔗</a><br/>
 <a href="https://stackoverflow.com/questions/12646404/concurrenthashmap-and-hashtable-in-java">https://stackoverflow.com/questions/12646404/concurrenthashmap-and-hashtable-in-java</a><br/>
 = Hashtable is belongs to the Collection framework; ConcurrentHashMap belongs to the Executor framework.<br/>
 = Hashtable uses _single lock_ for whole data. ConcurrentHashMap uses _multiple locks_ on segment level (16 by default) instead of object level i.e. whole Map.<br/>
@@ -4945,7 +4946,7 @@ Hashtable - это потокобезопасный ассоциативный �
 = ConcurrentHashMap uses a database shards logic (Segment<K, V>[] segments) is known as Concurrency-Level, i.e. divides the data into shards(segments) then puts locks on each shard (segment) instead of putting a single lock for whole data (Map). The default value is 16.<br/>
 </p>
 <p align="justify">
-<b id="q414">Как работает HashMap?</b>&nbsp;<a href="#q414" style="text-decoration:none">🔗</a><br/>
+<b id="q413">Как работает HashMap?</b>&nbsp;<a href="#q413" style="text-decoration:none">🔗</a><br/>
 Вычисляем хэшкод, остаток от деления его на кол-во бакетов дает номер бакета.<br/>
 В каждом бакете односвязный список, в него добавляется entry, содержащая ключ+значение.<br/>
 Начиная с Java 8 - после добавления 8го элемента в этот бакет - связный список перестраивается в красно-черное дерево.<br/>
@@ -4953,27 +4954,27 @@ Hashtable - это потокобезопасный ассоциативный �
 As of Java 8 (see JEP 180), the data structure in which the values inside one bucket are stored is changed from a list to a balanced tree if a bucket contains 8 or more values, and it's changed back to a list if, at some point, only 6 values are left in the bucket. This improves the performance to be O(log n).<br/>
 </p>
 <p align="justify">
-<b id="q415">Можно ли потерять элемент в HashMap?</b>&nbsp;<a href="#q415" style="text-decoration:none">🔗</a><br/>
+<b id="q414">Можно ли потерять элемент в HashMap?</b>&nbsp;<a href="#q414" style="text-decoration:none">🔗</a><br/>
 Если метод hashCode так написан, что хэш ключа меняется, то можем действительно потерять объект в HashMap<br/>
 </p>
 <p align="justify">
-<b id="q416">Какой тип классов ты бы использовал для ключа HashMap?</b>&nbsp;<a href="#q416" style="text-decoration:none">🔗</a><br/>
+<b id="q415">Какой тип классов ты бы использовал для ключа HashMap?</b>&nbsp;<a href="#q415" style="text-decoration:none">🔗</a><br/>
 Immutable класс (например String)<br/>
 </p>
 <p align="justify">
-<b id="q417">Как использовать свой класс в качестве ключа? Что если в этом классе есть поле коллекции (т.е. класс не до конца иммутабельный)?</b>&nbsp;<a href="#q417" style="text-decoration:none">🔗</a><br/>
+<b id="q416">Как использовать свой класс в качестве ключа? Что если в этом классе есть поле коллекции (т.е. класс не до конца иммутабельный)?</b>&nbsp;<a href="#q416" style="text-decoration:none">🔗</a><br/>
 Сделать свой класс immutable.<br/>
 Если в классе есть поле коллекции - возвращать unmodifiable коллекцию в геттере.<br/>
 </p>
 <p align="justify">
-<b id="q418">Какие использовал коллекции из Concurrent пакета?</b>&nbsp;<a href="#q418" style="text-decoration:none">🔗</a><br/>
+<b id="q417">Какие использовал коллекции из Concurrent пакета?</b>&nbsp;<a href="#q417" style="text-decoration:none">🔗</a><br/>
 LinkedBlockingQueue - в Java-лабе для коннекшн-пула<br/>
 ConcurrentHashMap - для получения конкурентного мэпа<br/>
 AtomicInteger - для конкурентного подсчета кол-ва событий<br/>
 CopyOnWriteArrayList - thread-safe variant of ArrayList<br/>
 </p>
 <p align="justify">
-<b id="q419">Есть 2 банковских аккаунта. Мы с одного хотим перевести деньги на другой. Из двух потоков в разном порядке захватываем мониторы этих аккаунтов (в первом потоке </b>&nbsp;<a href="#q419" style="text-decoration:none">🔗</a><br/>
+<b id="q418">Есть 2 банковских аккаунта. Мы с одного хотим перевести деньги на другой. Из двух потоков в разном порядке захватываем мониторы этих аккаунтов (в первом потоке </b>&nbsp;<a href="#q418" style="text-decoration:none">🔗</a><br/>
 Захватим монитор первого аккаунта и затем второго, а во втором потоке наоборот). Какая здесь есть проблема? Способы решить возникающий deadlock?<br/>
 <a href="https://habr.com/ru/company/nordavind/blog/176541/">https://habr.com/ru/company/nordavind/blog/176541/</a><br/>
 Видна проблема потенциального дедлока.<br/>
@@ -4983,7 +4984,7 @@ CopyOnWriteArrayList - thread-safe variant of ArrayList<br/>
 Если вы в одном потоке захватываете мьютекс 1, а затем мьютекс 2, то недопустимо захватывать их в ином порядке в другом потоке.<br/>
 </p>
 <p align="justify">
-<b id="q420">Зачем нужен сборщик мусора? Какие есть виды сборщиков?</b>&nbsp;<a href="#q420" style="text-decoration:none">🔗</a><br/>
+<b id="q419">Зачем нужен сборщик мусора? Какие есть виды сборщиков?</b>&nbsp;<a href="#q419" style="text-decoration:none">🔗</a><br/>
 <a href="https://www.oracle.com/webfolder/technetwork/tutorials/obe/java/gc01/index.html">https://www.oracle.com/webfolder/technetwork/tutorials/obe/java/gc01/index.html</a><br/>
 = Serial<br/>
 The serial collector is the default for client style machines in Java SE 5 and 6. With the serial collector, both minor and major garbage collections are done serially (using a single virtual CPU). In addition, it uses a mark-compact collection method. This method moves older memory to the beginning of the heap so that new memory allocations are made into a single continuous chunk of memory at the end of the heap. This compacting of memory makes it faster to allocate new chunks of memory to the heap.<br/>
@@ -5004,12 +5005,12 @@ Note: CMS collector on young generation uses the same algorithm as that of the p
 The Garbage First or G1 garbage collector is available in Java 7 and is designed to be the long term replacement for the CMS collector. The G1 collector is a parallel, concurrent, and incrementally compacting low-pause garbage collector that has quite a different layout from the other garbage collectors described previously. However, detailed discussion is beyond the scope of this OBE.<br/>
 </p>
 <p align="justify">
-<b id="q421">Преимущества @Autowired в конструктор?</b>&nbsp;<a href="#q421" style="text-decoration:none">🔗</a><br/>
+<b id="q420">Преимущества @Autowired в конструктор?</b>&nbsp;<a href="#q420" style="text-decoration:none">🔗</a><br/>
 Если одного из бинов для инжекта нету - приложение упадет при поднятии контекста, на старте, а не потом, позже, когда дернут нужную операцию и этот бин понадобится.<br/>
 Такая архитектура позволяет устранять ошибки на ранней стадии.<br/>
 </p>
 <p align="justify">
-<b id="q422">Всегда ли отрабатывает @PostConstruct?</b>&nbsp;<a href="#q422" style="text-decoration:none">🔗</a><br/>
+<b id="q421">Всегда ли отрабатывает @PostConstruct?</b>&nbsp;<a href="#q421" style="text-decoration:none">🔗</a><br/>
 Метод, аннотированный @PostConstruct, вызывается после вызова конструктора и инъекции зависимостей, перед вызовом метода init().<br/>
 </p>
 <p align="justify">
@@ -5022,7 +5023,7 @@ The Garbage First or G1 garbage collector is available in Java 7 and is designed
 = обновить до более новой Spring-Boot версии 2.0.0+, которая включает эту зависимость<br/>
 </p>
 <p align="justify">
-<b id="q423">Spring Cloud. Какие компоненты есть у Spring Cloud?</b>&nbsp;<a href="#q423" style="text-decoration:none">🔗</a><br/>
+<b id="q422">Spring Cloud. Какие компоненты есть у Spring Cloud?</b>&nbsp;<a href="#q422" style="text-decoration:none">🔗</a><br/>
 Eureka - service discovery<br/>
 Ribbon - client-side load balancer<br/>
 Hystrix - circuit breaker<br/>
@@ -5034,7 +5035,7 @@ Stream - framework built on top of Spring Boot and Spring Integration that helps
 Sleuth - provides Spring Boot auto-configuration for distributed tracing<br/>
 </p>
 <p align="justify">
-<b id="q424">Оркестраторы?</b>&nbsp;<a href="#q424" style="text-decoration:none">🔗</a><br/>
+<b id="q423">Оркестраторы?</b>&nbsp;<a href="#q423" style="text-decoration:none">🔗</a><br/>
 <a href="https://mcs.mail.ru/blog/what-are-container-orchestration-systems">https://mcs.mail.ru/blog/what-are-container-orchestration-systems</a><br/>
 Задачи оркестраторов контейнеров:<br/>
 = Подготовка инфраструктуры и развертывание.<br/>
@@ -5079,12 +5080,12 @@ Sleuth - provides Spring Boot auto-configuration for distributed tracing<br/>
 = Docker Swarm. Это "родная", базовая система кластеризации и оркестровки контейнеров Docker. Использует декларативную модель. Взаимодействие с кластером происходит через команды Docker, а управление действиями — через менеджер Swarm.<br/>
 </p>
 <p align="justify">
-<b id="q425">Разница аннотаций @SpringBootTest и JUnit?</b>&nbsp;<a href="#q425" style="text-decoration:none">🔗</a><br/>
+<b id="q424">Разница аннотаций @SpringBootTest и JUnit?</b>&nbsp;<a href="#q424" style="text-decoration:none">🔗</a><br/>
 The @SpringBootTest annotation is useful when we need to bootstrap the entire container. The annotation works by creating the ApplicationContext that will be utilized in our tests.<br/>
 Аннотации JUnit тестируют один класс в изоляции<br/>
 </p>
 <p align="justify">
-<b id="q426">Что такое пирамида тестирования?</b>&nbsp;<a href="#q426" style="text-decoration:none">🔗</a><br/>
+<b id="q425">Что такое пирамида тестирования?</b>&nbsp;<a href="#q425" style="text-decoration:none">🔗</a><br/>
 <a href="https://dou.ua/lenta/columns/testing-in-jiji/">https://dou.ua/lenta/columns/testing-in-jiji/</a><br/>
 Пирамида тестирования — один из способов обеспечения качества ПО, визуализация, которая помогает группировать тесты по типу их назначения.<br/>
 Чем выше мы будем подниматься по пирамиде, тем выше комплексность, цена и хрупкость тестов.<br/>
@@ -5102,14 +5103,14 @@ The @SpringBootTest annotation is useful when we need to bootstrap the entire co
 Здесь количество тестов должно быть наименьшим. Воссоздавая пользовательские сценарии, мы проверяем приложения на стабильность и работоспособность. На этом уровне тесты самые хрупкие.<br/>
 </p>
 <p align="justify">
-<b id="q427">Зачем нужны разные виды тестов?</b>&nbsp;<a href="#q427" style="text-decoration:none">🔗</a><br/>
+<b id="q426">Зачем нужны разные виды тестов?</b>&nbsp;<a href="#q426" style="text-decoration:none">🔗</a><br/>
 Тесты вообще нужны для<br/>
 = проверки работоспособности: при добавлении нового кода - приложение работает как ожидалось<br/>
 = фиксации рабочего состояния: при изменении старого кода - быть уверенным в том, что переходим из рабочего состояния в рабочее<br/>
 Разные виды тестов обеспечивают разную гранулярность тестируемых блоков (в крупную/мелкую клетку) и позволяют лучше и быстрее опеределить, что именно и где сломалось.<br/>
 </p>
 <p align="justify">
-<b id="q428">Отличие stack от heap. Как их конфигурировать? Какие еще области памяти знаешь? Расскажи про Java Memory Model? Как устроена память в Java?</b>&nbsp;<a href="#q428" style="text-decoration:none">🔗</a><br/>
+<b id="q427">Рассказать про Java Memory Model: как устроена память в Java? Отличие stack от heap и как их конфигурировать? Какие еще области памяти знаешь?</b>&nbsp;<a href="#q427" style="text-decoration:none">🔗</a><br/>
 <a href="https://itsobes.ru/JavaSobes/na-kakie-oblasti-delitsia-pamiat-jvm/">https://itsobes.ru/JavaSobes/na-kakie-oblasti-delitsia-pamiat-jvm/</a><br/>
 JVM разделяет память на две основные категории: "кучу" (heap) и "не кучу" (non-heap).<br/>
 = Heap - куча, вся managed-память, в которой хранятся все пользовательские объекты. Параметры -Xms, -Xmn и -Xmx устанавливают начальный, минимальный и максимальный размеры хипа соответственно.<br/>
@@ -5126,7 +5127,7 @@ Xss - stack size of each thread, default value is 256 KB in JDK1.4 and 1 MB in J
 = Metaspace – с Java 8 заменяет permanent generation. Отличие в том, что по умолчанию metaspace ограничен только размерами доступной на машине памяти, но так же как PermGen может быть ограничен, параметром -XX:MaxMetaspaceSize.<br/>
 </p>
 <p align="justify">
-<b id="q429">Написать тело метода printTree который пройдет по всему дереву Node и распечатает каждый элемент. Какие варианты есть кроме рекурсии, чтобы избежать StackOverFlow?</b>&nbsp;<a href="#q429" style="text-decoration:none">🔗</a><br/>
+<b id="q428">Написать тело метода printTree который пройдет по всему дереву Node и распечатает каждый элемент. Какие варианты есть кроме рекурсии, чтобы избежать StackOverFlow?</b>&nbsp;<a href="#q428" style="text-decoration:none">🔗</a><br/>
 <pre>
 class Node {
 	private Node left;
@@ -5157,15 +5158,15 @@ public void printTree(Node root) {
 </pre>
 </p>
 <p align="justify">
-<b id="q430">Какие типы операций существуют в Stream API?</b>&nbsp;<a href="#q430" style="text-decoration:none">🔗</a><br/>
+<b id="q429">Какие типы операций существуют в Stream API?</b>&nbsp;<a href="#q429" style="text-decoration:none">🔗</a><br/>
 Два типа: intermediate and terminal - конвейерный и терминальный<br/>
 </p>
 <p align="justify">
-<b id="q431">Что такое функциональный интерфейс?</b>&nbsp;<a href="#q431" style="text-decoration:none">🔗</a><br/>
+<b id="q430">Что такое функциональный интерфейс?</b>&nbsp;<a href="#q430" style="text-decoration:none">🔗</a><br/>
 Это интерфейс, который содержит только 1 абстрактный метод. Основное назначение – использование в лямбда выражениях и method reference.<br/>
 </p>
 <p align="justify">
-<b id="q432">Что напечатает следующее выражение:</b>&nbsp;<a href="#q432" style="text-decoration:none">🔗</a><br/>
+<b id="q431">Что напечатает следующее выражение:</b>&nbsp;<a href="#q431" style="text-decoration:none">🔗</a><br/>
 <pre>
 Arrays.stream(new Integer[]{1, 4, 3})
         .peek(e -&gt; {
@@ -5191,7 +5192,7 @@ Cтрока "Saw 2 4" не выводится, т.к. на числе 3 выпо
 May not evaluate the predicate on all elements if not necessary for determining the result."<br/>
 </p>
 <p align="justify">
-<b id="q433">Отличие Spring от Spring Boot?</b>&nbsp;<a href="#q433" style="text-decoration:none">🔗</a><br/>
+<b id="q432">Отличие Spring от Spring Boot?</b>&nbsp;<a href="#q432" style="text-decoration:none">🔗</a><br/>
 <a href="https://www.geeksforgeeks.org/difference-between-spring-and-spring-boot/">https://www.geeksforgeeks.org/difference-between-spring-and-spring-boot/</a><br/>
 = Spring is an open-source lightweight framework that allows Java EE developers to build simple, reliable, and scalable enterprise applications. This framework mainly focuses on providing various ways to help you manage your business objects. It made the development of Web applications much easier than compared to classic Java frameworks and Application Programming Interfaces (APIs), such as Java database connectivity (JDBC), JavaServer Pages(JSP), and Java Servlet. This framework uses various new techniques such as Aspect-Oriented Programming (AOP), Plain Old Java Object (POJO), and dependency injection (DI), to develop enterprise applications.<br/>
 </p>
@@ -5202,14 +5203,14 @@ The Spring framework can be considered as a collection of sub-frameworks, also c
 = Spring Boot is built on top of the conventional spring framework. So, it provides all the features of spring and is yet easier to use than spring. Spring Boot is a microservice-based framework and making a production-ready application in very less time. In Spring Boot everything is auto-configured. We just need to use proper configuration for utilizing a particular functionality. Spring Boot is very useful if we want to develop REST API.<br/>
 </p>
 <p align="justify">
-<b id="q434">Как работает Spring Boot стартер? Как написать свой?</b>&nbsp;<a href="#q434" style="text-decoration:none">🔗</a><br/>
+<b id="q433">Как работает Spring Boot стартер? Как написать свой?</b>&nbsp;<a href="#q433" style="text-decoration:none">🔗</a><br/>
 = Добавить в src/main/resources/META-INF файл spring.factories, где перечислены бины автоконфигураций<br/>
 = Добавить бины автоконфигурации, которые по сути - описание части Спринг-контекста, с висящей на бинах автоконфигурации аннотацией @Conditional с различными условиями, когда эту автоконфигурацию включать<br/>
 = Добавить проперти для бинов, которые будут использоваться по умолчанию<br/>
 = При использовании данного стартера его зависимости будут включены транзитивно, поэтому добавить туда нужные зависимости для его (стартера) использования<br/>
 </p>
 <p align="justify">
-<b id="q435">Что такое циклическая зависимость? Способы решения.</b>&nbsp;<a href="#q435" style="text-decoration:none">🔗</a><br/>
+<b id="q434">Что такое циклическая зависимость? Способы решения.</b>&nbsp;<a href="#q434" style="text-decoration:none">🔗</a><br/>
 Циклическая зависимость в Spring на самом деле является циклической ссылкой, то есть два или более bean-компонентов ссылаются друг на друга, образуя замкнутый цикл. Например, A зависит от B, B зависит от C, а C зависит от A.<br/>
 </p>
 <p align="justify">
@@ -5221,13 +5222,13 @@ The Spring framework can be considered as a collection of sub-frameworks, also c
 	Spring разделяет этап создания и этап инжекта бина<br/>
 </p>
 <p align="justify">
-<b id="q436">Какие есть способы инъекции бинов?</b>&nbsp;<a href="#q436" style="text-decoration:none">🔗</a><br/>
+<b id="q435">Какие есть способы инъекции бинов?</b>&nbsp;<a href="#q435" style="text-decoration:none">🔗</a><br/>
 = через поля (не рекомендуется)<br/>
 = через конструкторы (рекомендуется)<br/>
 = через сеттеры (лучше - для опциональных зависимостей)<br/>
 </p>
 <p align="justify">
-<b id="q437">Какие есть Spring Scope?</b>&nbsp;<a href="#q437" style="text-decoration:none">🔗</a><br/>
+<b id="q436">Какие есть Spring Scope?</b>&nbsp;<a href="#q436" style="text-decoration:none">🔗</a><br/>
 <a href="https://www.baeldung.com/spring-bean-scopes">https://www.baeldung.com/spring-bean-scopes</a><br/>
 The latest version of the Spring framework defines 6 types of scopes:<br/>
 = singleton<br/>
@@ -5239,16 +5240,16 @@ The latest version of the Spring framework defines 6 types of scopes:<br/>
 = websocket (exhibits singleton behavior, but limited to a WebSocket session only)<br/>
 </p>
 <p align="justify">
-<b id="q438">Зачем нужен Scope Prototype? Примеры использования</b>&nbsp;<a href="#q438" style="text-decoration:none">🔗</a><br/>
+<b id="q437">Зачем нужен Scope Prototype? Примеры использования</b>&nbsp;<a href="#q437" style="text-decoration:none">🔗</a><br/>
 Когда надо создавать новый экземпляр бина каждый раз для выполнения бизнес-задачи, <br/>
 Например бин с неким контекстом, который актуален для обработки именно этого запроса<br/>
 </p>
 <p align="justify">
-<b id="q439">Есть один интерфейс и 2 bean которые его используют. Как сделать @Autowired нужного bean?</b>&nbsp;<a href="#q439" style="text-decoration:none">🔗</a><br/>
+<b id="q438">Есть один интерфейс и 2 bean которые его используют. Как сделать @Autowired нужного bean?</b>&nbsp;<a href="#q438" style="text-decoration:none">🔗</a><br/>
 Можно указать нужный бин с помощью @Qualifier, либо указать один из них как @Primary<br/>
 </p>
 <p align="justify">
-<b id="q440">Привести примеры использования шаблонов проектирования в Spring</b>&nbsp;<a href="#q440" style="text-decoration:none">🔗</a><br/>
+<b id="q439">Привести примеры использования шаблонов проектирования в Spring</b>&nbsp;<a href="#q439" style="text-decoration:none">🔗</a><br/>
 <a href="https://habr.com/ru/company/otus/blog/451516/">https://habr.com/ru/company/otus/blog/451516/</a><br/>
 = Proxy (Заместитель)<br/>
 Прокси предоставляет заместителя для другого объекта, чтобы контролировать доступ к нему.<br/>
@@ -5315,11 +5316,11 @@ ServiceLocatorFactoryBean сохраняет информацию обо все�
 ApplicationContext является центральным интерфейсом в приложении Spring для предоставления информации о конфигурации приложения.<br/>
 </p>
 <p align="justify">
-<b id="q441">Если не использовать @Transactional будет ли использован прокси?</b>&nbsp;<a href="#q441" style="text-decoration:none">🔗</a><br/>
+<b id="q440">Если не использовать @Transactional будет ли использован прокси?</b>&nbsp;<a href="#q440" style="text-decoration:none">🔗</a><br/>
 Да, в Spring все бины создаются через прокси, а не только те, что используют @Transactional<br/>
 </p>
 <p align="justify">
-<b id="q442">Как создать прокси объект? С помощью каких механизмов это делает Spring?</b>&nbsp;<a href="#q442" style="text-decoration:none">🔗</a><br/>
+<b id="q441">Как создать прокси объект? С помощью каких механизмов это делает Spring?</b>&nbsp;<a href="#q441" style="text-decoration:none">🔗</a><br/>
 <a href="https://medium.com/@spac.valentin/java-dynamic-proxy-mechanism-and-how-spring-is-using-it-93756fc707d5">https://medium.com/@spac.valentin/java-dynamic-proxy-mechanism-and-how-spring-is-using-it-93756fc707d5</a><br/>
 There are multiple ways of creating proxies:<br/>
 = Using plain java objects, if you know the interface beforehand. These are static proxies because you know at compile time the types of all involved objects.<br/>
@@ -5337,7 +5338,7 @@ The latter two are dynamic proxies because they work without knowing at compile 
 Spring делает это при помощи третьего способа, используя ProxyFactory, сохраняя бины в bean registry (чтобы потом извлечь нужный по типу)<br/>
 </p>
 <p align="justify">
-<b id="q443">Какие еще есть способы модификации исходных классов (вопрос про weaving, AspectJ)</b>&nbsp;<a href="#q443" style="text-decoration:none">🔗</a><br/>
+<b id="q442">Какие еще есть способы модификации исходных классов (вопрос про weaving, AspectJ)</b>&nbsp;<a href="#q442" style="text-decoration:none">🔗</a><br/>
 <a href="https://www.baeldung.com/aspectj">https://www.baeldung.com/aspectj</a><br/>
 Виды оборачивания существующего кода в дополнительный код:<br/>
 = compile-time weaving is simplest approach. When we have both the source code of the aspect and the code that we are using aspects in, the AspectJ compiler will compile from source and produce a woven class files as output. Afterward, upon execution of your code, the weaving process output class is loaded into JVM as a normal Java class.<br/>
@@ -5345,7 +5346,7 @@ Spring делает это при помощи третьего способа, 
 = post-compile-time (sometimes called binary weaving) weaving is used to weave existing class files and JAR files.<br/>
 </p>
 <p align="justify">
-<b id="q444">Плюсы и минусы SQL и NoSQL баз данных</b>&nbsp;<a href="#q444" style="text-decoration:none">🔗</a><br/>
+<b id="q443">Плюсы и минусы SQL и NoSQL баз данных</b>&nbsp;<a href="#q443" style="text-decoration:none">🔗</a><br/>
 <a href="https://boodet.online/blog/relyacionnye-vs-nerelyacionnye-bazy-dannyh-otlichiya-i-preimushhestva">https://boodet.online/blog/relyacionnye-vs-nerelyacionnye-bazy-dannyh-otlichiya-i-preimushhestva</a><br/>
 = Язык<br/>
 SQL используют универсальный язык структурированных запросов для определения и обработки данных. Это накладывает определенные ограничения: прежде чем начать обработку, данные надо разместить внутри таблиц и описать.<br/>
@@ -5377,15 +5378,15 @@ NoSQL используют, если объем данных большой. О�
 = необходимо горизонтальное масштабирование.<br/>
 </p>
 <p align="justify">
-<b id="q445">Какой механизм есть в NoSQL для защиты от сбоев типа перезагрузка/выключение сервера?</b>&nbsp;<a href="#q445" style="text-decoration:none">🔗</a><br/>
+<b id="q444">Какой механизм есть в NoSQL для защиты от сбоев типа перезагрузка/выключение сервера?</b>&nbsp;<a href="#q444" style="text-decoration:none">🔗</a><br/>
 ?<br/>
 </p>
 <p align="justify">
-<b id="q446">Виды NoSQL БД</b>&nbsp;<a href="#q446" style="text-decoration:none">🔗</a><br/>
+<b id="q445">Виды NoSQL БД</b>&nbsp;<a href="#q445" style="text-decoration:none">🔗</a><br/>
 Графовая, key-value, документная, колоночная<br/>
 </p>
 <p align="justify">
-<b id="q447">Уровни изоляции БД</b>&nbsp;<a href="#q447" style="text-decoration:none">🔗</a><br/>
+<b id="q446">Уровни изоляции БД</b>&nbsp;<a href="#q446" style="text-decoration:none">🔗</a><br/>
 <a href="https://ru.wikipedia.org/wiki/%D0%A3%D1%80%D0%BE%D0%B2%D0%B5%D0%BD%D1%8C_%D0%B8%D0%B7%D0%BE%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%BD%D0%BE%D1%81%D1%82%D0%B8_%D1%82%D1%80%D0%B0%D0%BD%D0%B7%D0%B0%D0%BA%D1%86%D0%B8%D0%B9">https://ru.wikipedia.org/wiki/%D0%A3%D1%80%D0%BE%D0%B2%D0%B5%D0%BD%D1%8C_%D0%B8%D0%B7%D0%BE%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%BD%D0%BE%D1%81%D1%82%D0%B8_%D1%82%D1%80%D0%B0%D0%BD%D0%B7%D0%B0%D0%BA%D1%86%D0%B8%D0%B9</a><br/>
 = Read uncommitted. Если несколько параллельных транзакций пытаются изменять одну и ту же строку таблицы, то в окончательном варианте строка будет иметь значение, определенное всем набором успешно выполненных транзакций. При этом возможно считывание не только логически несогласованных данных, но и данных, изменения которых ещё не зафиксированы.<br/>
 </p>
@@ -5400,17 +5401,17 @@ NoSQL используют, если объем данных большой. О�
 = Serializable. Все транзакции выполняются последовательно, одна за другой.<br/>
 </p>
 <p align="justify">
-<b id="q448">Какая разница между фантомным чтением и неповторяющимся чтением?</b>&nbsp;<a href="#q448" style="text-decoration:none">🔗</a><br/>
+<b id="q447">Какая разница между фантомным чтением и неповторяющимся чтением?</b>&nbsp;<a href="#q447" style="text-decoration:none">🔗</a><br/>
 Неповторяющееся чтение - при повторном чтении в рамках одной транзакции - ранее прочитанные данные оказываются изменены.<br/>
 Фантомное чтение - при повторной выборке строк по одним и тем же критериям в рамках одной транзакции - видим вставку новых строк другой параллельной транзакцией.<br/>
 </p>
 <p align="justify">
-<b id="q449">Анализировал ли план запроса?</b>&nbsp;<a href="#q449" style="text-decoration:none">🔗</a><br/>
+<b id="q448">Анализировал ли план запроса?</b>&nbsp;<a href="#q448" style="text-decoration:none">🔗</a><br/>
 Да, там перечислены веса для каждой части запроса, откуда можно понять, на что тратится основное время при выполнении запроса.<br/>
 Также можно увидеть, используются ли индексы и какие.<br/>
 </p>
 <p align="justify">
-<b id="q450">Какие есть способы оптимизации выборки?</b>&nbsp;<a href="#q450" style="text-decoration:none">🔗</a><br/>
+<b id="q449">Какие есть способы оптимизации выборки?</b>&nbsp;<a href="#q449" style="text-decoration:none">🔗</a><br/>
 От менее к более радикальным:<br/>
 = Использование индексов и внешних ключей для ускорения запроса<br/>
 = Использование JOIN вместо подзапросов<br/>
@@ -5426,32 +5427,32 @@ NoSQL используют, если объем данных большой. О�
 = Выполнить нормализацию БД<br/>
 </p>
 <p align="justify">
-<b id="q451">Составной индекс в БД. Каким правилом нужно руководствоваться при составлении составного индекса? (ответ: по уникальности)</b>&nbsp;<a href="#q451" style="text-decoration:none">🔗</a><br/>
+<b id="q450">Составной индекс в БД. Каким правилом нужно руководствоваться при составлении составного индекса? (ответ: по уникальности)</b>&nbsp;<a href="#q450" style="text-decoration:none">🔗</a><br/>
 Составной индекс - в котором участвует не одна, а несколько колонок БД.<br/>
 При составлении индекса надо ориентироваться прежде всего на запросы. Но если запросы можно изменять, то лучше расположить колонки в индексе так, чтобы вначале шли колонки с низкой cardinality.<br/>
 </p>
 <p align="justify">
-<b id="q452">Рассказать про функциональный интерфейс и лямбда-функцию</b>&nbsp;<a href="#q452" style="text-decoration:none">🔗</a><br/>
+<b id="q451">Рассказать про функциональный интерфейс и лямбда-функцию</b>&nbsp;<a href="#q451" style="text-decoration:none">🔗</a><br/>
 Функциональный интерфейс в Java — интерфейс, в котором объявлен только один абстрактный метод.<br/>
 Лямбда-выражение или просто лямбда в Java — упрощённая запись анонимного класса, реализующего функциональный интерфейс.<br/>
 </p>
 <p align="justify">
-<b id="q453">Что такое identity hashCode?</b>&nbsp;<a href="#q453" style="text-decoration:none">🔗</a><br/>
+<b id="q452">Что такое identity hashCode?</b>&nbsp;<a href="#q452" style="text-decoration:none">🔗</a><br/>
 <a href="https://habr.com/ru/company/vk/blog/321306/">https://habr.com/ru/company/vk/blog/321306/</a><br/>
 Реализация по умолчанию hashCode() возвращает значение, которое называется идентификационный хеш (identity hash code).<br/>
 Как оказалось, реализация по умолчанию hashCode() (идентификационного хеша) не имеет отношения к адресу памяти объекта, как минимум в OpenJDK.<br/>
 В HotSpot идентификационный хеш генерируется лишь раз, а затем кешируется в слове mark в заголовке объекта. Т.е. перемещения объекта после сборок мусора в памяти НЕ вызывают смену значения хэшкода.<br/>
 </p>
 <p align="justify">
-<b id="q454">Сборщик мусора, который не собирает мусор</b>&nbsp;<a href="#q454" style="text-decoration:none">🔗</a><br/>
+<b id="q453">Сборщик мусора, который не собирает мусор</b>&nbsp;<a href="#q453" style="text-decoration:none">🔗</a><br/>
 Epsilon<br/>
 </p>
 <p align="justify">
-<b id="q455">Где используется ForkJoinPool?</b>&nbsp;<a href="#q455" style="text-decoration:none">🔗</a><br/>
+<b id="q454">Где используется ForkJoinPool?</b>&nbsp;<a href="#q454" style="text-decoration:none">🔗</a><br/>
 В Stream API: parallelStream использует ForkJoinPool.commonPool(), a thread pool shared by the entire application.<br/>
 </p>
 <p align="justify">
-<b id="q456">Шардирование vs партиционирование</b>&nbsp;<a href="#q456" style="text-decoration:none">🔗</a><br/>
+<b id="q455">Шардирование vs партиционирование</b>&nbsp;<a href="#q455" style="text-decoration:none">🔗</a><br/>
 <a href="https://web-creator.ru/articles/partitioning_replication_sharding">https://web-creator.ru/articles/partitioning_replication_sharding</a><br/>
 = Партиционирование — это разбиение таблиц, содержащих большое количество записей, на логические части по неким выбранным администратором критериям. Партиционирование таблиц делит весь объем операций по обработке данных на несколько независимых и параллельно выполняющихся потоков, что существенно ускоряет работу СУБД. Для правильного конфигурирования параметров партиционирования необходимо, чтобы в каждом потоке было примерно одинаковое количество записей.<br/>
 Например, на новостных сайтах имеет смысл партиционировать записи по дате публикации, так как свежие новости на несколько порядков более востребованы и чаще требуется работа именно с ними, а не со всех архивом за годы существования новостного ресурса.<br/>
@@ -5465,18 +5466,18 @@ Epsilon<br/>
 Например, в системах типа социальных сетей ключом для шардинга может быть ID пользователя, таким образом все данные пользователя будут храниться и обрабатываться на одном сервере, а не собираться по частям с нескольких.<br/>
 </p>
 <p align="justify">
-<b id="q457">Если индекс строится по полю VARCHAR, какой лучше индекс применять?</b>&nbsp;<a href="#q457" style="text-decoration:none">🔗</a><br/>
+<b id="q456">Если индекс строится по полю VARCHAR, какой лучше индекс применять?</b>&nbsp;<a href="#q456" style="text-decoration:none">🔗</a><br/>
 Лучше применять Hash-индекс, т.к. по нему быстрее найти значение. Т.к. в случае B-Tree будем долго идти по дереву, пока дойдем до конца<br/>
 </p>
 <p align="justify">
-<b id="q458">Рассказать о PECS</b>&nbsp;<a href="#q458" style="text-decoration:none">🔗</a><br/>
+<b id="q457">Рассказать о PECS</b>&nbsp;<a href="#q457" style="text-decoration:none">🔗</a><br/>
 <a href="https://habr.com/ru/post/559268/">https://habr.com/ru/post/559268/</a><br/>
 PECS - "Producer Extends Consumer Super".<br/>
 Если у нас есть некая коллекция, типизированная wildcard с верхней границей (extends) – то это, «продюсер». «Он только «продюсирует», предоставляет элемент из контейнера, а сам ничего не принимает».<br/>
 Если же у нас коллекция, типизированная wildcard по нижней границе (super) – то это, «потребитель», который «только принимает, а предоставить ничего не может». <br/>
 </p>
 <p align="justify">
-<b id="q459">Ковариантность/контравариантность типов</b>&nbsp;<a href="#q459" style="text-decoration:none">🔗</a><br/>
+<b id="q458">Ковариантность/контравариантность типов</b>&nbsp;<a href="#q458" style="text-decoration:none">🔗</a><br/>
 <a href="https://itsobes.ru/JavaSobes/chto-takoe-kovariantnost-i-kontravariantnost/">https://itsobes.ru/JavaSobes/chto-takoe-kovariantnost-i-kontravariantnost/</a><br/>
 Ковариантность/контравариантность типов – это сохранение/обращение порядка наследования для производных типов. Проще говоря, когда у ковариантных сущностей типами-параметрами являются родитель и наследник, они сами становятся как бы родителем и наследником. Контравариантные наоборот, становятся наследником и родителем.<br/>
 </p>
@@ -5490,32 +5491,32 @@ PECS - "Producer Extends Consumer Super".<br/>
 Массивы ковариантны: в переменную Object[] можно присвоить значение типа String[].<br/>
 </p>
 <p align="justify">
-<b id="q460">Set, можно ли положить в него null? Почему куда-то можно, куда-то нельзя, что необходимо для работы с TreeSet, как в него положить null?</b>&nbsp;<a href="#q460" style="text-decoration:none">🔗</a><br/>
+<b id="q459">Set, можно ли положить в него null? Почему куда-то можно, куда-то нельзя, что необходимо для работы с TreeSet, как в него положить null?</b>&nbsp;<a href="#q459" style="text-decoration:none">🔗</a><br/>
 В HashSet можно<br/>
 В TreeSet нельзя. Чтобы было можно - надо указать такой компаратор, который позволяет сравнивать с null.<br/>
 </p>
 <p align="justify">
-<b id="q461">Рассказать об утечках памяти в Java. Могут ли циклические ссылки создать утечку мусора?</b>&nbsp;<a href="#q461" style="text-decoration:none">🔗</a><br/>
+<b id="q460">Рассказать об утечках памяти в Java. Могут ли циклические ссылки создать утечку мусора?</b>&nbsp;<a href="#q460" style="text-decoration:none">🔗</a><br/>
 ?<br/>
 </p>
 <p align="justify">
-<b id="q462">Рассказать, что такое JIT.</b>&nbsp;<a href="#q462" style="text-decoration:none">🔗</a><br/>
+<b id="q461">Рассказать, что такое JIT.</b>&nbsp;<a href="#q461" style="text-decoration:none">🔗</a><br/>
 ?<br/>
 </p>
 <p align="justify">
-<b id="q463">Разворачиваем проект в докере, лимит памяти контейнера прописан в 8Gb, а Xmx=4Gb, падает с OOM. С чего бы начал анализ проблемы?</b>&nbsp;<a href="#q463" style="text-decoration:none">🔗</a><br/>
+<b id="q462">Разворачиваем проект в докере, лимит памяти контейнера прописан в 8Gb, а Xmx=4Gb, падает с OOM. С чего бы начал анализ проблемы?</b>&nbsp;<a href="#q462" style="text-decoration:none">🔗</a><br/>
 ?<br/>
 </p>
 <p align="justify">
-<b id="q464">Один из запросов сервиса стал работать медленно. Предложить, что делать, куда смотреть, чтобы расследовать проблему. Ускорили этот запрос на чтение, стала работать медленнее вставка, как быть?</b>&nbsp;<a href="#q464" style="text-decoration:none">🔗</a><br/>
+<b id="q463">Один из запросов сервиса стал работать медленно. Предложить, что делать, куда смотреть, чтобы расследовать проблему. Ускорили этот запрос на чтение, стала работать медленнее вставка, как быть?</b>&nbsp;<a href="#q463" style="text-decoration:none">🔗</a><br/>
 ?<br/>
 </p>
 <p align="justify">
-<b id="q465">Есть приложение, которое занимается расходными/приходными операциями по данной карте. Могут быть несколько инстансов этого приложения. Как сделать, чтобы все операции были выполнены гарантированно (и в правильном порядке) и не были потеряны?</b>&nbsp;<a href="#q465" style="text-decoration:none">🔗</a><br/>
+<b id="q464">Есть приложение, которое занимается расходными/приходными операциями по данной карте. Могут быть несколько инстансов этого приложения. Как сделать, чтобы все операции были выполнены гарантированно (и в правильном порядке) и не были потеряны?</b>&nbsp;<a href="#q464" style="text-decoration:none">🔗</a><br/>
 ?<br/>
 </p>
 <p align="justify">
-<b id="q466">Какой будет вывод в консоль и будет ли он вообще?</b>&nbsp;<a href="#q466" style="text-decoration:none">🔗</a><br/>
+<b id="q465">Какой будет вывод в консоль и будет ли он вообще?</b>&nbsp;<a href="#q465" style="text-decoration:none">🔗</a><br/>
 <pre>
 public class Increment {
     private static int counter1 = 0;
@@ -5546,7 +5547,7 @@ public class Increment {
 </pre>
 </p>
 <p align="justify">
-<b id="q467">Код-ревью - рассказать свои мысли о данном коде.</b>&nbsp;<a href="#q467" style="text-decoration:none">🔗</a><br/>
+<b id="q466">Код-ревью - рассказать свои мысли о данном коде.</b>&nbsp;<a href="#q466" style="text-decoration:none">🔗</a><br/>
 <pre>
 /**
  * Компонент проведения платежей.
@@ -5631,7 +5632,7 @@ public class PaymentService {
 = вопрос об экстернализации конфигурации<br/>
 </p>
 <p align="justify">
-<b id="q468">Рассказать, что будет при вызове ServiceA.doIt() и откатится ли транзакция?</b>&nbsp;<a href="#q468" style="text-decoration:none">🔗</a><br/>
+<b id="q467">Рассказать, что будет при вызове ServiceA.doIt() и откатится ли транзакция?</b>&nbsp;<a href="#q467" style="text-decoration:none">🔗</a><br/>
 <pre>
 @Service
 public class ServiceA {
@@ -5676,7 +5677,7 @@ public class ServiceC {
 </pre>
 </p>
 <p align="justify">
-<b id="q469">Что такое лямбда-выражение?</b>&nbsp;<a href="#q469" style="text-decoration:none">🔗</a><br/>
+<b id="q468">Что такое лямбда-выражение?</b>&nbsp;<a href="#q468" style="text-decoration:none">🔗</a><br/>
 <a href="https://ru.wikipedia.org/wiki/%D0%9B%D1%8F%D0%BC%D0%B1%D0%B4%D0%B0-%D0%B2%D1%8B%D1%80%D0%B0%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5">https://ru.wikipedia.org/wiki/%D0%9B%D1%8F%D0%BC%D0%B1%D0%B4%D0%B0-%D0%B2%D1%8B%D1%80%D0%B0%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5</a><br/>
 Лямбда-выражение - специальный синтаксис для определения функциональных объектов, заимствованный из лямбда-исчисления. Применяется как правило для объявления анонимных функций по месту их использования, и обычно допускает замыкание на лексический контекст, в котором это выражение использовано. Используя лямбда-выражения, можно объявлять функции в любом месте кода.<br/>
 Примеры:<br/>
@@ -5686,19 +5687,11 @@ public class ServiceC {
 </pre>
 </p>
 <p align="justify">
-<b id="q470">Когда стоит использовать LinkedList? Какой выигрыш он дает?</b>&nbsp;<a href="#q470" style="text-decoration:none">🔗</a><br/>
+<b id="q469">Когда стоит использовать LinkedList? Какой выигрыш он дает?</b>&nbsp;<a href="#q469" style="text-decoration:none">🔗</a><br/>
 ?<br/>
 </p>
 <p align="justify">
-<b id="q471">Describe JMM (Java Memory Model)</b>&nbsp;<a href="#q471" style="text-decoration:none">🔗</a><br/>
-?<br/>
-</p>
-<p align="justify">
-<b id="q472">Describe "happens-before" paradigm for JVM</b>&nbsp;<a href="#q472" style="text-decoration:none">🔗</a><br/>
-?<br/>
-</p>
-<p align="justify">
-<b id="q473">Links</b>&nbsp;<a href="#q473" style="text-decoration:none">🔗</a><br/>
+<b id="q470">Links</b>&nbsp;<a href="#q470" style="text-decoration:none">🔗</a><br/>
 <a href="http://javamex.com">http://javamex.com</a><br/>
 <a href="http://javarevisited.blogspot.com">http://javarevisited.blogspot.com</a><br/>
 </p>

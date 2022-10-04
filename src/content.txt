@@ -2488,8 +2488,11 @@ Followings are the rules for happens-before:
 = Transitivity: If A happens-before B, and B happens-before C, then A happens-before C.
 
 - different loggers configuration
-https://habr.com/ru/post/247647/	Java logging. Hello World
-https://habr.com/ru/post/113145/	Java Logging: история кошмара
+Java logging. Hello World
+https://habr.com/ru/post/247647
+
+Java Logging: история кошмара
+https://habr.com/ru/post/113145
 
 - MQTT
 https://ru.wikipedia.org/wiki/MQTT
@@ -3852,10 +3855,9 @@ https://habr.com/ru/post/237043/
 список - доступ по индексу, возможны дубликаты
 множество - содержит только уникальные элементы
 
-- Какие нововведения появились в Java 8?
 - Что стало возможно использовать в интерфейсах, начиная с Java 8?
-- Чем начиная с Java 8 отличаются абстрактные классы и интерфейсы? 
-?
+- Чем, начиная с Java 8 отличаются абстрактные классы и интерфейсы?
+Появились default-методы в интерфейсах
 
 - Как инстанцировать экземпляр интерфейса?
 = создать анонимный класс, определив имплементацию нужных методов in-place
@@ -3991,7 +3993,7 @@ In some respects, you can think of the Spring containers role when talking about
 public class CachedPhotosService {
     private static final String RESIZED_PHOTO_CACHE_NAME = "RESIZED_PHOTO_CACHE_NAME";
 
-	private final PhotoRepository photoRepository;
+    private final PhotoRepository photoRepository;
     private final PhotoValidationService photoValidationService;
     private final PhotoOperations photoOperations;
 
@@ -4438,7 +4440,7 @@ https://dou.ua/lenta/columns/testing-in-jiji/
 = фиксации рабочего состояния: при изменении старого кода - быть уверенным в том, что переходим из рабочего состояния в рабочее
 Разные виды тестов обеспечивают разную гранулярность тестируемых блоков (в крупную/мелкую клетку) и позволяют лучше и быстрее опеределить, что именно и где сломалось.
 
-- Отличие stack от heap. Как их конфигурировать? Какие еще области памяти знаешь? Расскажи про Java Memory Model? Как устроена память в Java?
+- Рассказать про Java Memory Model: как устроена память в Java? Отличие stack от heap и как их конфигурировать? Какие еще области памяти знаешь?
 https://itsobes.ru/JavaSobes/na-kakie-oblasti-delitsia-pamiat-jvm/
 JVM разделяет память на две основные категории: "кучу" (heap) и "не кучу" (non-heap).
 = Heap - куча, вся managed-память, в которой хранятся все пользовательские объекты. Параметры -Xms, -Xmn и -Xmx устанавливают начальный, минимальный и максимальный размеры хипа соответственно.
@@ -4941,12 +4943,6 @@ https://ru.wikipedia.org/wiki/%D0%9B%D1%8F%D0%BC%D0%B1%D0%B4%D0%B0-%D0%B2%D1%8B%
 ```
 
 * Когда стоит использовать LinkedList? Какой выигрыш он дает?
-?
-
-* Describe JMM (Java Memory Model)
-?
-
-* Describe "happens-before" paradigm for JVM
 ?
 
 * Links
