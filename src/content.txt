@@ -1571,16 +1571,17 @@ https://java-online.ru/servlet-filter.xhtml
 The SAX push model means that it is the SAX parser that calls your handler, not your handler that calls the SAX parser. The SAX parser thus "pushes" events into your handler
 The StAX pull model means that it is your "handler" class that calls the parser, not the other way around. Thus your handler class controls when the parser is to move on to the next event in the input. In other words, your handler "pulls" the XML events out of the parser. Additionally, you can stop the parsing at any point
 
-- описать жизненный цикл Spring-бина
+- Описать Spring Bean lifecycle
 https://itsobes.ru/JavaSobes/opishite-zhiznennyi-tsikl-spring-bean/
+https://reflectoring.io/spring-bean-lifecycle/
 1. Инстанцирование объекта. Техническое начало жизни бина, работа конструктора его класса;
 2. Установка свойств из конфигурации бина, внедрение зависимостей;
-3. Нотификация aware-интерфейсов. BeanNameAware, BeanFactoryAware и другие. Мы уже писали о таких интерфейсах ранее. Технически, выполняется системными подтипами BeanPostProcessor, и совпадает с шагом 4;
+3. Нотификация aware-интерфейсов: BeanNameAware, BeanFactoryAware и другие. Технически, выполняется системными подтипами BeanPostProcessor, и совпадает с шагом 4;
 4. Пре-инициализация – метод postProcessBeforeInitialization() интерфейса BeanPostProcessor;
 5. Инициализация. Разные способы применяются в таком порядке:
-• Метод бина с аннотацией @PostConstruct из стандарта JSR-250 (рекомендуемый способ);
-• Метод afterPropertiesSet() бина под интерфейсом InitializingBean;
-• Init-метод. Для отдельного бина его имя устанавливается в параметре определения initMethod. В xml-конфигурации можно установить для всех бинов сразу, с помощью default-init-method;
+	• Метод бина с аннотацией @PostConstruct из стандарта JSR-250 (рекомендуемый способ);
+	• Метод afterPropertiesSet() бина под интерфейсом InitializingBean;
+	• Init-метод. Для отдельного бина его имя устанавливается в параметре определения initMethod. В xml-конфигурации можно установить для всех бинов сразу, с помощью default-init-method;
 6. Пост-инициализация – метод postProcessAfterInitialization() интерфейса BeanPostProcessor.
 
 Когда IoC-контейнер завершает свою работу, мы можем кастомизировать этап штатного уничтожения бина. Три альтернативных способа «деинициализации» вызываются в том же порядке, что симметричные им методы инициализации:
