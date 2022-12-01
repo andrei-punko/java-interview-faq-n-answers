@@ -1574,6 +1574,7 @@ The StAX pull model means that it is your "handler" class that calls the parser,
 - Описать Spring Bean lifecycle
 https://itsobes.ru/JavaSobes/opishite-zhiznennyi-tsikl-spring-bean/
 https://reflectoring.io/spring-bean-lifecycle/
+IMG ./images/spring-bean-lifecycle.png
 1. Инстанцирование объекта. Техническое начало жизни бина, работа конструктора его класса;
 2. Установка свойств из конфигурации бина, внедрение зависимостей;
 3. Нотификация aware-интерфейсов: BeanNameAware, BeanFactoryAware и другие. Технически, выполняется системными подтипами BeanPostProcessor, и совпадает с шагом 4;
