@@ -3794,11 +3794,12 @@ services:
 ```
 (для версий более ранних, чем 3 - см. ссылку выше)
 
-- native Spring application
-?
+- What is Spring native application?
+Spring Native provides support for compiling Spring applications to native executables using the GraalVM native-image compiler. Compared to the Java Virtual Machine, native images can enable cheaper and more sustainable hosting for many types of workloads.
 
 - r2dbc driver
-?
+R2DBC defines an SPI (Service Provider Interface) all data store drivers must implement.
+To ease implementation, R2DBC also provides a test interface (a veritable TCK (Technology Compatibility Kit)) to ensure your driver is fully operational.
 
 - Low & high cardinality
 Низкая/высокая кардинальность - число уникальных записей в таблице мало/велико при большом размере таблицы.
@@ -4834,10 +4835,22 @@ https://itsobes.ru/JavaSobes/chto-takoe-kovariantnost-i-kontravariantnost/
 В TreeSet нельзя. Чтобы было можно - надо указать такой компаратор, который позволяет сравнивать с null.
 
 - Рассказать об утечках памяти в Java. Могут ли циклические ссылки создать утечку мусора?
-?
+https://habr.com/ru/company/otus/blog/589321
+Утечки памяти могут создать:
+= Неосвобожденные ресурсы, например незакрытое соединение, reader/writer. Поэтому лучше использовать Autoclosable интерфейсы и выделять их при помощи try-with-resources.
+= Обильное использование статических полей.
+= Неправильная реализация equals и hashCode и использование таких объектов как ключей для HashMap/HasSet могут также приводит к утечкам (дубликаты объектов накапливаются и занимают память)
+= Использование внутренних классов, которые ссылаются на внешние
+= Интернирование строк
+= Использование ThreadLocal (иногда)
 
-- Рассказать, что такое JIT.
-?
+Проблема циклических ссылок решена в промышленных (не учебных) сборщиках мусора, поэтому не должны создавать утечек.
+
+- Что такое JIT?
+http://net-informations.com/Java/cJava/jit.htm
+The Just-In-Time (JIT) compiler is a component of the JRE (Java Runtime Environment) that improves the performance of Java applications at run time. It helps improve the performance of Java programs by compiling bytecodes into native machine code at runtime.
+
+In practice, methods are not compiled the first time they are called. For each method, the Java Virtual Machine maintains a call count, which is incremented every time the method is called. The JVM interprets a method until its call count exceeds a Just-In-Time compilation threshold. Therefore, often-used methods are compiled soon after the Java Virtual Machine has started, and less-used methods are compiled much later, or not at all. The Just-In-Time compilation threshold helps the JVM start quickly and still have improved performance. The threshold has been carefully selected to obtain an optimal balance between start-up times and long term performance.
 
 - Разворачиваем проект в докере, лимит памяти контейнера прописан в 8Gb, а Xmx=4Gb, падает с OOM. С чего бы начал анализ проблемы?
 ?

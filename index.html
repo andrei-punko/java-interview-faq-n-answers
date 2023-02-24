@@ -4353,12 +4353,13 @@ services:
 (для версий более ранних, чем 3 - см. ссылку выше)<br/>
 </p>
 <p align="justify">
-<b id="q341">Native Spring application</b>&nbsp;<a href="#q341" style="text-decoration:none">🔗</a><br/>
-?<br/>
+<b id="q341">What is Spring native application?</b>&nbsp;<a href="#q341" style="text-decoration:none">🔗</a><br/>
+Spring Native provides support for compiling Spring applications to native executables using the GraalVM native-image compiler. Compared to the Java Virtual Machine, native images can enable cheaper and more sustainable hosting for many types of workloads.<br/>
 </p>
 <p align="justify">
 <b id="q342">R2dbc driver</b>&nbsp;<a href="#q342" style="text-decoration:none">🔗</a><br/>
-?<br/>
+R2DBC defines an SPI (Service Provider Interface) all data store drivers must implement.<br/>
+To ease implementation, R2DBC also provides a test interface (a veritable TCK (Technology Compatibility Kit)) to ensure your driver is fully operational.<br/>
 </p>
 <p align="justify">
 <b id="q343">Low & high cardinality</b>&nbsp;<a href="#q343" style="text-decoration:none">🔗</a><br/>
@@ -5579,11 +5580,25 @@ PECS - "Producer Extends Consumer Super".<br/>
 </p>
 <p align="justify">
 <b id="q459">Рассказать об утечках памяти в Java. Могут ли циклические ссылки создать утечку мусора?</b>&nbsp;<a href="#q459" style="text-decoration:none">🔗</a><br/>
-?<br/>
+<a href="https://habr.com/ru/company/otus/blog/589321">https://habr.com/ru/company/otus/blog/589321</a><br/>
+Утечки памяти могут создать:<br/>
+= Неосвобожденные ресурсы, например незакрытое соединение, reader/writer. Поэтому лучше использовать Autoclosable интерфейсы и выделять их при помощи try-with-resources.<br/>
+= Обильное использование статических полей.<br/>
+= Неправильная реализация equals и hashCode и использование таких объектов как ключей для HashMap/HasSet могут также приводит к утечкам (дубликаты объектов накапливаются и занимают память)<br/>
+= Использование внутренних классов, которые ссылаются на внешние<br/>
+= Интернирование строк<br/>
+= Использование ThreadLocal (иногда)<br/>
 </p>
 <p align="justify">
-<b id="q460">Рассказать, что такое JIT.</b>&nbsp;<a href="#q460" style="text-decoration:none">🔗</a><br/>
-?<br/>
+Проблема циклических ссылок решена в промышленных (не учебных) сборщиках мусора, поэтому не должны создавать утечек.<br/>
+</p>
+<p align="justify">
+<b id="q460">Что такое JIT?</b>&nbsp;<a href="#q460" style="text-decoration:none">🔗</a><br/>
+<a href="http://net-informations.com/Java/cJava/jit.htm">http://net-informations.com/Java/cJava/jit.htm</a><br/>
+The Just-In-Time (JIT) compiler is a component of the JRE (Java Runtime Environment) that improves the performance of Java applications at run time. It helps improve the performance of Java programs by compiling bytecodes into native machine code at runtime.<br/>
+</p>
+<p align="justify">
+In practice, methods are not compiled the first time they are called. For each method, the Java Virtual Machine maintains a call count, which is incremented every time the method is called. The JVM interprets a method until its call count exceeds a Just-In-Time compilation threshold. Therefore, often-used methods are compiled soon after the Java Virtual Machine has started, and less-used methods are compiled much later, or not at all. The Just-In-Time compilation threshold helps the JVM start quickly and still have improved performance. The threshold has been carefully selected to obtain an optimal balance between start-up times and long term performance.<br/>
 </p>
 <p align="justify">
 <b id="q461">Разворачиваем проект в докере, лимит памяти контейнера прописан в 8Gb, а Xmx=4Gb, падает с OOM. С чего бы начал анализ проблемы?</b>&nbsp;<a href="#q461" style="text-decoration:none">🔗</a><br/>
