@@ -1541,9 +1541,6 @@ http://tlazarenko.blogspot.com/2013/10/string-java.html
 
 String pool позволяет экономить память и не создавать новые объекты для каждой повторяющийся строки. В случае с изменяемыми строками - изменение одной приводило бы к изменению всех строк одинакового содержания.
 
-- рассказать детально, что происходит при работе с PreparedStatement и на каком слое?
-?
-
 - Есть 2 таблицы: Books(id, name, year, auth_id), Authors(id, name). Написать запрос, чтобы вывести имена авторов, кто написал не более 3 книг в 2016 году отсортированными по имени
 ```
 select a.id, a.name, count(a.id) from Authors a left join Books b on a.id=b.auth_id group by a.id having count(a.id) <=3 order by a.name;
@@ -1647,19 +1644,102 @@ IMG ./images/spring-bean-lifecycle.png
 3. Метод destroy() интерфейса DisposableBean.
 
 - как запустить джоб после старта Spring-контекста?
-?
-
-- реализовать вручную функцию целочисленного деления int divide(int a, int b)
+https://habr.com/ru/post/572828/
+= Интерфейс CommandLineRunner - функциональный интерфейс Spring Boot, который используется для запуска кода при запуске приложения
 ```
-int divide(int a, int b) {
-    int counter = 0;
-    while (a >= b) {
-        a -= b;
-        counter++;
-    }
-    return counter;
+@Component
+public class CommandLineRunnerImpl implements CommandLineRunner {
+    @Override
+    public void run(String... args) throws Exception { ... }
 }
 ```
+
+= Интерфейс ApplicationRunner - предоставляет метод запуска с ApplicationArguments вместо необработанного массива строк.
+```
+@Component
+public class ApplicationRunnerImpl implements ApplicationRunner {
+   @Override
+   public void run(ApplicationArguments args) throws Exception { ... }
+}
+```
+CommandLineRunner и ApplicationRunner имеют схожие функции, например:
+== Исключение в методе run() прервет запуск приложения.
+== Несколько ApplicationRunner можно заказать с помощью упорядоченного интерфейса или аннотации @Order.
+
+= События Spring Boot Application.
+Если нам не нужны аргументы командной строки, это лучший способ выполнить код после запуска приложения.
+```
+@Component
+public class RunAfterStartup {
+	@EventListener(ApplicationStartedEvent.class)
+	public void runAfterStartup() { ... }
+}
+```
+Некоторые наиболее важные события spring boot:
+== ApplicationContextInitializedEvent: запускается после подготовки ApplicationContext и вызова ApplicationContextInitializers, но до загрузки определений bean-компонентов
+== ApplicationPreparedEvent: запускается после загрузки определений bean-компонентов
+== ApplicationStartedEvent: запускается после обновления контекста, но до вызова командной строки и запуска приложений.
+== ApplicationReadyEvent: запускается после вызова любого приложения и запуска командной строки
+== ApplicationFailedEvent: срабатывает, если есть исключение при запуске
+Можно создать несколько ApplicationListeners. Их можно упорядочивать с помощью аннотации @Order или с помощью интерфейса Ordered.
+Order используется совместно с другими ApplicationListeners того же типа, но не с ApplicationRunners или CommandLineRunners.
+
+= Аннотацию @Postconstruct для метода. Всякий раз, когда метод отмечен этой аннотацией, он будет вызываться сразу после внедрения зависимости. Метод @PostConstruct связан с конкретным классом, поэтому его следует использовать только для кода конкретного класса. В каждом классе может быть только один метод с аннотацией postConstruct.
+```
+@Component
+public class PostContructImpl {
+	@PostConstruct
+	public void runAfterObjectCreated() { ... }
+}
+```
+Метод, отмеченный аннотацией @PostConstruct, может иметь любое имя, но не должен иметь никаких параметров. Он должен быть void и не должен быть static.
+
+= Интерфейс InitializingBean. Работает точно так же, как аннотация @PostConstruct. Вместо использования аннотации мы должны реализовать интерфейс InitializingBean. Затем нам нужно переопределить метод void afterPropertiesSet().
+```
+@Component
+public class InitializingBeanImpl implements InitializingBean {
+    @Override
+    public void afterPropertiesSet() throws Exception { ... }
+}
+```
+Если мы будем использовать одновременно аннотацию @PostConstruct и InitializingBean - в этом случае метод @PostConstruct будет вызываться перед методом afterPropertiesSet() InitializingBean.
+
+= Атрибут инициализации аннотации @bean. Мы можем реализовать метод, используя свойство initMethod в аннотации @Bean. Этот метод будет вызываться после инициализации bean-компонента.
+Метод, предоставленный в initMethod, должен быть void и не иметь аргументов. Этот метод может быть даже private.
+```
+public class BeanInitMethodImpl {
+    public void runAfterObjectCreated() { ... }
+}
+
+@SpringBootApplication
+public class DemoApplication {
+	...
+
+    @Bean(initMethod = "runAfterObjectCreated")
+    public BeanInitMethodImpl getFunnyBean() {
+        return new BeanInitMethodImpl();
+    }
+ }
+```
+
+Сочетание разных подходов.
+Наконец, иногда нам может потребоваться объединить несколько вариантов. При этом они будут выполняться в следующем порядке:
+= Конструктор
+= PostContruct метод
+= afterPropertiesSet метод
+= Метод инициализации Bean-компонента
+= ApplicationStartedEvent
+= ApplicationRunner или CommandLineRunner в зависимости от порядка
+= ApplicationReadyEvent
+
+Краткий обзор
+= Есть разные способы запустить код после запуска Spring Boot приложения.
+= Мы можем использовать CommandLineRunner или ApplicationRunner Interface.
+= Используйте интерфейс ApplicationRunner для доступа к анализируемым аргументам вместо массива необработанных строк.
+= Событие загрузки Spring выполняет код при запуске приложения.
+= Метод, отмеченный аннотацией @PostConstruct, выполняется после инициализации объекта.
+= Метод afterPropertiesSet() интерфейса InitializingBean вызывается после инициализации объекта.
+= В аннотации @Bean есть атрибут "initMethod" для предоставления метода, который будет вызываться после инициализации bean-компонента.
 
 - Ссылки на методы
 https://www.examclouds.com/ru/java/java-core-russian/method-references-russian
@@ -3674,8 +3754,12 @@ thread3.start();
 ```
 ? (остался вопрос - по поводу сделать что-то похожее через Spring)
 
-- Статическое и динамическое связывание. Рассказать на примере дженериков
-?
+- Статическое и динамическое связывание
+Ранее связывание (статическое) - вся информация, необходимая для вызова функции, доступна во время компиляции.
+ПОзднее (динамическое) связывание - когда компилятор не может определить всю информацию, необходимую для вызова функции, во время компиляции.
+
+Приватные, статические и final-методы связываются при помощи статического связывания, а виртуальные – динамического.
+Аналогично, лучший пример статического связывания – перегрузка методов, а динамического связывания - переопределение методов.
 
 - Привести примеры Immutable-классов в JDK
 Почти все классы обертки примитивных типов: Integer, String, Short, Boolean, BigInteger, BigDecimal и другие
@@ -5029,7 +5113,10 @@ https://ru.wikipedia.org/wiki/%D0%9B%D1%8F%D0%BC%D0%B1%D0%B4%D0%B0-%D0%B2%D1%8B%
 ```
 
 * Когда стоит использовать LinkedList? Какой выигрыш он дает?
-?
+https://ru.stackoverflow.com/questions/801861/%D0%A0%D0%B5%D0%B0%D0%BB%D1%8C%D0%BD%D1%8B%D0%B9-%D0%BF%D1%80%D0%B8%D0%BC%D0%B5%D1%80-%D0%B8%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F-linkedlist
+LinkedList используется если необходимо производить много операций вставки/удаления элементов в середине списка и мало операций доступа к элементу по индексу.
+"Пожалуй единственным плюсом LinkedList является константное временя добавления/удаления при использовании итератора, что можно использовать для оптимизации производительности".
+Теперь от меня: как обычно, нет нормального примера из практики, в котором LinkedList давал бы преимущество по сравнению с ArrayList.
 
 * Что такое Statefull policy?
 https://www.arubanetworks.com/techdocs/ArubaOS_73_Web_Help/Content/mas_guides/roles_and_policies/Policies.htm
