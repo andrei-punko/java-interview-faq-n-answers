@@ -4,6 +4,8 @@
 ## Link to generated site
 https://andrei-punko.github.io/java-interview-faq-n-answers
 
+![QR code with link](./images/QR-code-with-link.png)
+
 ## Prerequisites
 - JDK 11
 - Maven 3
@@ -21,6 +23,13 @@ git submodule update
 ### Build generator
 ```
 cd github-pages-content-generator
+mvn clean install
+```
+
+### Update generator code and rebuild it
+```
+cd github-pages-content-generator
+pull origin master
 mvn clean install
 ```
 
