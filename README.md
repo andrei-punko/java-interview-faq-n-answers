@@ -7,8 +7,8 @@ https://andrei-punko.github.io/java-interview-faq-n-answers
 ![QR code with link](./images/QR-code-with-link.png)
 
 ## Prerequisites
-- JDK 11
 - Maven 3
+- JDK 17
 
 ## Generator and its preparation
 [Generator](https://github.com/andrei-punko/github-pages-content-generator) to create a site 
