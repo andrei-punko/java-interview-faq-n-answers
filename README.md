@@ -1,6 +1,8 @@
 
 # Java interview questions and answers
 
+[![pages-build-deployment](https://github.com/andrei-punko/java-interview-faq-n-answers/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/andrei-punko/java-interview-faq-n-answers/actions/workflows/pages/pages-build-deployment)
+
 ## Link to generated site
 https://andrei-punko.github.io/java-interview-faq-n-answers
 
