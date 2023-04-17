@@ -3570,11 +3570,11 @@ These services have a single URI and use a single HTTP method (typically POST). 
 Similarly, XML-RPC based services send data as Plain Old XML (POX). These are the most primitive way of building SOA applications with a single POST method and using XML to communicate between services.<br/>
 </p>
 <p align="justify">
-= Level One of maturity makes use of URIs out of URI, HTTP Methods, and HATEOAS.<br/>
+= Level one of maturity makes use of URIs, but does not use the HTTP Methods, and HATEOAS.<br/>
 These services employ many URIs but only a single HTTP verb – generally HTTP POST. They give each resource in their universe a URI. A unique URI separately identifies one unique resource – and that makes them better than level zero.<br/>
 </p>
 <p align="justify">
-= Level Two maturity makes use of URIs and HTTP out of URI, HTTP Methods, and HATEOAS.<br/>
+= Level two of maturity makes use of URIs and HTTP Methods, but does not use the HATEOAS.<br/>
 Level two services host numerous URI-addressable resources. Such services support several of the HTTP verbs on each exposed resource – Create, Read, Update and Delete (CRUD) services. Here the state of resources, typically representing business entities, can be manipulated over the network.<br/>
 Here service designer expects people to put some effort into mastering the APIs – generally by reading the supplied documentation.<br/>
 Level two is the excellent use-case of REST principles, which advocate using different verbs based on the HTTP request methods, and the system can have multiple resources.<br/>
@@ -3602,7 +3602,7 @@ select count(u.age&gt;20), count(u.gender='M') from User u; (в PostgreSQL та�
 <p align="justify">
 <b id="q-18735674">В чем отличие Spring MVC от Spring REST ?</b>&nbsp;<a href="#q-18735674" style="text-decoration:none">🔗</a><br/>
 В Spring MVC в методах контроллера возвращаем имя view темплейта, который надо отобразить,<br/>
-В Spring REST - методы контроллера матчатся на URI, для реализации CRUD-операций в отношении ресурсов<br/>
+В Spring REST - методы контроллера матчатся на URI, для реализации CRUD-операций в отношении ресурсов.<br/>
 </p>
 <p align="justify">
 <b id="q1603348757">How to create array/list populated with int values?</b>&nbsp;<a href="#q1603348757" style="text-decoration:none">🔗</a><br/>
