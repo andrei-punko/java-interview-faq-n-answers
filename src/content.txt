@@ -3684,8 +3684,6 @@ Support 3 types of indexes: GIN, BTREE and HASH
 
 = If you are only interested in the "=" operator, then Hash indexes become interesting. For example, consider the case when we are looking for a particular tag on a book. The element to be indexed can be a top level element or deeply nested.
 
-- найти петли в древовидной структуре
-?
 
 - Для двух примеров, сказать чему будут равны b1 и b2
 ```
@@ -3841,7 +3839,9 @@ public static class Node {
 ```
 
 - Предложить схему БД, чтобы хранить в ней структуру папок и файлов
+```
 Node(id, name, parent_id, type, size, create_ts)
+```
 
 - COPY vs ADD in Dockerfile
 https://docs.docker.com/develop/develop-images/dockerfile_best-practices/
@@ -4008,8 +4008,7 @@ https://habr.com/ru/post/237043/
 список - доступ по индексу, возможны дубликаты
 множество - содержит только уникальные элементы
 
-- Что стало возможно использовать в интерфейсах, начиная с Java 8?
-- Чем, начиная с Java 8 отличаются абстрактные классы и интерфейсы?
+- Начиная с Java 8, что стало возможно использовать в интерфейсах? / чем отличаются абстрактные классы и интерфейсы?
 Появились default-методы в интерфейсах
 
 - Как инстанцировать экземпляр интерфейса?
