@@ -3507,28 +3507,30 @@ RX Java (for example) is an implementation of the reactive programming principle
 Именно поэтому любой класс, имплементирующий интерфейс Externalizable, обязан иметь конструктор по умолчанию.<br/>
 </p>
 <p align="justify">
-= When Hibernate is not good choice?<br/>
+<b id="q1454741386">When Hibernate is not good choice?</b>&nbsp;<a href="#q1454741386" style="text-decoration:none">🔗</a><br/>
 When long time to app start - isn't appropriate<br/>
 </p>
 <p align="justify">
-= Spring @PreDestroy - is it running when performs System.exit() in some part of code?<br/>
+<b id="q1050216556">Spring @PreDestroy - is it running when performs System.exit() in some part of code?</b>&nbsp;<a href="#q1050216556" style="text-decoration:none">🔗</a><br/>
 It will be runned because shutdown hook used for that<br/>
 </p>
 <p align="justify">
-= queue broker - забрали месседж из очереди и при процессинге упали. надо репроцессинг - как действовать?<br/>
+<b id="q-643052744">Queue broker - забрали месседж из очереди и при процессинге упали. надо репроцессинг - как действовать?</b>&nbsp;<a href="#q-643052744" style="text-decoration:none">🔗</a><br/>
 Use acknowledge mechanism for that<br/>
 </p>
 <p align="justify">
-= How to make undo/rollback in Flyway<br/>
+<b id="q427396425">How to make undo/rollback in Flyway</b>&nbsp;<a href="#q427396425" style="text-decoration:none">🔗</a><br/>
 Use file with name 'u' (undo)<br/>
 </p>
 <p align="justify">
-= How to apply some script during each migration in Flyway<br/>
+<b id="q129305301">How to apply some script during each migration in Flyway</b>&nbsp;<a href="#q129305301" style="text-decoration:none">🔗</a><br/>
 Use file with name 'r' (repeatable)<br/>
 </p>
 <p align="justify">
-= вывести все значения, которые есть в колонке одной таблицы (T1.col1) и отсутствуют в колонке другой таблицы (T2.col2)<br/>
-Select t2.col1 from T1 t1 left join T2 t2 on t2.col2 == null;<br/>
+<b id="q-223626406">Вывести все значения, которые есть в колонке одной таблицы (T1.col1) и отсутствуют в колонке другой таблицы (T2.col2)</b>&nbsp;<a href="#q-223626406" style="text-decoration:none">🔗</a><br/>
+<pre>
+select t2.col1 from T1 t1 left join T2 t2 on t2.col2 == null;
+</pre>
 </p>
 <p align="justify">
 <b id="q1373332688">Как работает магия Spring Boot?</b>&nbsp;<a href="#q1373332688" style="text-decoration:none">🔗</a><br/>
@@ -3710,7 +3712,7 @@ The above setup is easier on your (only one) business implementation which is ex
 </p>
 <p align="justify">
 <b id="q-391413755">Метод содержащий вызов repository.findByOne() - можно ли с него убрать @Transactional?</b>&nbsp;<a href="#q-391413755" style="text-decoration:none">🔗</a><br/>
-Нет, надо оставить @Transactional с readOnly=true. Это позволит не конфликтовать операциям чтения между собой, а лок защитит при операции записи от вычитывания частично модифицированного ентити.<br/>
+Нет, надо оставить @Transactional с readOnly=true. Это позволит не конфликтовать операциям чтения между собой, а lock защитит при операции записи от вычитывания частично модифицированного entity.<br/>
 </p>
 <p align="justify">
 <b id="q-1425487368">Pessimistic and optimistic locking mechanisms</b>&nbsp;<a href="#q-1425487368" style="text-decoration:none">🔗</a><br/>
@@ -3743,9 +3745,10 @@ It could be made using @OptimisticLocking with its attribute 'type'. It has 4 po
 == DIRTY - performs optimistic locking based on dirty fields as part of an expanded WHERE clause restriction for the UPDATE/DELETE SQL statements<br/>
 </p>
 <p align="justify">
-<b id="q-1593922270">Задачка про турникет: есть таблица T(id, timestamp), куда сохраняются проходы через турникет. написать запрос, чтобы посчитать, сколько людей </b>&nbsp;<a href="#q-1593922270" style="text-decoration:none">🔗</a><br/>
-Сейчас в здании (часть может быть на обеде). интервал рабочего времени - известный, фиксированный<br/>
-Select count(*) from T where DATE(`timestamp`) = DATE(CURDATE()) group by id having count(id) mod 2 = 1;<br/>
+<b id="q-50422893">Задачка про турникет: есть таблица T(id, timestamp), куда сохраняются проходы через турникет. Написать запрос, чтобы посчитать, сколько людей сейчас в здании (часть может быть на обеде). Интервал рабочего времени - известный, фиксированный</b>&nbsp;<a href="#q-50422893" style="text-decoration:none">🔗</a><br/>
+<pre>
+select count(*) from T where DATE(`timestamp`) = DATE(CURDATE()) group by id having count(id) mod 2 = 1;
+</pre>
 </p>
 <p align="justify">
 <b id="q1043088087">Public/private/protection метод с @Transactional на нем - будет ли открываться транзакция?</b>&nbsp;<a href="#q1043088087" style="text-decoration:none">🔗</a><br/>

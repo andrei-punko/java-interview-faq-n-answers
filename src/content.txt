@@ -3066,23 +3066,25 @@ https://javarush.ru/groups/posts/2023-znakomstvo-s-interfeysom-externalizable
 В случае с Externalizable механизм десериализации будет иным. В начале вызывается конструктор по умолчанию. И только потом у созданного объекта вызывается метод readExternal(), который и отвечает за заполнение полей объекта.
 Именно поэтому любой класс, имплементирующий интерфейс Externalizable, обязан иметь конструктор по умолчанию.
 
-= When Hibernate is not good choice?
+- When Hibernate is not good choice?
 when long time to app start - isn't appropriate
 
-= Spring @PreDestroy - is it running when performs System.exit() in some part of code?
+- Spring @PreDestroy - is it running when performs System.exit() in some part of code?
 it will be runned because shutdown hook used for that
 
-= queue broker - забрали месседж из очереди и при процессинге упали. надо репроцессинг - как действовать?
+- queue broker - забрали месседж из очереди и при процессинге упали. надо репроцессинг - как действовать?
 use acknowledge mechanism for that
 
-= How to make undo/rollback in Flyway
+- How to make undo/rollback in Flyway
 use file with name 'u' (undo)
 
-= How to apply some script during each migration in Flyway
+- How to apply some script during each migration in Flyway
 use file with name 'r' (repeatable)
 
-= вывести все значения, которые есть в колонке одной таблицы (T1.col1) и отсутствуют в колонке другой таблицы (T2.col2)
+- вывести все значения, которые есть в колонке одной таблицы (T1.col1) и отсутствуют в колонке другой таблицы (T2.col2)
+```
 select t2.col1 from T1 t1 left join T2 t2 on t2.col2 == null;
+```
 
 - как работает магия Spring Boot?
 https://www.youtube.com/watch?v=mezajS7aA2Y
@@ -3236,7 +3238,7 @@ You continue to support v1 for existing clients while using v2 for all the new c
 The above setup is easier on your (only one) business implementation which is exposed to clients through different skeleton implementations of your web service. The skeletons for v1 and v2 transform their specific payload parameters into appropriate parameters for the business layer. In this way all calls converge into the business layer who at this point normally doesn't care which version the client was.
 
 - метод содержащий вызов repository.findByOne() - можно ли с него убрать @Transactional?
-Нет, надо оставить @Transactional с readOnly=true. Это позволит не конфликтовать операциям чтения между собой, а лок защитит при операции записи от вычитывания частично модифицированного ентити.
+Нет, надо оставить @Transactional с readOnly=true. Это позволит не конфликтовать операциям чтения между собой, а lock защитит при операции записи от вычитывания частично модифицированного entity.
 
 - Pessimistic and optimistic locking mechanisms
 https://docs.jboss.org/hibernate/orm/5.2/userguide/html_single/chapters/locking/Locking.html
@@ -3265,9 +3267,10 @@ It could be made using @OptimisticLocking with its attribute 'type'. It has 4 po
 == ALL - performs optimistic locking based on all fields as part of an expanded WHERE clause restriction for the UPDATE/DELETE SQL statements
 == DIRTY - performs optimistic locking based on dirty fields as part of an expanded WHERE clause restriction for the UPDATE/DELETE SQL statements
 
-- задачка про турникет: есть таблица T(id, timestamp), куда сохраняются проходы через турникет. написать запрос, чтобы посчитать, сколько людей 
-сейчас в здании (часть может быть на обеде). интервал рабочего времени - известный, фиксированный
+- Задачка про турникет: есть таблица T(id, timestamp), куда сохраняются проходы через турникет. Написать запрос, чтобы посчитать, сколько людей сейчас в здании (часть может быть на обеде). Интервал рабочего времени - известный, фиксированный
+```
 select count(*) from T where DATE(`timestamp`) = DATE(CURDATE()) group by id having count(id) mod 2 = 1;
+```
 
 - public/private/protection метод с @Transactional на нем - будет ли открываться транзакция?
 https://docs.spring.io/spring-framework/docs/current/reference/html/data-access.html#transaction-declarative-annotations
