@@ -1549,7 +1549,7 @@ select a.id, a.name, count(a.id) from Authors a left join Books b on a.id=b.auth
 ```
 
 - написать метод для вычисления чисел Фибоначчи. как его оптимизировать, какова сложность каждого метода
-см. https://github.com/andrei-punko/java-interview-coding
+https://github.com/andrei-punko/java-interview-coding
 Вариант в лоб - циклом или рекурсией. Сложность в этом случае О(2^n), что неприемлемо.
 Поэтому более оптимальный вариант - сохранять уже вычисленные значения в некий кэш типа map; при вычислении очередного значения - обращаться к этому кэшу.
 При первых вызовах метода - сложность порядка О(n), а когда метод уже поработал какое-то время - практически О(1)
@@ -1595,9 +1595,10 @@ servlets, xml, jdbc, jta, jndi, jsp+jstl, jpa, jax-ws+jax-rs, jms
 IoC - важный принцип ООП, используемый для уменьшения зацепления.
 It's a design principle in which custom-written portions of a computer program receive the flow of control from a generic framework
 Has analogy with Hollywood Principle: "Don't call us, we'll call you"
-Критика IoC:
-- логика взаимодействия программы разбросана по отдельным обработчикам событий или классам
-- поток управления задан неявно и использует общее состояние (shared state) обработчиков событий
+
+- Критика IoC:
+= логика взаимодействия программы разбросана по отдельным обработчикам событий или классам
+= поток управления задан неявно и использует общее состояние (shared state) обработчиков событий
 IoC is also known as dependency injection (DI). It is a process whereby objects define their dependencies, that is, the other objects they work with, only through constructor arguments, arguments to a factory method, or properties that are set on the object instance after it is constructed or returned from a factory method. The container then injects those dependencies when it creates the bean. This process is fundamentally the inverse, hence the name Inversion of Control (IoC), of the bean itself controlling the instantiation or location of its dependencies by using direct construction of classes, or a mechanism such as the Service Locator pattern.
 Мартин Фаулер предложил переименовать принцип IoC в Dependency Injection, чтобы он имел имя соответствующее содержанию
 
@@ -1822,8 +1823,10 @@ Traceroute входит в поставку большинства соврем�
 брать 2 случайных элемента массива и менять их местами. сделать это N/2 раз
 
 - дан набор строк вида "assa dfgg aga", найти 3й палиндром в строке / удалить все палиндромы
+https://github.com/andrei-punko/java-interview-coding/blob/master/src/main/java/by/andd3dfx/string/Palindrome.java
+
 - реализовать бинарный серч
-see example in repo: https://github.com/andrei-punko/java-interview-coding
+https://github.com/andrei-punko/java-interview-coding/blob/master/src/main/java/by/andd3dfx/search/BinarySearch.java
 
 - отличие хэштаблицы от хэшмапа
 https://www.geeksforgeeks.org/differences-between-hashmap-and-hashtable-in-java/
@@ -4382,7 +4385,7 @@ public List<User> foo(Stream<User> usersStream) {
 ```
 
 - Написать ExecutorService. Какие есть преимущества у ExecutorService перед Thread?
-См. https://github.com/andrei-punko/java-interview-coding/tree/master/src/main/java/by/andd3dfx/multithreading/executor
+https://github.com/andrei-punko/java-interview-coding/tree/master/src/main/java/by/andd3dfx/multithreading/executor
 Основным преимуществом использования пула является сокращение накладных расходов на создание ресурсов, повторное использование потоков, которые были освобождены после использования. Еще одним неявным преимуществом использования пула является возможность определения размера использования ресурсов: вы можете настроить размеры пула потоков для достижения желаемой нагрузки, не подвергая опасности системные ресурсы.
 
 - Написать deadlock
@@ -5178,5 +5181,6 @@ https://youtu.be/Qref2bDQN0k
 = NEW in javadoc: можно посмотреть, что нового появилось с момента прошлого JDK (classes, methods)
 
 * Links
+https://github.com/andrei-punko/java-interview-coding
 http://javamex.com
 http://javarevisited.blogspot.com
