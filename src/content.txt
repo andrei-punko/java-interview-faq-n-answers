@@ -5180,6 +5180,23 @@ https://youtu.be/Qref2bDQN0k
 = added support of ARM architecture
 = NEW in javadoc: можно посмотреть, что нового появилось с момента прошлого JDK (classes, methods)
 
+* Какие есть атрибуты у аннотации @Transactional?
+https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/transaction/annotation/Transactional.html
+isolation (=DEFAULT по умолчанию) - указывает уровень изоляции
+propagation (=REQUIRED по умолчанию) - определяет тип распространения транзакций
+readOnly (=false по умолчанию) - указывает, является ли данная транзакция только чтением или еще и модификацией
+rollbackFor (={} по умолчанию) - указывает, для какого типа исключений откатывать транзакции
+timeout (=-1 по умолчанию) - таймаут в секундах
+
+* Для каких исключений откатывается транзакция, если для нее ничего не указано в rollbackFor?
+it will rollback only for RuntimeExceptions and Errors not for other exceptions that occur
+
+* Зачем в одной из последних Java добавили поддержку var в лямбда-выражениях?
+чтобы можно было использовать валидационные аннотации на лямбдах
+
+* Возможна ли ситуация, когда в результате запроса с left join получим кол-во строк больше, чем строк в первой таблице?
+это возможно в случае использования внешнего ключа, когда он хранится не в первой, а второй таблице
+
 * Links
 https://github.com/andrei-punko/java-interview-coding
 http://javamex.com

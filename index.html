@@ -5941,6 +5941,27 @@ DELETE - удаляет строки в таблице по заданному �
 = NEW in javadoc: можно посмотреть, что нового появилось с момента прошлого JDK (classes, methods)<br/>
 </p>
 <p align="justify">
+<b id="q180450483">Какие есть атрибуты у аннотации @Transactional?</b>&nbsp;<a href="#q180450483" style="text-decoration:none">🔗</a><br/>
+<a href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/transaction/annotation/Transactional.html">https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/transaction/annotation/Transactional.html</a><br/>
+Isolation (=DEFAULT по умолчанию) - указывает уровень изоляции<br/>
+Propagation (=REQUIRED по умолчанию) - определяет тип распространения транзакций<br/>
+ReadOnly (=false по умолчанию) - указывает, является ли данная транзакция только чтением или еще и модификацией<br/>
+RollbackFor (={} по умолчанию) - указывает, для какого типа исключений откатывать транзакции<br/>
+Timeout (=-1 по умолчанию) - таймаут в секундах<br/>
+</p>
+<p align="justify">
+<b id="q40504401">Для каких исключений откатывается транзакция, если для нее ничего не указано в rollbackFor?</b>&nbsp;<a href="#q40504401" style="text-decoration:none">🔗</a><br/>
+It will rollback only for RuntimeExceptions and Errors not for other exceptions that occur<br/>
+</p>
+<p align="justify">
+<b id="q1408648734">Зачем в одной из последних Java добавили поддержку var в лямбда-выражениях?</b>&nbsp;<a href="#q1408648734" style="text-decoration:none">🔗</a><br/>
+Чтобы можно было использовать валидационные аннотации на лямбдах<br/>
+</p>
+<p align="justify">
+<b id="q-285131235">Возможна ли ситуация, когда в результате запроса с left join получим кол-во строк больше, чем строк в первой таблице?</b>&nbsp;<a href="#q-285131235" style="text-decoration:none">🔗</a><br/>
+Это возможно в случае использования внешнего ключа, когда он хранится не в первой, а второй таблице<br/>
+</p>
+<p align="justify">
 <b id="q73424793">Links</b>&nbsp;<a href="#q73424793" style="text-decoration:none">🔗</a><br/>
 <a href="https://github.com/andrei-punko/java-interview-coding">https://github.com/andrei-punko/java-interview-coding</a><br/>
 <a href="http://javamex.com">http://javamex.com</a><br/>
