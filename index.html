@@ -5998,7 +5998,14 @@ public class B extends A {
 </p>
 <p align="justify">
 <b id="q-1528757123">Есть таблица EMPLOYEE(ID, NAME, SALARY). Написать запрос, который выведет имя сотрудника с второй по величине зарплатой. Учесть случай, когда таких сотрудников может быть более одного.</b>&nbsp;<a href="#q-1528757123" style="text-decoration:none">🔗</a><br/>
-?<br/>
+Решаем, используя подзапрос c limit+offset:<br/>
+<pre>
+select E.ID, E.NAME from EMPLOYEE E where E.SALARY in (select SALARY from EMPLOYEE group by SALARY order by salary desc limit 1 offset 1);
+</pre>
+Решаем, используя подзапрос с оконной функцией:<br/>
+<pre>
+select ID, NAME from (select E.*, dense_rank() over(order by E.SALARY desc) d_rank from EMPLOYEE E) where d_rank=2;
+</pre>
 </p>
 <p align="justify">
 <b id="q73424793">Links</b>&nbsp;<a href="#q73424793" style="text-decoration:none">🔗</a><br/>
