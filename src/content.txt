@@ -688,18 +688,6 @@ Xml namespace – пространство имен xml. Синтаксис об
 </users>
 ```
 
-* Сколько строк будет получено в результате запроса SELECT * FROM TABLE_A, TABLE_B?
-```
-a. +------------+   +------------+
-b. | TABLE_A    |   | TABLE_B    |
-c. +------------+   +------------+
-d. | 1          |   | 4          |
-e. | 2          |   | 5          |
-f. | 3          |   +------------+
-g. +------------+
-```
-Будет получено 6 строк: все комбинации пар строк из двух таблиц (их кол-во 3*2=6).
-
 * Написать метод equals для класса, содержащего одно поле типа String.
 ```
 public boolean equals(Object obj) {
@@ -755,24 +743,6 @@ static метод подкласса      Ошибка компиляции     
 Throws в методах:
 • Переопределяемый метод в подклассе не может содержать в throws исключений, не обрабатываемых в соответствующем методе суперкласса. Если же при объявлении метода суперкласса инструкция throws присутствует, то в подклассе эта инструкция может вообще отсутствовать или в ней могут быть объявлены любые исключения, являющееся подклассами исключения из блока throws метода суперкласса
 • Конструктор подкласса должен включить в свой throws все классы исключений или их суперклассы из блока throws конструктора суперкласса, к которому он обращается при создании объекта
-
-
-* Даны две таблицы: 1. Employee (id_employee, salary,  department_id_fk); 2. Department (id_department, department_name). Написать sql-запрос, который выберет все названия отделов, суммарная зарплата сотрудников в которых больше 1000.
-```
-SELECT DPT.department_name FROM Department DPT WHERE DPT.id_department in (SELECT department_id_fk FROM Employee GROUP BY department_id_fk HAVING SUM(salary)>1000)
-```
-
-* Переложить на БД файловую систему (есть папки, в них могут быть другие папки и файлы), свести всё в одну таблицу, составить запрос на получение всех папок 2ого уровня вложенности (находящихся в корневой директории).
-С точки зрения файловой системы файлы и папки идентичны: они имеют некоторое имя и сами могут содержаться в некоторой папке. Корневая директория имеет нулевую вложенность, PARENT_ID=0.
-```
-CREATE TABLE "FS" (
-       "ID" NUMBER NOT NULL ENABLE, 
-       "NAME" VARCHAR2(255), 
-       "PARENT_ID" NUMBER
-)
-SELECT fs2.name from fs fs2 where fs2.parent_id in (SELECT fs1.id as id1 from fs fs1 where fs1.parent_id in (SELECT fs0.id as id0 FROM fs fs0 where fs0.parent_id=0)), или, кратче:
-SELECT name from fs where parent_id in (SELECT id from fs where parent_id in (SELECT id FROM fs where parent_id=0))
-```
 
 * SQL statements: SELECT, INSERT, UPDATE, DELETE.
 ```
@@ -1061,22 +1031,11 @@ Junit 4:
 Применяются для создания библиотек классов для их повторного использования и для защиты данных от использования посторонними классами.
 Принцип именования пакетов: компоненты доменного имени перечисляются в обратном порядке. Последним указывается слово, соответствующее назначению классов в этом пакете.
 
-* Индексы в БД. Первичный и внешний ключи. Каков будет результат запроса по получению среднего значения по колонке, если в ней существует строка с null-значением в этой колонке?
+* Индексы в БД. Первичный и внешний ключи
 Индекс – объект БД, создаваемый с целью повышения производительности поиска данных. Ускорение работы с использованием индексов достигается в первую очередь за счёт того, что индекс имеет структуру, оптимизированную под поиск — например, сбалансированного дерева.
 Первичный ключ (ПК) не позволяет вносить в таблицу дубли. Т.е. кандидат в первичные ключи - перечень полей, по которому 2 записи гарантированно отличаются. В качестве ПК обычно выбирается тот потенциальный ключ, у которого меньше размер физического хранения.
 Внешний ключ не позволяет, чтобы в подчиненной таблице какие-то записи ссылались на несуществующие записи главной таблицы, т.е. отвечает за целостность БД. Создавая внешний ключ, мы говорим серверу, что некоторое поле в таблице будет содержать значение первичного ключа записи из другой или этой же таблицы (или поле с ограничением UNIQUE).
 Например: нельзя, чтобы в заказе №5 была строка "карандаши 8 шт", если заказа №5 не существует.
-
-Получение среднего по колонке:
-```
-select avg(some_column) from table_name;
-```
-При наличии строки с null-значением в колонке будет выведено среднее, как будто этой строки нет.
-
-Чтобы получить честное среднее, заменяя NULL нулями, надо использовать coalesce():
-```
-select avg(coalesce(some_column, 0)) from table_name;
-```
 
 * Web-сервисы: что это и для чего применяются? Основные положения модели веб-сервисов. Можно ли веб-сервис запустить на Томкате? Как, кроме как через xml, может быть налажено взаимодействие с помощью веб-сервисов?
 Веб-сервис/веб-служба – идентифицируемая веб-адресом программная система со стандартизированными интерфейсами. Веб-служба является единицей модульности при использовании сервис-ориентированной архитектуры приложения. Недостатки: больший размер сетевого трафика.
@@ -1553,11 +1512,6 @@ http://tlazarenko.blogspot.com/2013/10/string-java.html
 
 String pool позволяет экономить память и не создавать новые объекты для каждой повторяющийся строки. В случае с изменяемыми строками - изменение одной приводило бы к изменению всех строк одинакового содержания.
 
-- Есть 2 таблицы: Books(id, name, year, auth_id), Authors(id, name). Написать запрос, чтобы вывести имена авторов, кто написал не более 3 книг в 2016 году отсортированными по имени
-```
-select a.id, a.name, count(a.id) from Authors a left join Books b on a.id=b.auth_id group by a.id having count(a.id) <=3 order by a.name;
-```
-
 - написать метод для вычисления чисел Фибоначчи. как его оптимизировать, какова сложность каждого метода
 https://github.com/andrei-punko/java-interview-coding
 Вариант в лоб - циклом или рекурсией. Сложность в этом случае О(2^n), что неприемлемо.
@@ -1793,10 +1747,6 @@ public class C extends B {
 }
 ```
 Нельзя
-
-- написать (двумя способами) sql-запрос, который выведет уникальные значения данного столбца
-select distinct t.name from T t;
-select t.name from T t group by t.name;
 
 - Назвать методы класса Object
 ```
@@ -2241,7 +2191,7 @@ https://proglib.io/p/docker/
 Образы можно скачивать в локальную систему (docker pull), или отправить локально собранные образы в Docker Hub (docker push). 
 Также Docker имеет пакетный менеджер Docker Compose, позволяющий описывать и запускать многоконтейнерные приложения.
 
-- sql-запросы с агрегатными функциями
+- SQL-запросы с агрегатными функциями
 https://ru.wikipedia.org/wiki/%D0%90%D0%B3%D1%80%D0%B5%D0%B3%D0%B0%D1%82%D0%BD%D1%8B%D0%B5_%D1%84%D1%83%D0%BD%D0%BA%D1%86%D0%B8%D0%B8
 Агрегатные функции используются для обобщения данных. К их числу относятся:
     SUM (сумма)
@@ -2253,7 +2203,7 @@ https://ru.wikipedia.org/wiki/%D0%90%D0%B3%D1%80%D0%B5%D0%B3%D0%B0%D1%82%D0%BD%D
     MEDIAN (медиана)
 Пример: SELECT SUM(amt) FROM Orders WHERE odate BETWEEN '2016-01-01' and '2016-12-31';
 
-- как работает lazy в jpa под капотом
+- как работает lazy в jpa под капотом?
 https://stackoverflow.com/questions/2990799/difference-between-fetchtype-lazy-and-eager-in-java-persistence-api
 FetchType.LAZY = fetch when needed
 FetchType.EAGER = fetch immediately
@@ -3107,11 +3057,6 @@ use file with name 'u' (undo)
 - How to apply some script during each migration in Flyway
 use file with name 'r' (repeatable)
 
-- вывести все значения, которые есть в колонке одной таблицы (T1.col1) и отсутствуют в колонке другой таблицы (T2.col2)
-```
-select t1.name from T1 t1 left join T2 t2 on t1.name=t2.name where t2.name is NULL;
-```
-
 - как работает магия Spring Boot?
 https://www.youtube.com/watch?v=mezajS7aA2Y
 Основывается на двух пунктах:
@@ -3159,12 +3104,6 @@ The service leads consumers through a trail of resources, causing application st
 
 - What is the difference between import and static import ?
 The import allows the java programmer to access classes of a package without package qualification whereas the static import feature allows to access the static members of a class without the class qualification.
-
-- Имеется таблица User(id, age, gender). Необходимо посчитать сколько записей у которых age>20, и сколько записей у которых gender='M'
-```
-select count(u.id) from User u where u.age>20 union select count(u.id) from User u where u.gender='M';
-select count(u.age>20), count(u.gender='M') from User u; (в PostgreSQL такое работает)
-```
 
 - Xss*N+Xmx - весь ли это объем памяти, занимаемый JVM?
 Нет, поскольку есть т.н. off heap (память, выделяемая нативными тулами)
@@ -3292,11 +3231,6 @@ It could be made using @OptimisticLocking with its attribute 'type'. It has 4 po
 == VERSION (the default) - performs optimistic locking based on a @Version as described above
 == ALL - performs optimistic locking based on all fields as part of an expanded WHERE clause restriction for the UPDATE/DELETE SQL statements
 == DIRTY - performs optimistic locking based on dirty fields as part of an expanded WHERE clause restriction for the UPDATE/DELETE SQL statements
-
-- Задачка про турникет: есть таблица T(id, timestamp), куда сохраняются проходы через турникет. Написать запрос, чтобы посчитать, сколько людей сейчас в здании (часть может быть на обеде). Интервал рабочего времени - известный, фиксированный
-```
-select count(*) from T where DATE(`timestamp`) = DATE(CURDATE()) group by id having count(id) mod 2 = 1;
-```
 
 - public/private/protection метод с @Transactional на нем - будет ли открываться транзакция?
 https://docs.spring.io/spring-framework/docs/current/reference/html/data-access.html#transaction-declarative-annotations
@@ -3808,31 +3742,6 @@ https://ru.wikipedia.org/wiki/%D0%9D%D0%BE%D1%80%D0%BC%D0%B0%D0%BB%D1%8C%D0%BD%D
 = Пятая нормальная форма (5NF)
 = Доменно-ключевая нормальная форма (DKNF)
 = Шестая нормальная форма (6NF)
-
-- Рассказать о наследовании таблиц в БД
-https://langtoday.com/?p=319
-https://www.postgresql.org/docs/current/ddl-inherit.html
-```
-CREATE TABLE insects (
-	id serial
-	name text,
-	size float
-);
-
-CREATE TABLE bees (
-	can_collect_honey smallint
-) INHERITS (insects);
-```
-
-Если мы сделаем Insert в одну из этих таблиц, то добавляемая строка появится только в той таблице, в которую мы ее добавляем.
-
-Если сделать Select из таблицы insects, то в выборку попадут удовлетворяющие критериям записи из ОБОИХ таблиц.
-
-Если мы хотим выбирать из строк только родительской таблицы, нужно использовать ключевое слово ONLY: SELECT * FROM ONLY insects
-
-Любые связки с другими таблицами (Reference), первичные ключи (Primary Key), ограничения на уникальность (Unique) и другие ограничения (Constraints), существующие для родительской таблицы, не наследуются потомком. Для него нужно создавать свои ключи и ограничения. Отсюда следует, что, например, если мы хотим видеть поле id уникальным, то оно будет таковым только в пределах родительской таблицы.
-
-Одна таблица может наследовать сразу от нескольких, также и у одного родителя может быть много потомков (с помощью пустой родительской таблицы и потомков можно создавать т.н. партиции (Partition), например, чтобы разнести большие массивы данных по какому-то параметру по разным таблицам для более быстрого доступа и т.п. — в этом случае в каждой партиционной таблице надо поставить проверку на те данные, которые туда пишутся).
 
 - Класс имплементит 2 интерфейса, с объявленными одинаковыми методами. В самом классе - описан метод нужной сигнатуры. Рассказать, будет ли это работать
 
@@ -5243,15 +5152,8 @@ public class B extends A {
 ```
 Выведется: 0, потом 2, т.к. при вызове конструктора A вызовется (из-за полиморфизма) метод getA() класса B, который выведет значение переменной a, к тому моменту еще непроинициализированной.
 
-* Есть таблица EMPLOYEE(ID, NAME, SALARY). Написать запрос, который выведет имя сотрудника с второй по величине зарплатой. Учесть случай, когда таких сотрудников может быть более одного.
-Решаем, используя подзапрос c limit+offset:
-```
-select E.ID, E.NAME from EMPLOYEE E where E.SALARY in (select SALARY from EMPLOYEE group by SALARY order by salary desc limit 1 offset 1);
-```
-Решаем, используя подзапрос с оконной функцией:
-```
-select ID, NAME from (select E.*, dense_rank() over(order by E.SALARY desc) d_rank from EMPLOYEE E) where d_rank=2;
-```
+* Solutions of tasks which require writing SQL queries
+https://github.com/andrei-punko/java-interview-coding/tree/master/sql
 
 * Links
 https://github.com/andrei-punko/java-interview-coding
