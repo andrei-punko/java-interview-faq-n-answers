@@ -34,9 +34,12 @@ mvn clean install
 ```
 
 ## Update instructions
-- Modify [content.txt](src/content.txt) if needed
-- Modify [template.html](templates/template.html) if needed
-- Run [generate.bat](generate.bat)
-- Commit changes to repo
+- Modify [content.txt](src/content.txt) to change content
+- Modify [template.html](templates/template.html) (only) if you need to change view template
+- Run [generate.bat](generate.bat). It will delete and regenerate index.html
+- Use [index.html](index.html) locally or:
+- Commit changes to the repository to fix them in web. One minute after, after when
+[GH workflow](https://github.com/andrei-punko/java-interview-faq-n-answers/actions) finished - updated site will be
+available by original [link](https://andrei-punko.github.io/java-interview-faq-n-answers)
 
-Instead of two last steps could use [generate-n-commit-n-push.bat](generate-n-commit-n-push.bat) script
+Instead of generate & commit steps you could use [generate-n-commit-n-push.bat](generate-n-commit-n-push.bat) script
