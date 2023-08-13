@@ -12,7 +12,7 @@
 
 ## Generator and its preparation
 [Generator](https://github.com/andrei-punko/github-pages-content-generator) to create a site 
-by content from text file using templates added as Git submodule to current project
+by content from text file using templates added as Git submodule to a current project
 
 ### Init and download submodule
 ```
@@ -38,8 +38,8 @@ mvn clean install
 - Modify [template.html](templates/template.html) (only) if you need to change view template
 - Run [generate.bat](generate.bat). It will delete and regenerate index.html
 - Use [index.html](index.html) locally or:
-- Commit changes to the repository to fix them in web. One minute after, after when
-[GH workflow](https://github.com/andrei-punko/java-interview-faq-n-answers/actions) finished - updated site will be
-available by original [link](https://andrei-punko.github.io/java-interview-faq-n-answers)
+- Commit changes to the repository to deploy them into the web.
+  One minute after, when [GH workflow](https://github.com/andrei-punko/java-interview-faq-n-answers/actions) finished,
+  updated site will be available by original [link](https://andrei-punko.github.io/java-interview-faq-n-answers)
 
-Instead of generate & commit steps you could use [generate-n-commit-n-push.bat](generate-n-commit-n-push.bat) script
+Instead of generate & commit steps, you could use [generate-n-commit-n-push.bat](generate-n-commit-n-push.bat) script
