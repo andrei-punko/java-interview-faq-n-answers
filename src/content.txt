@@ -5170,7 +5170,14 @@ public class B extends A {
 ```
 Выведется: 0, потом 2, т.к. при вызове конструктора A вызовется (из-за полиморфизма) метод getA() класса B, который выведет значение переменной a, к тому моменту еще непроинициализированной.
 
-* Solutions of tasks which require writing SQL queries
+* How to convert an array of objects to an array of their primitive types?
+https://stackoverflow.com/questions/564392/converting-an-array-of-objects-to-an-array-of-their-primitive-types
+```
+Integer[] array = {1, 2, 3, 4, 5};
+int[] converted = array.stream().mapToInt(value -> value).toArray();
+```
+
+* Solutions of tasks which require writing SQL queries:
 https://github.com/andrei-punko/java-interview-coding/tree/master/sql
 
 * Links
