@@ -4032,15 +4032,14 @@ Memory Analyzer categorizes garbage collection roots according to the following 
 - Что такое ThreadLocal поля?
 Синглтон в рамках отдельного треда
 
-- Что можешь сказать об этом коде:
+- Что можешь сказать об этом коде? Как можно исключить последовательный запуск и ожидание каждого потока?
 ```
 List<Integer> results = integers.stream()
         .map(integer -> CompletableFuture.supplyAsync(() -> process(integer), executor))
         .map(CompletableFuture::join)
         .collect(Collectors.toList());
 ```
-Подсказки от интервьюера: как можно исключить последовательный запуск и ожидание каждого потока? (ответ: разорвать stream, собрать CompletableFuture в List и заджойнить не на intах, потому что они будут конвейерно джойнится по одной, а надо собрать List<CompletableFuture> и заджойнить и тогда они выполнятся параллельно)
-?
+Разорвать stream и заджойнить не на int-ах (потому что они будут конвейерно джойнится по одному), а собрать CompletableFuture в List<CompletableFuture> и заджойнить, тогда они выполнятся параллельно.
 
 - Откуда logger берет данные при логировании? Слышал ли про MDC?
 https://www.baeldung.com/mdc-in-log4j-2-logback
@@ -4922,7 +4921,8 @@ public class Increment {
     }
 }
 ```
-?
+См. видео на Boosty:
+https://boosty.to/andd3dfx/posts/52a2f49f-6228-4ff2-94f7-fa65641733d9
 
 - Код-ревью - рассказать свои мысли о данном коде.
 ```
@@ -5007,7 +5007,8 @@ public class PaymentService {
 = почему инжект через конструктор - это хорошо?
 = всегда ли будет отправлена нотификация в notificationRestClient.notify()?
 = вопрос об экстернализации конфигурации
-?
+См. видео на Boosty:
+https://boosty.to/andd3dfx/posts/52a2f49f-6228-4ff2-94f7-fa65641733d9
 
 - Рассказать, что будет при вызове ServiceA.doIt() и откатится ли транзакция?
 ```
