@@ -1601,6 +1601,7 @@ The StAX pull model means that it is your "handler" class that calls the parser,
 - Описать Spring Bean lifecycle
 https://itsobes.ru/JavaSobes/opishite-zhiznennyi-tsikl-spring-bean/
 https://reflectoring.io/spring-bean-lifecycle/
+https://medium.com/@kirill.sereda/spring-%D0%BF%D0%BE%D0%B4-%D0%BA%D0%B0%D0%BF%D0%BE%D1%82%D0%BE%D0%BC-9d92f2bf1a04
 IMG ./images/spring-bean-lifecycle.png
 1. Инстанцирование объекта. Техническое начало жизни бина, работа конструктора его класса;
 2. Установка свойств из конфигурации бина, внедрение зависимостей;
@@ -1925,7 +1926,7 @@ A ReentrantLock is unstructured, unlike synchronized constructs - so you don't n
 Aside from that, ReentrantLock supports lock polling and interruptible lock waits that support time-out, and support for configurable fairness policy, allowing more flexible thread scheduling.
 When should you use ReentrantLocks? The answer is pretty simple - use it when you actually need something it provides that synchronized doesn't, like timed lock waits, interruptible lock waits, non-block-structured locks, multiple condition variables, or lock polling.
 
-- цикл жизни спринг-бина, как встроиться в него?
+- цикл жизни Spring-бина, как встроиться в него?
 https://www.journaldev.com/2637/spring-bean-life-cycle
 = By implementing InitializingBean and DisposableBean interfaces – Both these interfaces declare a single method where we can initialize/close resources in the bean. For post-initialization, we can implement InitializingBean interface and provide implementation of afterPropertiesSet() method. For pre-destroy, we can implement DisposableBean interface and provide implementation of destroy() method.
 This approach is simple to use but it’s not recommended because it will create tight coupling with the Spring framework in our bean implementations.
@@ -3711,7 +3712,44 @@ thread1.start();
 thread2.start();
 thread3.start();
 ```
-? (остался вопрос - по поводу сделать что-то похожее через Spring)
+
+== Запуск нескольких заданий средствами Spring-а:
+https://docs.spring.io/spring-framework/docs/3.2.x/spring-framework-reference/html/scheduling.html
+```
+import org.springframework.core.task.TaskExecutor;
+
+@RequiredArgsConstructor
+public class TaskExecutorExample {
+  private final TaskExecutor taskExecutor;
+
+  @RequiredArgsConstructor
+  private class MessagePrinterTask implements Runnable {
+    private final String message;
+
+    public void run() {
+      System.out.println(message);
+    }
+  }
+
+  public void printMessages() {
+    for(var i = 0; i < 25; i++) {
+      taskExecutor.execute(new MessagePrinterTask("Message" + i));
+    }
+  }
+}
+```
+
+In addition to the TaskExecutor abstraction, Spring 3.0 introduces a TaskScheduler with a variety of methods for scheduling tasks to run at some point in the future:
+```
+public interface TaskScheduler {
+    ScheduledFuture schedule(Runnable task, Trigger trigger);
+    ScheduledFuture schedule(Runnable task, Date startTime);
+    ScheduledFuture scheduleAtFixedRate(Runnable task, Date startTime, long period);
+    ScheduledFuture scheduleAtFixedRate(Runnable task, long period);
+    ScheduledFuture scheduleWithFixedDelay(Runnable task, Date startTime, long delay);
+    ScheduledFuture scheduleWithFixedDelay(Runnable task, long delay);
+}
+```
 
 - Статическое и динамическое связывание
 Ранее связывание (статическое) - вся информация, необходимая для вызова функции, доступна во время компиляции.
@@ -3895,10 +3933,6 @@ A service client should invoke a remote service via a proxy that functions in a 
 Вызывая конвейнерные операции стрима, формируем планируемый набор операций, после чего вызовом терминальной операции - запускаем их выполнение.
 Внутри используется Spliterator, отличие его от итератора - это способность разделяться надвое. Это используется в параллельных стримах.
 Когда в конце появляется терминальный оператор, он запрашивает элементы у стоящего перед ним источника, а тот в свою очередь обращается к предыдущему и т.д. Пока какой-либо из операторов не обработает элемент, другой запрошен не будет. Такой подход называется pull iteration, т.е. элементы запрашиваются у источника по мере надобности.
-
-- На каком этапе инициализируется прокси? Когда вызывается бинпостпроцессор?
-https://medium.com/@kirill.sereda/spring-%D0%BF%D0%BE%D0%B4-%D0%BA%D0%B0%D0%BF%D0%BE%D1%82%D0%BE%D0%BC-9d92f2bf1a04
-?
 
 - Расскажи про Young Generation, Old Generation, PermGen
 Young/Old generation - это области heap-а
@@ -4174,6 +4208,7 @@ https://habr.com/ru/post/326880/
 
 - Kafka
 https://slurm.io/tpost/pnyjznpvr1-apache-kafka-osnovi-tehnologii
+https://habr.com/ru/articles/466585/
 = Из чего состоит Kafka?
 Kafka условно состоит из трёх компонентов:
 1) сервер (по-другому ещё называется брокер),
@@ -4889,8 +4924,9 @@ In practice, methods are not compiled the first time they are called. For each m
 = попробовать разделить данные: одну большую таблицу с большим кол-вом колонок разделить на несколько мелких (это ускорит обновление)
 = проанализировать индексы на предмет лишних, дублирующих, неоптимальных индексов
 
-- Есть приложение, которое занимается расходными/приходными операциями по данной карте. Могут быть несколько инстансов этого приложения. Как сделать, чтобы все операции были выполнены гарантированно (и в правильном порядке) и не были потеряны?
-?
+- Есть приложение, которое занимается расходными/приходными операциями по данной карте. Могут быть несколько инстансов этого приложения. Как сделать, чтобы все операции были выполнены гарантированно и в правильном порядке?
+https://habr.com/ru/articles/466585/
+Использовать Kafka. Kafka гарантирует строгую упорядоченность в каждой партиции. Это означает, что сообщения, записанные в партицию в определенном порядке, будут прочитаны в том же порядке. ... Созданный топик содержит по-умолчанию одну партицию.
 
 - Какой будет вывод в консоль и будет ли он вообще?
 Какое значение counter1, counter2 будет выведено в строках с System.out.println() ?
@@ -5017,7 +5053,6 @@ https://boosty.to/andd3dfx/posts/52a2f49f-6228-4ff2-94f7-fa65641733d9
 ```
 @Service
 public class ServiceA {
-
     @Autowired
     private TestRepository testRepository;
     @Autowired
@@ -5033,7 +5068,6 @@ public class ServiceA {
 
 @Service
 public class ServiceB {
-
     @Autowired
     private ServiceC serviceC;
 
@@ -5056,7 +5090,22 @@ public class ServiceC {
     }
 }
 ```
-?
+Для начала пару фактов:
+= REQUIRED is the default propagation. Spring checks if there is an active transaction, and if nothing exists, it creates a new one. Otherwise, the business logic appends to the currently active transaction.
+https://www.baeldung.com/spring-transactional-propagation-isolation
+= Spring по умолчанию откатывает только unchecked (непроверяемые) исключения.
+https://habr.com/ru/articles/567368/
+
+Поэтому:
+У нас есть следующие транзакции:
+1. ServiceA.doIt() (т.к. это самый внешний метод с висящей на нем @Transactional)
+2. ServiceB.doIt() (т.к. у @Transactional указан propagation = Propagation.REQUIRES_NEW)
+У метода ServiceC.doIt() новая транзакция не открывается, а используется та же, что открыта на ServiceB.doIt().
+
+Когда бросется (unchecked) исключение в ServiceC.doIt(), - неважно, произойдет ли откат, т.к. откатится в этом случае вторая транзакция (на методе ServiceB.doIt()).
+Первая транзакция на ServiceA.doIt() откатана не будет.
+P.S. Хотя в ServiceB.doIt() и стоит catch - вторая транзакция откатится, т.к.:
+"Если RuntimeException был выброшен из-за границ transactional proxy, то Spring отмечает текущую транзакцию как rollback-only" (см. подробнее https://habr.com/ru/articles/567368/)
 
 * Что такое лямбда-выражение?
 https://ru.wikipedia.org/wiki/%D0%9B%D1%8F%D0%BC%D0%B1%D0%B4%D0%B0-%D0%B2%D1%8B%D1%80%D0%B0%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5
