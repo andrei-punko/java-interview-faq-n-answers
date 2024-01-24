@@ -6038,6 +6038,57 @@ Flux и Mono - cold publishers<br/>
 Поэтому думаю, что его стоит использовать начиная с нескольких тысяч слагаемых<br/>
 </p>
 <p style="text-align:justify">
+<b id="q606549178">Что будет выведено в консоль?</b>&nbsp;<a href="#q606549178" style="text-decoration:none">🔗</a><br/>
+<pre>
+public static void main(String[] args) {
+    String string = "Hello";
+    string.concat(" World");
+    System.out.println(string);
+}
+</pre>
+Будет выведено только 'Hello', т.к. String - immutable, и результат вызова concat() попадет в другую строку, которую никакой переменной не присвоили<br/>
+</p>
+<p style="text-align:justify">
+<b id="q-74365647">Есть коллекция persons объектов класса Person, у которого есть поле List<String> names. Предложить способы вывести набор уникальных имен для данной коллекции persons:</b>&nbsp;<a href="#q-74365647" style="text-decoration:none">🔗</a><br/>
+<pre>
+public class Person {
+	List&lt;String&gt; names;
+}
+List&lt;Person&gt; persons = new ArrayList&lt;&gt;() {{ ... }};
+List&lt;String&gt; distinctNames = persons.stream()
+                .map(Person::getNames)
+                .flatMap(Collection::stream)
+                .distinct().toList();
+
+// или:
+List&lt;String&gt; distinctNames = persons.stream()
+                .map(Person::getNames)
+                .flatMap(Collection::stream)
+                .collect(Collectors.toSet())
+				.stream().toList();
+</pre>
+</p>
+<p style="text-align:justify">
+<b id="q130928495">Какие могут быть проблемы с данным кодом?</b>&nbsp;<a href="#q130928495" style="text-decoration:none">🔗</a><br/>
+<pre>
+@Service
+class WarmCacheService {
+	@Autowired
+	private DataSource ds;
+
+	public WarmCacheService() {
+		warmCache(ds.getConnection());
+	}
+
+	private void warmCache(@Nonnull connection) {
+		//some code
+	}
+}
+</pre>
+Spring вначале вызывает конструктор по умолчанию, потом делает inject полей, помеченных @Autowired.<br/>
+Конструктор по умолчанию данного класа - содержит вызов метода на объекте ds, который в этот момент еще не будет инициализирован, что вызовет NPE.<br/>
+</p>
+<p style="text-align:justify">
 <b id="q-729101219">Solutions of tasks which require writing SQL queries:</b>&nbsp;<a href="#q-729101219" style="text-decoration:none">🔗</a><br/>
 <a href="https://github.com/andrei-punko/java-interview-coding/tree/master/sql">https://github.com/andrei-punko/java-interview-coding/tree/master/sql</a><br/>
 </p>

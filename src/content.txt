@@ -5272,6 +5272,54 @@ Flux и Mono - cold publishers
 Видимо 100 - не такое большое кол-во чисел, при котором parallel stream дал бы выигрыш, т.к. есть расходы на координацию потоков.
 Поэтому думаю, что его стоит использовать начиная с нескольких тысяч слагаемых
 
+* Что будет выведено в консоль?
+```
+public static void main(String[] args) {
+    String string = "Hello";
+    string.concat(" World");
+    System.out.println(string);
+}
+```
+Будет выведено только 'Hello', т.к. String - immutable, и результат вызова concat() попадет в другую строку, которую никакой переменной не присвоили
+
+* Есть коллекция persons объектов класса Person, у которого есть поле List<String> names. Предложить способы вывести набор уникальных имен для данной коллекции persons:
+```
+public class Person {
+	List<String> names;
+}
+List<Person> persons = new ArrayList<>() {{ ... }};
+List<String> distinctNames = persons.stream()
+                .map(Person::getNames)
+                .flatMap(Collection::stream)
+                .distinct().toList();
+
+// или:
+List<String> distinctNames = persons.stream()
+                .map(Person::getNames)
+                .flatMap(Collection::stream)
+                .collect(Collectors.toSet())
+				.stream().toList();
+```
+
+* Какие могут быть проблемы с данным кодом?
+```
+@Service
+class WarmCacheService {
+	@Autowired
+	private DataSource ds;
+
+	public WarmCacheService() {
+		warmCache(ds.getConnection());
+	}
+
+	private void warmCache(@Nonnull connection) {
+		//some code
+	}
+}
+```
+Spring вначале вызывает конструктор по умолчанию, потом делает inject полей, помеченных @Autowired.
+Конструктор по умолчанию данного класа - содержит вызов метода на объекте ds, который в этот момент еще не будет инициализирован, что вызовет NPE.
+
 * Solutions of tasks which require writing SQL queries:
 https://github.com/andrei-punko/java-interview-coding/tree/master/sql
 
