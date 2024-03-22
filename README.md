@@ -3,8 +3,8 @@
 
 [![pages-build-deployment](https://github.com/andrei-punko/java-interview-faq-n-answers/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/andrei-punko/java-interview-faq-n-answers/actions/workflows/pages/pages-build-deployment)
 
-<a href="https://andrei-punko.github.io/java-interview-faq-n-answers"><img src="images/button_generated-site.png" alt="Generated site" height="45"/></a>
-<a href="https://boosty.to/andd3dfx"><img src="images/button_donate.png" alt="Donate" height="45"/></a>
+<a href="https://andrei-punko.github.io/java-interview-faq-n-answers"><img src="images/button_java-interview-faq.png" alt="Java interview FAQ" height="40"/></a>
+<a href="https://boosty.to/andd3dfx/donate"><img src="images/button_donate.png" alt="Donate" height="40"/></a>
 
 ## Prerequisites
 - Maven 3
