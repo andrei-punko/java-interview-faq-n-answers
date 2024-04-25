@@ -1996,7 +1996,7 @@ It is common for implementations to subclass your class at runtime and/or add by
 Этот подход позволяет произвести только оценку рассматриваемого объекта, но не размеры объектов на которые он ссылается. Чтобы рассчитать полный размер объекта, нам необходим код, который пробежится по всем ссылкам и рассчитает примерный размер.<br/>
 </p>
 <p style="text-align:justify">
-<b id="q753985466">B-tree - что это такое?</b>&nbsp;<a href="#q753985466" style="text-decoration:none">🔗</a><br/>
+<b id="q-423772262">B-tree - что это такое?</b>&nbsp;<a href="#q-423772262" style="text-decoration:none">🔗</a><br/>
 <a href="https://ru.wikipedia.org/wiki/B-%D0%B4%D0%B5%D1%80%D0%B5%D0%B2%D0%BE">https://ru.wikipedia.org/wiki/B-%D0%B4%D0%B5%D1%80%D0%B5%D0%B2%D0%BE</a><br/>
 B-tree - структура данных, дерево поиска. С точки зрения внешнего логического представления - сбалансированное, сильно ветвистое дерево. Часто используется для хранения данных во внешней памяти.<br/>
 Сбалансированность означает, что длина любых двух путей от корня до листьев различается не более, чем на единицу.<br/>
@@ -2022,18 +2022,18 @@ Traceroute входит в поставку большинства соврем�
 <a href="https://github.com/andrei-punko/java-interview-coding/blob/master/src/main/java/by/andd3dfx/string/Palindrome.java">https://github.com/andrei-punko/java-interview-coding/blob/master/src/main/java/by/andd3dfx/string/Palindrome.java</a><br/>
 </p>
 <p style="text-align:justify">
-<b id="q-874983203">Реализовать бинарный серч</b>&nbsp;<a href="#q-874983203" style="text-decoration:none">🔗</a><br/>
+<b id="q-1356261232">Реализовать бинарный поиск</b>&nbsp;<a href="#q-1356261232" style="text-decoration:none">🔗</a><br/>
 <a href="https://github.com/andrei-punko/java-interview-coding/blob/master/src/main/java/by/andd3dfx/search/BinarySearch.java">https://github.com/andrei-punko/java-interview-coding/blob/master/src/main/java/by/andd3dfx/search/BinarySearch.java</a><br/>
 </p>
 <p style="text-align:justify">
-<b id="q114822247">Отличие хэштаблицы от хэшмапа</b>&nbsp;<a href="#q114822247" style="text-decoration:none">🔗</a><br/>
+<b id="q-1526194673">Отличие HashTable от HashMap</b>&nbsp;<a href="#q-1526194673" style="text-decoration:none">🔗</a><br/>
 <a href="https://www.geeksforgeeks.org/differences-between-hashmap-and-hashtable-in-java/">https://www.geeksforgeeks.org/differences-between-hashmap-and-hashtable-in-java/</a><br/>
 = HashMap is not synchronized, so not thread-safe; HashTable is syncronized<br/>
 = HashMap allows one null key and multiple null values whereas Hashtable doesn’t allow any null key or value<br/>
 = HashMap is generally preferred over HashTable if thread synchronization is not needed<br/>
 </p>
 <p style="text-align:justify">
-<b id="q394631381">Зачем -9 в kill</b>&nbsp;<a href="#q394631381" style="text-decoration:none">🔗</a><br/>
+<b id="q-651329014">Зачем -9 в kill?</b>&nbsp;<a href="#q-651329014" style="text-decoration:none">🔗</a><br/>
 <a href="https://linux.die.net/man/2/kill">https://linux.die.net/man/2/kill</a><br/>
 <a href="https://ru.wikipedia.org/wiki/SIGKILL">https://ru.wikipedia.org/wiki/SIGKILL</a><br/>
 Команде передается PID и сигнал. На большинстве платформ SIGKILL имеет значение 9; в отличие от SIGTERM или SIGINT этот сигнал не может быть перехвачен или проигнорирован, а процесс, получивший его не имеет возможности выполнить какие-либо действия перед своим завершением<br/>
@@ -2057,7 +2057,7 @@ Transient is a Java keyword which marks a member variable not to be serialized w
 Риски: "Не перемещайте коммиты, которые вы уже отправили в публичный репозиторий"<br/>
 </p>
 <p style="text-align:justify">
-<b id="q881931950">Ты пришел на проект, где уже много всего написано, но еще нет тестов (trollface). какие тесты будешь писать первыми?</b>&nbsp;<a href="#q881931950" style="text-decoration:none">🔗</a><br/>
+<b id="q-842541301">Ты пришел на проект, где уже много всего написано, но еще нет тестов. какие тесты будешь писать первыми?</b>&nbsp;<a href="#q-842541301" style="text-decoration:none">🔗</a><br/>
 Если почти нет разработки как таковой, а цель - зафиксировать тестами текущее состояние, то буду покрывать основные бизнес-кейсы. для этого привлеку BA, заодно можно написать или подправить имеющуюся документацию. общий подход - top-down, т.е. вначале покрывать самые высокоуровневые методы (видимо это будут методы бизнес логики), потом - спускаться ниже, к частностям<br/>
 Если ведется разработка - то буду точечно фиксировать состояние до ченжей и после; так постепенно покрытие будет увеличиваться.<br/>
 Также важно писать тесты в моменты фикса дефектов, причем для состояния "до фикса" они должны валиться, чтобы тесты были valuable<br/>
@@ -2075,11 +2075,11 @@ An atomic reference is ideal to use when you need to share and change the state 
 Under the hood AtomicReference uses CAS algorithm, so we don't need to acquire lock before access to object<br/>
 </p>
 <p style="text-align:justify">
-<b id="q-301784149">Хэшкод и хэшмэп в жаве - как бы писал свои?</b>&nbsp;<a href="#q-301784149" style="text-decoration:none">🔗</a><br/>
+<b id="q1146830273">HashCode и HashMap в Java - как бы писал свои?</b>&nbsp;<a href="#q1146830273" style="text-decoration:none">🔗</a><br/>
 <a href="https://www.baeldung.com/java-hashcode">https://www.baeldung.com/java-hashcode</a><br/>
 Hashcode() - we could implement it by own hands (making math expression where fields hashcodes multiplied to prime numbers and summarized after that),<br/>
-Or generate by IDE, or use Apache Commons or Lombok annotation<br/>
-HashMap could be implemented using hastable based on buckets<br/>
+Or generate by IDE, or use Apache Commons or Lombok annotation.<br/>
+HashMap could be implemented using hastable based on buckets.<br/>
 </p>
 <p style="text-align:justify">
 <b id="q-1661622696">Describe usage of dynamic proxy</b>&nbsp;<a href="#q-1661622696" style="text-decoration:none">🔗</a><br/>
@@ -2087,7 +2087,7 @@ HashMap could be implemented using hastable based on buckets<br/>
 Dynamic proxies allow one single class with one single method to service multiple method calls to arbitrary classes with an arbitrary number of methods. A dynamic proxy can be thought of as a kind of Facade, but one that can pretend to be an implementation of any interface. Under the cover, _it routes all method invocations to a single handler_ – the invoke() method<br/>
 </p>
 <p style="text-align:justify">
-<b id="q1086510103">Польза использования простых чисел в хэшкод-related штуках</b>&nbsp;<a href="#q1086510103" style="text-decoration:none">🔗</a><br/>
+<b id="q1081116076">Польза использования простых чисел в hashCode-related штуках</b>&nbsp;<a href="#q1081116076" style="text-decoration:none">🔗</a><br/>
 Использование простых чисел в при вычислении хэшкода дает наилучшее распределение между бакетами, айтемы не кучкуются в одном месте<br/>
 </p>
 <p style="text-align:justify">
@@ -3346,7 +3346,7 @@ Git merge hotfix_branch<br/>
 Когда работа над веткой исправления hotfix завершена, она сливается в ветки develop и master.<br/>
 </p>
 <p style="text-align:justify">
-<b id="q1580313408">Написать сократитель ссылок</b>&nbsp;<a href="#q1580313408" style="text-decoration:none">🔗</a><br/>
+<b id="q-1832234594">Реализовать сократитель ссылок</b>&nbsp;<a href="#q-1832234594" style="text-decoration:none">🔗</a><br/>
 1. записываем строку из символов англ. алфавита и цифр: abc..zABC..Z01..9 (62 символа)<br/>
 2. записываем исходную ссылку в БД, кодируем полученную ID записи по основанию 62 в цифро-буквенную строку<br/>
 3. записываем в БД (в ту же строку) сгенерированную цифро-буквенную строку<br/>
@@ -3486,11 +3486,11 @@ It will be runned because shutdown hook used for that<br/>
 Use acknowledge mechanism for that<br/>
 </p>
 <p style="text-align:justify">
-<b id="q427396425">How to make undo/rollback in Flyway</b>&nbsp;<a href="#q427396425" style="text-decoration:none">🔗</a><br/>
+<b id="q364387350">How to make undo/rollback in Flyway?</b>&nbsp;<a href="#q364387350" style="text-decoration:none">🔗</a><br/>
 Use file with name 'u' (undo)<br/>
 </p>
 <p style="text-align:justify">
-<b id="q129305301">How to apply some script during each migration in Flyway</b>&nbsp;<a href="#q129305301" style="text-decoration:none">🔗</a><br/>
+<b id="q-286502902">How to apply some script during each migration in Flyway?</b>&nbsp;<a href="#q-286502902" style="text-decoration:none">🔗</a><br/>
 Use file with name 'r' (repeatable)<br/>
 </p>
 <p style="text-align:justify">
