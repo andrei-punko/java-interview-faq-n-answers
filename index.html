@@ -4433,8 +4433,12 @@ public int hashCode() {
     return Objects.hash(name, description);
 }
 </pre>
-В свою очередь, как устроен hasCode:<br/>
+В свою очередь, как устроены Objects.equals() и Objects.hash():<br/>
 <pre>
+public static boolean equals(Object a, Object b) {
+    return (a == b) || (a != null && a.equals(b));
+}
+
 public static int hash(Object... values) {
     return Arrays.hashCode(values);
 }
