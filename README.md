@@ -7,8 +7,7 @@
 <a href="https://boosty.to/andd3dfx/donate"><img src="images/button_donate.png" alt="Donate" height="40"/></a>
 
 ## Prerequisites
-- Maven 3
-- JDK 17
+- JDK 21
 
 ## Generator and its preparation
 [Generator](https://github.com/andrei-punko/github-pages-content-generator) to create a site 
