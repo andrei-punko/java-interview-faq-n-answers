@@ -7,7 +7,7 @@
 <a href="https://boosty.to/andd3dfx/donate"><img src="images/button_donate.png" alt="Donate" height="40"/></a>
 
 ## Prerequisites
-- JDK 21
+- JDK 21 (to build content-generator)
 
 ## Generator and its preparation
 [Generator](https://github.com/andrei-punko/github-pages-content-generator) to create a site 
@@ -22,14 +22,14 @@ git submodule update
 ### Build generator
 ```
 cd github-pages-content-generator
-mvn clean install
+./mvnw clean install
 ```
 
 ### Update generator code and rebuild it
 ```
 cd github-pages-content-generator
 pull origin master
-mvn clean install
+./mvnw clean install
 ```
 
 ## Update instructions
