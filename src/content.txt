@@ -4309,24 +4309,21 @@ public static void main(String[] args) {
     Stream<String> result = bar(stream);
 }
 ```
-Кажется, что будет выведено 'foofoo', но на стриме не вызвана терминальная операция, поэтому ничего не будет выведено.
+Кажется, что будет выведено 'foofoo', но на стриме не вызвана терминальная операция, поэтому будет выведена только надпись `start bar`.
 
 - Вернуть список пользователей, у которых какая-либо группа начинается на "А":
 ```
-@Data
 class User {
     private int id;
     private String name;
     private List<Group> groups;
 }
 
-@Data
 class Group {
     private int userId;
     private String name;
 }
 
-@Slf4j
 public class Test {
     public List<User> foo(Stream<User> usersStream) {
 	    // ...
@@ -4342,8 +4339,7 @@ public List<User> foo(Stream<User> usersStream) {
                     .map(Group::getName)
                     .anyMatch(s -> s.startsWith("A"))
             )
-            .collect(Collectors.toList());
-
+            .toList();
 ```
 
 - Написать ExecutorService. Какие есть преимущества у ExecutorService перед Thread?
@@ -5197,14 +5193,14 @@ it will rollback only for RuntimeExceptions and Errors not for other exceptions 
 * Рассказать свои мысли о данном коде:
 ```
 List<Employee> list = new ArrayList<Employee>();
-list.add(new Manager(1));
-list.add(new Manager(2));
+list.add(new Manager(100));
+list.add(new Manager(200));
 ((List<Manager>)list).get(1).getBonus();
 ```
 Во время выполнения в 4й строке вывалится ClassCastException.
 Но такой каст бы прошел: ((Manager)list.get(0)).getBonus()
 
-* Что выведется в консоль?
+* Что выведется в консоль при создании объекта класса B?
 ```
 public class A {
 	private int a = 1;
@@ -5228,13 +5224,13 @@ public class B extends A {
 	}
 }
 ```
-Выведется: 0, потом 2, т.к. при вызове конструктора A вызовется (из-за полиморфизма) метод getA() класса B, который выведет значение переменной a, к тому моменту еще непроинициализированной.
+Выведется: 0, потом 2, т.к. при вызове конструктора класса A вызовется (из-за полиморфизма) метод getA() класса B, который выведет значение переменной a, к тому моменту еще неинициализированной.
 
 * How to convert an array of objects to an array of their primitive types?
 https://stackoverflow.com/questions/564392/converting-an-array-of-objects-to-an-array-of-their-primitive-types
 ```
 Integer[] array = {1, 2, 3, 4, 5};
-int[] converted = array.stream().mapToInt(value -> value).toArray();
+int[] converted = Arrays.stream(array).mapToInt(value -> value).toArray();
 ```
 
 * Какие способы есть у распределенных баз данных масштабировать нагрузку?
