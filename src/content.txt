@@ -510,7 +510,7 @@ public class A {
 Исключение UnmarshalException выбрасывается, когда RMI сервер не может восстановить сериализованный объект.
 Serializable класс содержит поле static final long serialVersionUID, обычно вычисляемое автоматически. Если мы изменили описание класса, значение автоматически рассчитываемого поля изменится. Хорошим тоном является объявление своего такого поля с заданием его значения.
 
-* Транзакции. Распределенные транзакции. Уровень изоляции транзакции. Свойства и модель транзакции. Привести примеры использования.
+* Транзакции. Распределенные транзакции. Уровни изоляции транзакции. Свойства и модель транзакции. Привести примеры использования.
 = Транзакция – группа последовательных операций, представляющая логическую единицу работы с данными. Т может быть выполнена либо целиком и успешно, соблюдая целостность данных и независимо от параллельно идущих других транзакций, либо не выполнена вообще.
 
 = Распределенная транзакция включает в себя несколько локальных транзакций, каждая из которых либо фиксируется, либо прерывается. Распределенная транзакция фиксируется только в том случае, когда зафиксированы все локальные транзакции, ее составляющие. Если хотя бы одна из них была прервана, то должна быть прервана и распределенная транзакция.
@@ -2211,6 +2211,7 @@ FetchType.EAGER = fetch immediately
 This is implemented by creating a Proxy around the List (or Set). So for your lazy collections, the concrete types are not ArrayList and HashSet, but PersistentSet and PersistentList (or PersistentBag).
 
 - проблема n+1
+https://www.youtube.com/watch?v=Vtvyw6tE_ns
 https://stackoverflow.com/questions/97197/what-is-the-n1-selects-problem-in-object-relational-mapping
   When you have 1-to-may relationship, for example collection of Car objects (database rows) where each Car has a collection of Wheel objects (also rows)
 You need to iterate through all the cars, and for each one, print out a list of the wheels. The naive O/R implementation would do the following: SELECT * FROM Cars. 
