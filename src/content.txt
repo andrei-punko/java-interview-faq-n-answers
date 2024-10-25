@@ -5174,6 +5174,12 @@ https://youtu.be/Qref2bDQN0k
 = added support of ARM architecture
 = NEW in javadoc: можно посмотреть, что нового появилось с момента прошлого JDK (classes, methods)
 
+* Новое в Java 17:
+https://youtu.be/_K69yoeB8Ug
+
+* Новое в Java 21:
+https://youtu.be/XlIESRxu_OE
+
 * Какие есть атрибуты у аннотации @Transactional?
 https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/transaction/annotation/Transactional.html
 isolation (=DEFAULT по умолчанию) - указывает уровень изоляции
