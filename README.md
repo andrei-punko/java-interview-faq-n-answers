@@ -1,4 +1,3 @@
-
 # Java interview questions and answers
 
 [![pages-build-deployment](https://github.com/andrei-punko/java-interview-faq-n-answers/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/andrei-punko/java-interview-faq-n-answers/actions/workflows/pages/pages-build-deployment)
@@ -7,25 +6,30 @@
 <a href="https://boosty.to/andd3dfx/donate"><img src="images/button_donate.png" alt="Donate" height="40"/></a>
 
 ## Prerequisites
+
 - JDK 21 (to build content-generator)
 
 ## Generator and its preparation
-[Generator](https://github.com/andrei-punko/github-pages-content-generator) to create a site 
+
+[Generator](https://github.com/andrei-punko/github-pages-content-generator) to create a site
 by content from text file using templates added as Git submodule to a current project
 
 ### Init and download submodule
+
 ```
 git submodule init
 git submodule update
 ```
 
 ### Build generator
+
 ```
 cd github-pages-content-generator
 ./mvnw clean install
 ```
 
 ### Update generator code and rebuild it
+
 ```
 cd github-pages-content-generator
 pull origin master
@@ -33,6 +37,7 @@ pull origin master
 ```
 
 ## Update instructions
+
 - Modify [content.txt](src/content.txt) to change content
 - Modify [template.html](templates/template.html) (only) if you need to change view template
 - Run [generate.bat](generate.bat). It will delete and regenerate index.html
