@@ -1,6 +1,6 @@
 
-! Java interview Q&A
-** Java interview questions and answers
+! Java interview Q & A
+** Java interview frequently asked questions and answers
 
 * Исключения, роль наследования в обработке исключений. Что знаешь о try, final/finally/finalize. Секция throws в сигнатуре метода
 Ключевое слово final означает, что final-класс не может быть расширен, метод – переопределен, значение переменной – изменено.

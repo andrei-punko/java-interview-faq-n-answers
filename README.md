@@ -1,4 +1,4 @@
-# Java interview questions and answers
+# Java interview frequently asked questions and answers
 
 [![pages-build-deployment](https://github.com/andrei-punko/java-interview-faq-n-answers/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/andrei-punko/java-interview-faq-n-answers/actions/workflows/pages/pages-build-deployment)
 

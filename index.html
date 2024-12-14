@@ -11,14 +11,14 @@
           integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
     <link rel="shortcut icon" type="image/x-icon" href="favicon.png" />
 
-    <title>Java interview Q&A</title>
+    <title>Java interview Q & A</title>
     <meta http-equiv="Permissions-Policy" content="interest-cohort=()"/>
 </head>
 <body>
 
 <div class="container">
 
-<h1>Java interview questions and answers</h1><hr/>
+<h1>Java interview frequently asked questions and answers</h1><hr/>
 <p style="text-align:justify">
 <b id="q-112765742">Исключения, роль наследования в обработке исключений. Что знаешь о try, final/finally/finalize. Секция throws в сигнатуре метода</b>&nbsp;<a href="#q-112765742" style="text-decoration:none">🔗</a><br/>
 Ключевое слово final означает, что final-класс не может быть расширен, метод – переопределен, значение переменной – изменено.<br/>
@@ -1023,7 +1023,7 @@ ArrayList реализует интерфейс List. Только что соз
 — Не синхронизирован (синхронизирован Vector)<br/>
 </p>
 <p style="text-align:justify">
-<b id="q-162545532">Операции сдвига >>, <<, >>>.</b>&nbsp;<a href="#q-162545532" style="text-decoration:none">🔗</a><br/>
+<b id="q961014616">Операции сдвига &gt;&gt;, &lt;&lt;, &gt;&gt;&gt;.</b>&nbsp;<a href="#q961014616" style="text-decoration:none">🔗</a><br/>
 В случае сдвига влево &lt;&lt; и беззнакового сдвига вправо &gt;&gt;&gt; новые биты просто устанавливаются в ноль. В случае сдвига вправо со знаком &gt;&gt; новые биты принимают значение старшего (самого левого) бита перед сдвигом.<br/>
 </p>
 <p style="text-align:justify">
@@ -2135,7 +2135,7 @@ Wrapper - это синоним декоратора<br/>
 	= Согласованность в конечном счёте, трактуется как возможность противоречивости данных в некоторых случаях, но при обеспечении согласования в практически обозримое время.<br/>
 </p>
 <p style="text-align:justify">
-<b id="q1571881800">Xss+Xmx<1Gb, приложение занимает 3Gb в памяти. почему так может быть?</b>&nbsp;<a href="#q1571881800" style="text-decoration:none">🔗</a><br/>
+<b id="q-1889772553">Xss+Xmx&lt;1Gb, приложение занимает 3Gb в памяти. почему так может быть?</b>&nbsp;<a href="#q-1889772553" style="text-decoration:none">🔗</a><br/>
 Данные ограничения - для одного потока, приложение занимало столько памяти, потому что несколько потоков потребили столько (up to 1Gb) памяти<br/>
 </p>
 <p style="text-align:justify">
@@ -3569,7 +3569,7 @@ List&lt;Integer&gt; list = Arrays.asList(0, 1, 3);
 </pre>
 </p>
 <p style="text-align:justify">
-<b id="q-64281305">List<->array conversions</b>&nbsp;<a href="#q-64281305" style="text-decoration:none">🔗</a><br/>
+<b id="q-121729044">List&lt;-&gt;array conversions</b>&nbsp;<a href="#q-121729044" style="text-decoration:none">🔗</a><br/>
 <pre>
 List-&gt;Array: list.toArray(new String[0])
 Array-&gt;List: Arrays.asList(arr) or for type-safe: Arrays.&lt;String&gt;asList(arr)
@@ -4583,7 +4583,7 @@ Arrays.asList() возвращает другой ArrayList – fixed sized list
 Решение 2: new LinkedHashSet&lt;&gt;(Arrays.asList(strings))<br/>
 </p>
 <p style="text-align:justify">
-<b id="q2077086210">Преобразовать список списков строк в список строк: List<List<String>> ---> List<String></b>&nbsp;<a href="#q2077086210" style="text-decoration:none">🔗</a><br/>
+<b id="q1975611365">Преобразовать список списков строк в список строк: List&lt;List&lt;String&gt;&gt; ---&gt; List&lt;String&gt;</b>&nbsp;<a href="#q1975611365" style="text-decoration:none">🔗</a><br/>
 <pre>
 lists.stream()
     .flatMap(Collection::stream)
@@ -6060,7 +6060,7 @@ public static void main(String[] args) {
 Будет выведено только 'Hello', т.к. String - immutable, и результат вызова concat() попадет в другую строку, которую никакой переменной не присвоили<br/>
 </p>
 <p style="text-align:justify">
-<b id="q-74365647">Есть коллекция persons объектов класса Person, у которого есть поле List<String> names. Предложить способы вывести набор уникальных имен для данной коллекции persons:</b>&nbsp;<a href="#q-74365647" style="text-decoration:none">🔗</a><br/>
+<b id="q1706940678">Есть коллекция persons объектов класса Person, у которого есть поле List&lt;String&gt; names. Предложить способы вывести набор уникальных имен для данной коллекции persons:</b>&nbsp;<a href="#q1706940678" style="text-decoration:none">🔗</a><br/>
 <pre>
 public class Person {
 	List&lt;String&gt; names;
@@ -6193,7 +6193,7 @@ Some applications can require additional startup time on their first initializat
     <hr/>
     <p>
         <small>
-            Autogenerated content from <a href="https://github.com/andrei-punko/java-interview-faq-n-answers">source</a>
+            Content generated from <a href="https://github.com/andrei-punko/java-interview-faq-n-answers">source</a>
         </small>
     </p>
 </div>
