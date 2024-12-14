@@ -36,13 +36,14 @@ pull origin master
 ./mvnw clean install
 ```
 
-## Update instructions
+## Instructions how to add content & deploy it to GitHub
 
-- Modify [content.txt](src/content.txt) to change content
-- Modify [template.html](templates/template.html) (only) if you need to change view template
-- Run [generate.bat](generate.bat). It will delete and regenerate index.html
-- Use [index.html](index.html) locally or:
-- Commit changes to the repository to deploy them into the web.
+- To change content - modify [content.txt](src/content.txt) 
+- To change view template - modify [template.html](templates/template.html) 
+- To generate new `index.html` by `content.txt` - run [generate.bat](generate.bat). It will delete and recreate `index.html` file
+
+  Now you could use [index.html](index.html) locally or:
+- Commit changes to the GH repository to deploy them into the Web.
   One minute after, when [GH workflow](https://github.com/andrei-punko/java-interview-faq-n-answers/actions) finished,
   updated site will be available by original [link](https://andrei-punko.github.io/java-interview-faq-n-answers)
 
