@@ -1,0 +1,102 @@
+/* Стили для сайдбара */
+#tags-sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 300px;
+    background-color: #f8f9fa;
+    padding: 20px;
+    overflow-y: auto;
+    border-right: 1px solid #dee2e6;
+    z-index: 1000;
+}
+
+/* Отступ для основного контента */
+.container {
+    margin-left: 320px;
+}
+
+/* Стили для тегов в сайдбаре */
+.tag-link {
+    display: inline-block;
+    margin: 3px;
+    padding: 2px 8px;
+    border-radius: 4px;
+    text-decoration: none;
+    color: #fff;
+    font-size: 0.9em;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: 4px solid transparent;
+}
+
+.tag-link:hover {
+    opacity: 0.8;
+    transform: scale(1.05);
+}
+
+.tag-link.selected {
+    box-shadow: none;
+    transform: none;
+    border-color: #adb5bd;
+    border-width: 4px;
+}
+
+/* Стили для кода */
+code {
+    white-space: pre;
+    display: block;
+    margin: 0;
+    padding: 0.5em;
+    background-color: #f8f9fa;
+    border-radius: 3px;
+    border: 1px solid #dee2e6;
+    line-height: 1.4;
+}
+
+/* Стили для кнопки сброса */
+#reset-filter {
+    margin-top: 10px;
+    width: 100%;
+    border: 1px solid #6c757d;
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+#reset-filter:focus {
+    border-color: #6c757d;
+    box-shadow: none;
+}
+
+/* Адаптивность для мобильных устройств */
+@media (max-width: 768px) {
+    #tags-sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+        border-right: none;
+        border-bottom: 1px solid #dee2e6;
+    }
+    
+    .container {
+        margin-left: 0;
+    }
+    
+    .tag-link {
+        font-size: 0.8em;
+        padding: 3px 6px;
+    }
+}
+
+/* Цвета тегов */
+.tag-size-1 { background-color: #6c757d; }
+.tag-size-2 { background-color: #0d6efd; }
+.tag-size-3 { background-color: #198754; }
+.tag-size-4 { background-color: #dc3545; }
+.tag-size-5 { background-color: #6f42c1; }
+.tag-size-6 { background-color: #fd7e14; }
+.tag-size-7 { background-color: #20c997; }
+.tag-size-8 { background-color: #d63384; }
+.tag-size-9 { background-color: #0dcaf0; }
+.tag-size-10 { background-color: #ffc107; } 

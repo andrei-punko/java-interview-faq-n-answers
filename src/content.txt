@@ -827,8 +827,8 @@ INSERT
 
 UPDATE [top(x)] <объект (таблица или представление)>
 SET <присваивание1 [, присваивание2, ...]>
-[WHERE <условие>]
-[OPTION <хинт1 [, хинт2, ...]>]
+   [WHERE <условие>]
+   [OPTION <хинт1 [, хинт2, ...]>]
 Команда выполнится только x раз.
 
 DELETE
@@ -1243,8 +1243,7 @@ SQLException предоставляет информацию об ошибках
 
 Пример:
 ```
-Statement stmt = connection.createStatement(
-			      ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+Statement stmt = connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 ResultSet rs = stmt.executeQuery(sqlQuery);
 rs.last();			            // Set cursor after last element
 while (rs.previous()) {      	// Move the cursor backwards through the ResultSet
@@ -1415,15 +1414,15 @@ enum – перечисления. Пример: enum Season { WINTER, SPRING, S
 [regexp]
 Формальный язык поиска и осуществления манипуляций с подстроками в тексте, основанный на использовании метасимволов (символов-джокеров).
 Квантификатор после символа, символьного класса или группы определяет, сколько раз предшествующее выражение может встречаться:
-{n} – ровно n раз,
-{m,n} – от m до n раз включительно,
-{m,} – не менее m
-{,n} – не более n
+= {n} – ровно n раз,
+= {m,n} – от m до n раз включительно,
+= {m,} – не менее m
+= {,n} – не более n
 Группы выделяются круглыми скобками для определения области действия и приоритета операций.
 Диапазон указывается квадратными скобками:
-[0-7a-z] – цифра от 0 до 7 и буква из диапазона a-z,
-[abc] – a или b или c,
-[^abc] – не один из (a или b или c),
+= [0-7a-z] – цифра от 0 до 7 и буква из диапазона a-z,
+= [abc] – a или b или c,
+= [^abc] – не один из (a или b или c),
 
 * Алгоритмы сортировки, их устойчивость
 [algorithms]
@@ -2475,14 +2474,14 @@ https://stackoverflow.com/questions/617145/hibernate-fetching-strategy-when-to-u
 Join is supposed to solve the n+1 problem. The join method is a little less efficient on the initial query because you're duplicating the parent columns in every row, but you only make one round-trip to the database.
 Select:
 ```
-	SELECT * FROM parent WHERE id=(whatever)
-	SELECT * FROM child WHERE id=(parent.child.id)
+SELECT * FROM parent WHERE id=(whatever)
+SELECT * FROM child WHERE id=(parent.child.id)
 ```
 Join:
 ```
-	SELECT * FROM parent
-	LEFT OUTER JOIN child ON parent.child.id=child.id
-	WHERE parent.id=(whatever)
+SELECT * FROM parent
+LEFT OUTER JOIN child ON parent.child.id=child.id
+WHERE parent.id=(whatever)
 ```
 
 - рассказать о jms (connection, session, producer, consumer)
@@ -3365,12 +3364,12 @@ org.springframework.boot.autoconfigure.cassandra.CassandraAutoConfiguration
 ```
 
 - как сделать stream из листа/массива?
-[task,stream]
+[task,streams]
 из листа: list.stream()
 из массива: Arrays.stream(array) или Stream.of(array)
 
 - зачем peek в стриме, ленивый ли он?
-[core,stream]
+[core,streams]
 Stream peek(Consumer action) returns a stream consisting of the elements of this stream, additionally performing the provided action on each element as elements are consumed from the resulting stream. This is an intermediate operation i.e, it creates a new stream that, when traversed, contains the elements of the initial stream that match the given predicate.
 В итоге ответ: при вызове peek, без терминальной операции - ничего не происходит
 
@@ -4878,7 +4877,7 @@ Immutable класс (например String)
 Если в классе есть поле коллекции - возвращать unmodifiable коллекцию в геттере.
 
 - Какие использовал коллекции из Concurrent пакета?
-[collections,concurrent]
+[collections,concurrency]
 = LinkedBlockingQueue - в Java-лабе для connection-пула
 = ConcurrentHashMap - для получения конкурентного мэпа
 = AtomicInteger - для конкурентного подсчета кол-ва событий
@@ -5915,6 +5914,7 @@ https://ru.wikipedia.org/wiki/SOLID_(%D0%BF%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%
 https://github.com/andrei-punko/java-interview-coding/tree/master/sql
 
 * Links
+[links]
 https://github.com/andrei-punko/java-interview-coding
 http://javamex.com
 http://javarevisited.blogspot.com
