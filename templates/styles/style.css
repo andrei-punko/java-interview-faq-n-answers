@@ -8,6 +8,7 @@
     background-color: #f8f9fa;
     padding: 20px;
     overflow-y: auto;
+    overflow-x: hidden;
     border-right: 1px solid #dee2e6;
     z-index: 1000;
 }
@@ -15,20 +16,22 @@
 /* Отступ для основного контента */
 .container {
     margin-left: 320px;
+    overflow-x: auto;
+    width: calc(100% - 320px);
 }
 
 /* Стили для тегов в сайдбаре */
 .tag-link {
     display: inline-block;
-    margin: 3px;
-    padding: 2px 8px;
+    margin: 5px;
+    padding: 4px 8px;
     border-radius: 4px;
     text-decoration: none;
     color: #fff;
-    font-size: 0.9em;
+    font-size: 1em;
     cursor: pointer;
     transition: all 0.2s ease;
-    border: 4px solid transparent;
+    box-shadow: 0 0 0 4px transparent;
 }
 
 .tag-link:hover {
@@ -37,10 +40,8 @@
 }
 
 .tag-link.selected {
-    box-shadow: none;
+    box-shadow: 0 0 0 4px yellowgreen;
     transform: none;
-    border-color: #adb5bd;
-    border-width: 4px;
 }
 
 /* Стили для кода */
@@ -57,11 +58,14 @@ code {
 
 /* Стили для кнопки сброса */
 #reset-filter {
-    margin-top: 10px;
+    margin-top: 4px;
+    margin-bottom: 8px;
     width: 100%;
+    font-size: 1em;
     border: 1px solid #6c757d;
     outline: none !important;
     box-shadow: none !important;
+    margin-left: 4px;
 }
 
 #reset-filter:focus {
@@ -77,10 +81,16 @@ code {
         position: relative;
         border-right: none;
         border-bottom: 1px solid #dee2e6;
+        padding: 10px;
+        margin: 0;
     }
     
     .container {
         margin-left: 0;
+        width: 100%;
+        padding: 0;
+        max-width: 100%;
+        overflow-x: auto;
     }
     
     .tag-link {
@@ -89,14 +99,47 @@ code {
     }
 }
 
+/* Очень маленькие экраны */
+@media (max-width: 480px) {
+    #tags-sidebar {
+        padding: 10px;
+    }
+    
+    .container {
+        padding: 10px;
+    }
+    
+    .tag-link {
+        font-size: 0.75em;
+        padding: 2px 4px;
+    }
+}
+
+/* Промежуточные размеры экрана */
+@media (min-width: 769px) and (max-width: 1024px) {
+    #tags-sidebar {
+        width: 260px;
+    }
+    
+    .container {
+        margin-left: 280px;
+        width: calc(100% - 280px);
+    }
+}
+
 /* Цвета тегов */
-.tag-size-1 { background-color: #6c757d; }
-.tag-size-2 { background-color: #0d6efd; }
-.tag-size-3 { background-color: #198754; }
-.tag-size-4 { background-color: #dc3545; }
-.tag-size-5 { background-color: #6f42c1; }
-.tag-size-6 { background-color: #fd7e14; }
-.tag-size-7 { background-color: #20c997; }
-.tag-size-8 { background-color: #d63384; }
-.tag-size-9 { background-color: #0dcaf0; }
-.tag-size-10 { background-color: #ffc107; } 
+.tag-size-1 { background-color: #6c757d; }  /* серый */
+.tag-size-2 { background-color: #0d6efd; }  /* синий */
+.tag-size-3 { background-color: #198754; }  /* зеленый */
+.tag-size-4 { background-color: #dc3545; }  /* красный */
+.tag-size-5 { background-color: #6f42c1; }  /* фиолетовый */
+.tag-size-6 { background-color: #fd7e14; }  /* оранжевый */
+.tag-size-7 { background-color: #20c997; }  /* бирюзовый */
+.tag-size-8 { background-color: #d63384; }  /* розовый */
+.tag-size-9 { background-color: #0dcaf0; }  /* голубой */
+.tag-size-10 { background-color: #ffc107; } /* желтый */
+.tag-size-11 { background-color: #6610f2; } /* темно-фиолетовый */
+.tag-size-12 { background-color: #0b5ed7; } /* темно-синий */
+.tag-size-13 { background-color: #157347; } /* темно-зеленый */
+.tag-size-14 { background-color: #bb2d3b; } /* темно-красный */
+.tag-size-15 { background-color: #6f42c1; } /* пурпурный */ 
