@@ -54,8 +54,7 @@
 = Bridge (Мост) - Структура, позволяющая изменять интерфейс обращения и интерфейс реализации класса независимо.<br/>
 = Composite (Компоновщик) - Объект, который объединяет в себе объекты, подобные ему самому (объект может быть представлен одиночным объектом или набором (коллекцией) объектов).<br/>
 = Decorator (Декоратор) - добавление/ограничение функциональности объекта во время выполнения, без наследования (наследование добавляет функциональность к классам во время компиляции). Этот паттерн реализуют классы пакета java.io.*. Пример:<br/>
-<code>
-var file = new File(“file-name”);
+<code>var file = new File(“file-name”);
 var fis = new FileInputStream(file);
 var fis = new BufferedInputStream(fis);
 </code>
@@ -77,8 +76,7 @@ var fis = new BufferedInputStream(fis);
 <p style="text-align:justify" tags="task">
 <b id="q-114954512">Написать Singleton</b>&nbsp;<a href="#q-114954512" style="text-decoration:none">🔗</a><br/>
 1. Неленивые Singleton-ы<br/>
-<code>
-public class Singleton {		// Static field
+<code>public class Singleton {		// Static field
     public static final Singleton INSTANCE = new Singleton();
 }
 
@@ -89,8 +87,7 @@ public enum Singleton {			// Enum Singleton
 </p>
 <p style="text-align:justify" tags="task">
 2. Ленивые Singleton-ы<br/>
-<code>
-public class Singleton {		// Synchronized Accessor
+<code>public class Singleton {		// Synchronized Accessor
     private static Singleton instance;
 
     public static synchronized Singleton getInstance() {
@@ -321,8 +318,7 @@ Collection, Set, List, Queue, Map, SortedSet, SortedMap - интерфейсы.<
 Коллекция (К) представляет собой группу объектов, называемых ее элементами. Класс Collection является базовым для всех Java-коллекций. Перебирать элементы коллекции можно двумя способами:<br/>
 • при помощи конструкции for-each: for (Object o: collection) { ... }<br/>
 • при помощи итератора:<br/>
-<code>
-Iterator it = collection.iterator;
+<code>Iterator it = collection.iterator;
 while(it.hasNext()) {
 	Object o = it.next();
 	...
@@ -337,8 +333,7 @@ Collection имеет методы: size, isEmpty, contains, add, remove.<br/>
 • retainAll - удаляет из данной К все элементы, НЕ содержащиеся в указанной К<br/>
 • clear – удаляет все элементы К<br/>
 • перевод коллекции в массив:<br/>
-<code>
-Object[] a = c.toArray();			//for Object type
+<code>Object[] a = c.toArray();			//for Object type
 String[] a = c.toArray(new String[0]);	//for String type, for example
 </code>
 </p>
@@ -445,8 +440,7 @@ ConcurrentSkipListMap (см. выше)<br/>
 • Поток выполнения – отдельный процесс, имеющий собственный стек вызовов. Поток выполнения самостоятельной подзадачи в многозадачном окружении. Программа пишется так, словно каждый поток запускается сам по себе и использует процессор в монопольном режиме. Процессор же переключается между потоками, выделяя каждому некоторый отрезок времени (либо используется многопроцессорный компьютер). Это позволяет масштабировать производительность (установкой доп. процессоров)<br/>
 Для создания потока надо создать экземпляр класса Thread. У класса есть метод run, куда помещается код, который требуется выполнить в отдельном потоке. Определить и инстанциировать поток можно двумя способами:<br/>
 • Расширить класс Thread:<br/>
-<code>
-public class MyThread extends Thread {
+<code>public class MyThread extends Thread {
     @Override
     public void run() { ... }
 }
@@ -457,8 +451,7 @@ t.start();				        // Запуск потока
 </p>
 <p style="text-align:justify" tags="concurrency">
 • Реализовать интерфейс Runnable:<br/>
-<code>
-class MyRunnable implements Runnable {
+<code>class MyRunnable implements Runnable {
     @Override
     public void run() { ... }
 }
@@ -493,8 +486,7 @@ t.start();				            //Запуск потока
 </p>
 <p style="text-align:justify" tags="task,concurrency">
 <b id="q-1262345143">Написать и запустить поток, бесконечно печатающий в консоль строку</b>&nbsp;<a href="#q-1262345143" style="text-decoration:none">🔗</a><br/>
-<code>
-public CustomThread implements Runnable {
+<code>public CustomThread implements Runnable {
     private final String str;
     public CustomThread(String str) {
         this.str = str;
@@ -560,8 +552,7 @@ Deadlock – взаимная блокировка потоков: два пот
 </p>
 <p style="text-align:justify" tags="task,concurrency">
 <b id="q-1252831596">Есть код:</b>&nbsp;<a href="#q-1252831596" style="text-decoration:none">🔗</a><br/>
-<code>
-public class A {
+<code>public class A {
        public void method1() {}
        public synchronized void method2() {}
        public synchronized void method3() {}
@@ -642,8 +633,7 @@ Serializable класс содержит поле static final long serialVersio
 • из командной строки: java –D jdbc.drivers=mysql.Driver &lt;appClassName&gt;<br/>
 • из программы: Class.forName(“mysql.Driver”)<br/>
 Т.е. мы явно указываем менеджеру драйверов, какой драйвер загружать. При этом jar с драйвером должен быть в classpath, либо явно указываться путь к jar. После загрузки драйвера можно работать с БД. Весь код работы с БД:<br/>
-<code>
-Class.forName(“mysql.Driver”)
+<code>Class.forName(“mysql.Driver”)
 Connection connection = DriverManager.getConnection(&lt;dbUrl&gt;,&lt;login&gt;,&lt;password&gt;);
 Statement st = connection.createStatement();
 ResultSet rs = st.executeQuery(...);
@@ -679,8 +669,7 @@ CallableStatement используется для запуска хранимы�
 </p>
 <p style="text-align:justify" tags="task">
 <b id="q914688149">Напишите класс, который будет принимать аргумент (имя файла) и выводить строчки из этого файла в консоль. Если не будет введён аргумент (имя файла), как поведёт себя написанный класс?</b>&nbsp;<a href="#q914688149" style="text-decoration:none">🔗</a><br/>
-<code>
-public class Main {
+<code>public class Main {
     public static String read(String fileName) throws FileNotFoundException {
         StringBuilder sb = new StringBuilder();
         try (BufferedReader in = new BufferedReader(new FileReader(fileName))) {
@@ -712,8 +701,7 @@ public class Main {
 </p>
 <p style="text-align:justify" tags="task,exceptions">
 <b id="q955138209">Какую из трёх исключительных ситуаций мы получим на выходе в данном блоке кода? Почему?</b>&nbsp;<a href="#q955138209" style="text-decoration:none">🔗</a><br/>
-<code>
-try {
+<code>try {
     throw new Exception1();
 } catch (Exception ex) {
 	throw new Exception2();
@@ -725,8 +713,7 @@ try {
 </p>
 <p style="text-align:justify" tags="task,exceptions">
 <b id="q1201152171">Что будет возвращено в данном блоке кода ниже? Почему?</b>&nbsp;<a href="#q1201152171" style="text-decoration:none">🔗</a><br/>
-<code>
-try {
+<code>try {
     return 1;
 } catch(Exception e) {
     return 2;
@@ -770,8 +757,7 @@ Xml namespace – пространство имен xml. Синтаксис об
 </p>
 <p style="text-align:justify" tags="xml">
 <b id="q502427173">Напишите well-formed xml-документ, содержащий информацию о трёх user’ах (ID user’а – атрибут, имя и отдел – вложенные элементы).</b>&nbsp;<a href="#q502427173" style="text-decoration:none">🔗</a><br/>
-<code>
-&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+<code>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
 &lt;users&gt;
   &lt;user id=”id1”&gt;
     &lt;name&gt;Ivan&lt;/name&gt;
@@ -783,8 +769,7 @@ Xml namespace – пространство имен xml. Синтаксис об
 </p>
 <p style="text-align:justify" tags="core">
 <b id="q1759519105">Написать метод equals для класса, содержащего одно поле типа String.</b>&nbsp;<a href="#q1759519105" style="text-decoration:none">🔗</a><br/>
-<code>
-public boolean equals(Object obj) {
+<code>public boolean equals(Object obj) {
     if (obj == this) return true; // obj равен самому себе
     if (obj == null) return false;
 
@@ -822,8 +807,7 @@ public boolean equals(Object obj) {
 Хотя private члены суперкласса не наследуются, но, если суперкласс имеет public или protected методы, для получения доступа к private полям, они также могут использоваться и в подклассе.<br/>
 Nested-класс (содержащийся в другом классе), имеет доступ ко всем private членам содержащего его класса. Таким образом, public или protected nested-класс, наследуемый подклассом, имеет косвенный доступ ко всем private членам суперкласса.<br/>
 Проверка класса объекта: if(obj instanceof ClassName) { ... }.<br/>
-<code>
-                            non-static метод суперкласса    static метод суперкласса
+<code>                            non-static метод суперкласса    static метод суперкласса
 non-static метод подкласса  Переопределение                 Ошибка компиляции
 static метод подкласса      Ошибка компиляции               Скрытие
 </code>
@@ -845,8 +829,7 @@ Throws в методах:<br/>
 </p>
 <p style="text-align:justify" tags="sql">
 <b id="q-1465743731">SQL statements: SELECT, INSERT, UPDATE, DELETE.</b>&nbsp;<a href="#q-1465743731" style="text-decoration:none">🔗</a><br/>
-<code>
-SELECT
+<code>SELECT
    [DISTINCT | DISTINCTROW | ALL] select_expression,...
    [FROM table_references]
      [WHERE where_definition]
@@ -1079,8 +1062,7 @@ Wildcards позволяют задать границы для семейств
 <p style="text-align:justify" tags="css,oop">
 <b id="q999838428">Какие принципы ООП используются CSS. Привести примеры.</b>&nbsp;<a href="#q999838428" style="text-decoration:none">🔗</a><br/>
 Наследование, переопределение. Пример:<br/>
-<code>
-a:link {
+<code>a:link {
 	color: blue;
 	font-weight:    bold;
 }
@@ -1107,8 +1089,7 @@ Immutable называются объекты, чье состояние не и
 </p>
 <p style="text-align:justify" tags="core">
 Пример immutable класса:<br/>
-<code>
-public final class Planet {
+<code>public final class Planet {
 	private final Double mass;			//immutable field
 	private final String name;			//immutable field
 	private final Date dateOfDiscovery;	//mutable field
@@ -1183,8 +1164,7 @@ JUnit 4:<br/>
 • веб-сервис обрабатывает запрос, выполняет какое-либо действие, затем отправляет ответ<br/>
 Веб-сервис можно запустить на Томкате. Взаимодействие с помощью веб-сервисов может осуществляться через xml, json (текстовый формат, основанный на JavaScript, строится на двух структурах: набор пар ключ-значение и пронумерованный набор значений).<br/>
 Структура сообщения SOAP:<br/>
-<code>
-SOAP-конверт
+<code>SOAP-конверт
 	SOAP-заголовок
 	   Элемент заголовка 1
       Элемент заголовка 2
@@ -1210,8 +1190,7 @@ OutOfMemoryError выбрасывается, когда JVM не может вы
 <p style="text-align:justify" tags="http">
 <b id="q197605573">На сервере лежит pdf документ. Как при запросе пользователя предложить сохранить документ, а как открыть в браузере?</b>&nbsp;<a href="#q197605573" style="text-decoration:none">🔗</a><br/>
 Надо добавить заголовки HTTP-ответа, помогающие удержать браузер от попытки отобразить посылаемые байты в своем окне:<br/>
-<code>
-response.setContentType("application/pdf");
+<code>response.setContentType("application/pdf");
 response.addHeader("Content-Disposition", "attachment; filename=" + fileName);
 response.setContentLength((int)pdf.length());
 </code>
@@ -1248,8 +1227,7 @@ Jeep myJeep = (Jeep)vehicleClass.newInstance();<br/>
 <b id="q-1176280003">Как реализуется String, какие поля там есть? Пул строк</b>&nbsp;<a href="#q-1176280003" style="text-decoration:none">🔗</a><br/>
 Класс String содержит 3 основные final поля: массив символов, длина строки и сдвиг в массиве. При помощи сдвига реализуется метод substring, который не копирует содержимое массива, а использует ссылку на оригинальный массив и выставляет соответствующие поля длины строки и сдвига.<br/>
 Сравнение объектов в java осуществляется оператором == (сравнивает ссылки на один и тот же объект) или методом equals(), который сравнивает, содержат ли объекты одни и те же данные. Для сравнения String можно использовать оператор == в таком синтаксисе:<br/>
-<code>
-if (s1.intern() == s2.intern()) {...}    // производительность выше, чем с equals
+<code>if (s1.intern() == s2.intern()) {...}    // производительность выше, чем с equals
 </code>
 При вызове intern() строка помещается в пул строк, если такой там еще нет. Пул располагается в PermGen, реализуется через HashTable (см. п.Коллекции).<br/>
 </p>
@@ -1296,8 +1274,7 @@ SQLException предоставляет информацию об ошибках
 </p>
 <p style="text-align:justify" tags="db,jdbc">
 Пример:<br/>
-<code>
-Statement stmt = connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+<code>Statement stmt = connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 ResultSet rs = stmt.executeQuery(sqlQuery);
 rs.last();			            // Set cursor after last element
 while (rs.previous()) {      	// Move the cursor backwards through the ResultSet
@@ -1315,8 +1292,7 @@ while (rs.previous()) {      	// Move the cursor backwards through the ResultSet
 </p>
 <p style="text-align:justify" tags="task,js">
 <b id="q1783045914">Найти js'ом параграф с заданным id и изменить его цвет.</b>&nbsp;<a href="#q1783045914" style="text-decoration:none">🔗</a><br/>
-<code>
-document.getElementById(id).setAttribute(“style”,”color:red”);
+<code>document.getElementById(id).setAttribute(“style”,”color:red”);
 </code>
 </p>
 <p style="text-align:justify" tags="web,http">
@@ -1362,8 +1338,7 @@ POJO (Plain Old Java Object) – простой Java-объект, не унас
 <b id="q-221579335">Различия интерфейсов Transformer и Templates</b>&nbsp;<a href="#q-221579335" style="text-decoration:none">🔗</a><br/>
 Для выполнения XSLT преобразований может быть использовано 2 подхода:<br/>
 • Получить экземпляр Transformer у TransformerFactory:<br/>
-<code>
-TransformerFactory factory = TransformerFactory.newInstance();
+<code>TransformerFactory factory = TransformerFactory.newInstance();
 Transformer transformer = factory.newTransformer(inputXSL);
 </code>
 При таком подходе:<br/>
@@ -1373,8 +1348,7 @@ Transformer transformer = factory.newTransformer(inputXSL);
 <p style="text-align:justify" tags="parsers">
 Решением этих проблем является второй подход:<br/>
 •  Использование интерфейса Templates, который потокобезопасен и представляет компилированную таблицу стилей<br/>
-<code>
-TransformerFactory factory = TransformerFactory.newInstance();
+<code>TransformerFactory factory = TransformerFactory.newInstance();
 Templates templates = factory.newTemplates(inputXSL);	// Предкомпиляция команд
 Transformer transformer = templates.newTransformer();
 </code>
@@ -1440,8 +1414,7 @@ Connection pool – кэш/набор соединений с БД; может �
 <p style="text-align:justify" tags="core">
 <b id="q-133808543">Отличия одиночных и сдвоенных операндов (например, & и &&)</b>&nbsp;<a href="#q-133808543" style="text-decoration:none">🔗</a><br/>
 В случае использования одиночных операндов в логическом выражении, будут вычисляться все выражения; в случае использования сдвоенных – только те, что необходимы для принятия решения. Пример:<br/>
-<code>
-String a = null;
+<code>String a = null;
 if (a != null && a.length() &gt; 10) {...}
 </code>
 Единичный амперсанд вызовет NullPointerException.<br/>
@@ -1618,8 +1591,7 @@ The process of setting up a materialized view is sometimes called materializatio
 </p>
 <p style="text-align:justify" tags="soap">
 Основная структура документа WSDL выглядит следующим образом:<br/>
-<code>
-&lt;definitions&gt;
+<code>&lt;definitions&gt;
    &lt;types&gt;
       definition of types...
    &lt;/types&gt;
@@ -1807,8 +1779,7 @@ IoC is also known as dependency injection (DI). It is a process whereby objects 
 </p>
 <p style="text-align:justify" tags="task">
 <b id="q-391907291">Which method will run in the next case?</b>&nbsp;<a href="#q-391907291" style="text-decoration:none">🔗</a><br/>
-<code>
-public class A {
+<code>public class A {
 	public static void someName() { ... };
 }
 
@@ -1852,8 +1823,7 @@ The StAX pull model means that it is your "handler" class that calls the parser,
 <b id="q-478222316">Как запустить джоб после старта Spring-контекста?</b>&nbsp;<a href="#q-478222316" style="text-decoration:none">🔗</a><br/>
 <a href="https://habr.com/ru/post/572828/">https://habr.com/ru/post/572828/</a><br/>
 = Интерфейс CommandLineRunner - функциональный интерфейс Spring Boot, который используется для запуска кода при запуске приложения<br/>
-<code>
-@Component
+<code>@Component
 public class CommandLineRunnerImpl implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception { ... }
@@ -1862,8 +1832,7 @@ public class CommandLineRunnerImpl implements CommandLineRunner {
 </p>
 <p style="text-align:justify" tags="spring,task">
 = Интерфейс ApplicationRunner - предоставляет метод запуска с ApplicationArguments вместо необработанного массива строк.<br/>
-<code>
-@Component
+<code>@Component
 public class ApplicationRunnerImpl implements ApplicationRunner {
    @Override
    public void run(ApplicationArguments args) throws Exception { ... }
@@ -1876,8 +1845,7 @@ CommandLineRunner и ApplicationRunner имеют схожие функции, �
 <p style="text-align:justify" tags="spring,task">
 = События Spring Boot Application.<br/>
 Если нам не нужны аргументы командной строки, это лучший способ выполнить код после запуска приложения.<br/>
-<code>
-@Component
+<code>@Component
 public class RunAfterStartup {
 	@EventListener(ApplicationStartedEvent.class)
 	public void runAfterStartup() { ... }
@@ -1894,8 +1862,7 @@ Order используется совместно с другими ApplicationL
 </p>
 <p style="text-align:justify" tags="spring,task">
 = Аннотацию @Postconstruct для метода. Всякий раз, когда метод отмечен этой аннотацией, он будет вызываться сразу после внедрения зависимости. Метод @PostConstruct связан с конкретным классом, поэтому его следует использовать только для кода конкретного класса. В каждом классе может быть только один метод с аннотацией postConstruct.<br/>
-<code>
-@Component
+<code>@Component
 public class PostContructImpl {
 	@PostConstruct
 	public void runAfterObjectCreated() { ... }
@@ -1905,8 +1872,7 @@ public class PostContructImpl {
 </p>
 <p style="text-align:justify" tags="spring,task">
 = Интерфейс InitializingBean. Работает точно так же, как аннотация @PostConstruct. Вместо использования аннотации мы должны реализовать интерфейс InitializingBean. Затем нам нужно переопределить метод void afterPropertiesSet().<br/>
-<code>
-@Component
+<code>@Component
 public class InitializingBeanImpl implements InitializingBean {
     @Override
     public void afterPropertiesSet() throws Exception { ... }
@@ -1917,8 +1883,7 @@ public class InitializingBeanImpl implements InitializingBean {
 <p style="text-align:justify" tags="spring,task">
 = Атрибут инициализации аннотации @bean. Мы можем реализовать метод, используя свойство initMethod в аннотации @Bean. Этот метод будет вызываться после инициализации bean-компонента.<br/>
 Метод, предоставленный в initMethod, должен быть void и не иметь аргументов. Этот метод может быть даже private.<br/>
-<code>
-public class BeanInitMethodImpl {
+<code>public class BeanInitMethodImpl {
     public void runAfterObjectCreated() { ... }
 }
 
@@ -1959,12 +1924,10 @@ public class DemoApplication {
 <a href="https://www.examclouds.com/ru/java/java-core-russian/method-references-russian">https://www.examclouds.com/ru/java/java-core-russian/method-references-russian</a><br/>
 Ссылки на методы (Method References) – это компактные лямбда выражения для методов у которых уже есть имя.<br/>
 Например:<br/>
-<code>
-Consumer&lt;String&gt; consumer = str -&gt; System.out.println(str);
+<code>Consumer&lt;String&gt; consumer = str -&gt; System.out.println(str);
 </code>
 Можно переписать с помощью method references:<br/>
-<code>
-Consumer&lt;String&gt; consumer = System.out::println;
+<code>Consumer&lt;String&gt; consumer = System.out::println;
 </code>
 Ссылки на методы бывают четырех видов:<br/>
 = Ссылка на статический метод: ContainingClass::staticMethodName<br/>
@@ -1974,8 +1937,7 @@ Consumer&lt;String&gt; consumer = System.out::println;
 </p>
 <p style="text-align:justify" tags="task">
 <b id="q-1248121978">Можно ли вызвать из класса C метод a() класса А, перегруженный как классом B, так и C?</b>&nbsp;<a href="#q-1248121978" style="text-decoration:none">🔗</a><br/>
-<code>
-public class A {
+<code>public class A {
 	public void a() { ... }
 }
 
@@ -1991,8 +1953,7 @@ public class C extends B {
 </p>
 <p style="text-align:justify" tags="core">
 <b id="q713528606">Назвать методы класса Object</b>&nbsp;<a href="#q713528606" style="text-decoration:none">🔗</a><br/>
-<code>
-toString, hashCode, equals, getClass, notify, notifyAll, wait, wait(timeout), finalize, clone
+<code>toString, hashCode, equals, getClass, notify, notifyAll, wait, wait(timeout), finalize, clone
 </code>
 </p>
 <p style="text-align:justify" tags="jpa">
@@ -2117,8 +2078,7 @@ Wrapper - это синоним декоратора<br/>
 = Заместитель (Proxy) оборачивает класс и предоставляет такой же интерфейс. Цель - "притвориться" оригинальным классом и скрыть от клиента детали. Типичные примеры использования - ленивая инициализация оборачиваемого класса или оборачивание вызовов стороннего сервиса<br/>
 = Декоратор также оборачивает класс и предоставляет такой же или расширенный интерфейс. Иногда декоратор называют "умным заместителем" (smart proxy). Т.е. декоратор может притворяться оригинальным классом и при этом расширять его функциональность. Пример: у вас есть заместитель, который прячет вызовы к стороннему сервису. Можно создать декоратор, который будет оборачивать и кэшировать результаты вызовов. Другой пример: нужно расширить функциональность оригинального класса, но он закрыт для наследования. Создается декоратор, который расширяет интерфейс оригинального класса<br/>
 = Адаптер также оборачивает класс, но при этом предоставляет другой интерфейс. Т.е. используется в случаях, когда есть класс с нужными данными и поведением, но с неподходящим интерфейсом<br/>
-<code>
------------------------------------------------------------------------------------
+<code>-----------------------------------------------------------------------------------
 | Шаблон              | Что делает с интерфейсом | Что делает с функциональностью |
 -----------------------------------------------------------------------------------
 | Заместитель (Proxy) | Не изменяет              | Не изменяет                    |
@@ -2293,16 +2253,14 @@ Support of "shebang files" added too: put '#!/usr/bin/java --source 11' into the
 </p>
 <p style="text-align:justify" tags="core">
 = A new teeing collector was introduced:<br/>
-<code>
-Collector&lt;T, ?, R&gt; teeing(Collector&lt;? super T, ?, R1&gt; downstream1, Collector&lt;? super T, ?, R2&gt; downstream2, BiFunction&lt;? super R1, ? super R2, R&gt; merger)
+<code>Collector&lt;T, ?, R&gt; teeing(Collector&lt;? super T, ?, R1&gt; downstream1, Collector&lt;? super T, ?, R2&gt; downstream2, BiFunction&lt;? super R1, ? super R2, R&gt; merger)
 </code>
 It is a composite of two downstream collectors. Every element is processed by both downstream collectors. Then their results are passed to the merge function and transformed into the final result.<br/>
 </p>
 <p style="text-align:justify" tags="core">
 = New number formatter – the CompactNumberFormat. It's designed to represent a number in a shorter form, based on the patterns provided by a given locale.<br/>
 The format style can be either SHORT or LONG. For a better understanding of the format styles, let's consider number 1000 in the US locale. The SHORT style would format it as “10K”, and the LONG one would do it as “10 thousand”.<br/>
-<code>
-NumberFormat likesShort = NumberFormat.getCompactNumberInstance(new Locale("en", "US"), NumberFormat.Style.SHORT);
+<code>NumberFormat likesShort = NumberFormat.getCompactNumberInstance(new Locale("en", "US"), NumberFormat.Style.SHORT);
 likesShort.setMaximumFractionDigits(2);
 assertEquals("2.59K", likesShort.format(2592));
 
@@ -2314,8 +2272,7 @@ assertEquals("2.59 thousand", likesShort.format(2592));
 <p style="text-align:justify" tags="core">
 = Preview changes (could be switched on by separate flag):<br/>
 == Switch Expressions (Preview)<br/>
-<code>
-String typeOfDay = switch (dayOfWeek) {
+<code>String typeOfDay = switch (dayOfWeek) {
     case MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY -&gt; {
 		// more logic
 		System.out.println("Working Day")
@@ -2326,8 +2283,7 @@ String typeOfDay = switch (dayOfWeek) {
 </p>
 <p style="text-align:justify" tags="core">
 == Pattern Matching for instanceof (Preview)<br/>
-<code>
-if (obj instanceof String s) {
+<code>if (obj instanceof String s) {
     // no explicit cast needed
     int length = s.length();
 }
@@ -2364,8 +2320,7 @@ Interaction during game could be implemented by sending/retrieving players moves
 <a href="https://en.wikipedia.org/wiki/SQL_window_function">https://en.wikipedia.org/wiki/SQL_window_function</a><br/>
 <a href="https://mode.com/sql-tutorial/sql-window-functions/">https://mode.com/sql-tutorial/sql-window-functions/</a><br/>
 In the SQL, window functions allow access to data in the records right before and after the current record. A window function defines a frame or window of rows with a given length around the current row, and performs a calculation across the set of data in the window. For example next query extracts for each row the values of a window with one preceding and one following row:<br/>
-<code>
-SELECT
+<code>SELECT
 	LAG(name,1) OVER(ORDER BY name) "prev",
 	name,
 	LEAD(name,1) OVER(ORDER BY name) "next"
@@ -2376,8 +2331,7 @@ SELECT
 List of windows functions: SUM(),COUNT(),AVG(),ROW_NUMBER(),RANK(),DENSE_RANK(),NTILE(),LAG(),LEAD()<br/>
 To narrow the window from the entire dataset to individual groups within the dataset, you can use PARTITION BY.<br/>
 To write several window functions into the same query, using the same window, you can create an alias using WINDOW:<br/>
-<code>
-SELECT
+<code>SELECT
 	LAG(name,1) OVER name_window "prev",
 	name,
 	LEAD(name,1) OVER name_window "next"
@@ -2562,13 +2516,11 @@ What mode choose: select or join:<br/>
 <a href="https://stackoverflow.com/questions/617145/hibernate-fetching-strategy-when-to-use-join-and-when-to-use-select">https://stackoverflow.com/questions/617145/hibernate-fetching-strategy-when-to-use-join-and-when-to-use-select</a><br/>
 Join is supposed to solve the n+1 problem. The join method is a little less efficient on the initial query because you're duplicating the parent columns in every row, but you only make one round-trip to the database.<br/>
 Select:<br/>
-<code>
-SELECT * FROM parent WHERE id=(whatever)
+<code>SELECT * FROM parent WHERE id=(whatever)
 SELECT * FROM child WHERE id=(parent.child.id)
 </code>
 Join:<br/>
-<code>
-SELECT * FROM parent
+<code>SELECT * FROM parent
 LEFT OUTER JOIN child ON parent.child.id=child.id
 WHERE parent.id=(whatever)
 </code>
@@ -3454,8 +3406,7 @@ RX Java (for example) is an implementation of the reactive programming principle
 В итоге решается проблема отсутствия контроля над этим процессом, получаем определенную гибкость, решаем проблемы с безопасностью.<br/>
 Поскольку отсутствуем использование Reflection, скорость также должна увеличиться.<br/>
 Пример:<br/>
-<code>
-{
+<code>{
    ...
    @Override
    public void writeExternal(ObjectOutput out) throws IOException {
@@ -3522,8 +3473,7 @@ Use file with name 'r' (repeatable)<br/>
 <b id="q-349338823">Зачем нужен файл spring.factories?</b>&nbsp;<a href="#q-349338823" style="text-decoration:none">🔗</a><br/>
 Файл spring.factories нужен, чтобы избежать сканирования пакетов для нахождения классов автоконфигурации (с аннотациями).<br/>
 Его нужно поместить в папку META-INF получающегося jar-файла. В нем надо указать наши AutoConfiguration-классы:<br/>
-<code>
-# Auto Configure
+<code># Auto Configure
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
 org.springframework.boot.autoconfigure.amqp.RabbitAutoConfiguration,\
 org.springframework.boot.autoconfigure.cassandra.CassandraAutoConfiguration
@@ -3580,15 +3530,13 @@ The import allows the java programmer to access classes of a package without pac
 </p>
 <p style="text-align:justify" tags="task">
 <b id="q1603348757">How to create array/list populated with int values?</b>&nbsp;<a href="#q1603348757" style="text-decoration:none">🔗</a><br/>
-<code>
-int[] data = new int[] {0, 1, 3};
+<code>int[] data = new int[] {0, 1, 3};
 List&lt;Integer&gt; list = Arrays.asList(0, 1, 3);
 </code>
 </p>
 <p style="text-align:justify" tags="task">
 <b id="q-121729044">List&lt;-&gt;array conversions</b>&nbsp;<a href="#q-121729044" style="text-decoration:none">🔗</a><br/>
-<code>
-List-&gt;Array: list.toArray(new String[0])
+<code>List-&gt;Array: list.toArray(new String[0])
 Array-&gt;List: Arrays.asList(arr) or for type-safe: Arrays.&lt;String&gt;asList(arr)
 </code>
 </p>
@@ -3654,8 +3602,7 @@ In short:<br/>
 1. Передавать версию в качестве параметра - плохой вариант:<br/>
 Having the client send a version parameter is usually not preferred because you can't count on the client to send the proper version number (if you have multiple versions of your web service you can end up receiving a payload for version X but marked with a version parameter value Y).<br/>
 For this reason it's better to enforce the version with the namespace of the contract schema, something like:<br/>
-<code>
-&lt;types&gt;
+<code>&lt;types&gt;
       &lt;xs:schema xmlns="http://tempuri.org/v1" targetNamespace="http://tempuri.org/v1"&gt;
 ...
 </code>
@@ -3663,8 +3610,7 @@ For this reason it's better to enforce the version with the namespace of the con
 </p>
 <p style="text-align:justify" tags="soap,task,design">
 2. So when you have a major version change you expose a new contract that you now define like:<br/>
-<code>
-&lt;types&gt;
+<code>&lt;types&gt;
       &lt;xs:schema xmlns="http://tempuri.org/v2" targetNamespace="http://tempuri.org/v2"&gt;
 ...
 </code>
@@ -3871,12 +3817,10 @@ A full-text index is a special type of index that provides index access for full
 <a href="https://www.baeldung.com/java-assert">https://www.baeldung.com/java-assert</a><br/>
 = Using assertions we can remove the 'if' and 'throw' statement with a single assert statement.<br/>
 JVM disables assertion validation by default. They must be explicitly enabled using either the -enableassertions command line argument, or its shorthand -ea:<br/>
-<code>
-	java -ea com.baeldung.assertion.Assertion
+<code>	java -ea com.baeldung.assertion.Assertion
 </code>
 We can also enable assertions for specific packages and classes:<br/>
-<code>
-	java -ea:com.baeldung.assertion... com.baeldung.assertion.Assertion
+<code>	java -ea:com.baeldung.assertion... com.baeldung.assertion.Assertion
 </code>
 Here, we've enabled assertions for all the classes in the com.baeldung.assertion package.<br/>
 Likewise, they can be disabled for specific packages and classes using the -disableassertions command line argument, or its shorthand -da. We can also use all four of these arguments together.<br/>
@@ -3999,8 +3943,7 @@ IntStream.range(0, list.size()).mapToObj(idx -&gt; new IndexedValue&lt;&gt;(idx,
 <b id="q426079663">Рассказать о lazy-initialization exception</b>&nbsp;<a href="#q426079663" style="text-decoration:none">🔗</a><br/>
 <a href="https://thorben-janssen.com/lazyinitializationexception">https://thorben-janssen.com/lazyinitializationexception</a><br/>
 = Hibernate throws the LazyInitializationException when it needs to initialize a lazily fetched association to another entity without an active session context. That’s usually the case if you try to use an uninitialized association in your client application or web layer.<br/>
-<code>
-EntityManager em = emf.createEntityManager();
+<code>EntityManager em = emf.createEntityManager();
 em.getTransaction().begin();
 
 TypedQuery&lt;Author&gt; q = em.createQuery(
@@ -4047,8 +3990,7 @@ The right way to fix a LazyInitializationException is to fetch all required asso
 <p style="text-align:justify" tags="core,exceptions,hibernate">
 == Initializing associations with a LEFT JOIN FETCH clause<br/>
 The easiest way to load an entity with all required associations is to perform a JPQL or Criteria Query with one or more LEFT JOIN FETCH clauses. That tells Hibernate to not only fetch the entity referenced in the projection but also to fetch all associated entities referenced in the LEFT JOIN FETCH clause.<br/>
-<code>
-EntityManager em = emf.createEntityManager();
+<code>EntityManager em = emf.createEntityManager();
 em.getTransaction().begin();
 
 TypedQuery&lt;Author&gt; q = em.createQuery("SELECT a FROM Author a LEFT JOIN FETCH a.books", Author.class);
@@ -4070,8 +4012,7 @@ You can do the same using a @NamedEntityGraph. The main difference is that the d
 </p>
 <p style="text-align:justify" tags="core,exceptions,hibernate">
 You can define the graph by annotating one of your entity classes with a @NamedEntityGraph annotation. Within this annotation, you can provide multiple @NamedAttributeNode annotations to specify the attributes that Hibernate shall fetch.<br/>
-<code>
-@NamedEntityGraph(
+<code>@NamedEntityGraph(
     name = "graph.authorBooks",
     attributeNodes = @NamedAttributeNode("books")
 )
@@ -4079,8 +4020,7 @@ You can define the graph by annotating one of your entity classes with a @NamedE
 public class Author { ... }
 </code>
 To use this graph, you first need to get a reference to it from your EntityManager. In the next step, you can set it as a hint on your query.<br/>
-<code>
-EntityManager em = emf.createEntityManager();
+<code>EntityManager em = emf.createEntityManager();
 em.getTransaction().begin();
 
 EntityGraph&lt;?&gt; entityGraph = em.createEntityGraph("graph.authorBooks");
@@ -4102,8 +4042,7 @@ If you look at the generated SQL statement, you can see that there is no differe
 <p style="text-align:justify" tags="core,exceptions,hibernate">
 == EntityGraph to initialize an association<br/>
 The EntityGraph API provides you the same functionality as the @NamedEntityGraph annotation. The only difference is that you use a Java API instead of annotations to define the graph. That enables you to adjust the graph definition dynamically.<br/>
-<code>
-EntityManager em = emf.createEntityManager();
+<code>EntityManager em = emf.createEntityManager();
 em.getTransaction().begin();
 
 EntityGraph&lt;Author&gt; entityGraph = em.createEntityGraph(Author.class);
@@ -4126,8 +4065,7 @@ for (Author a : authors) {
 == Using a DTO projection<br/>
 Fetching all required associations when you load the entity fixes the LazyInitializationException. But there is an alternative that’s an even better fit for all read operations. DTO projections provide significantly better performance if you don’t want to change the retrieved information.<br/>
 In these situations, you can use a constructor expression to tell Hibernate to instantiate a DTO object for each record in the result set.<br/>
-<code>
-EntityManager em = emf.createEntityManager();
+<code>EntityManager em = emf.createEntityManager();
 em.getTransaction().begin();
 
 TypedQuery&lt;AuthorDto&gt; q = em.createQuery(
@@ -4196,8 +4134,7 @@ Support 3 types of indexes: GIN, BTREE and HASH<br/>
 </p>
 <p style="text-align:justify" tags="task">
 <b id="q514220629">Для двух примеров, сказать чему будут равны b1 и b2</b>&nbsp;<a href="#q514220629" style="text-decoration:none">🔗</a><br/>
-<code>
-Integer i1 = 3;
+<code>Integer i1 = 3;
 Integer i2 = 3;
 boolean b1 = i1 == i2;
 boolean b2 = i1.equals(i2); // true
@@ -4211,8 +4148,7 @@ boolean b2 = i1.equals(i2); // false
 <p style="text-align:justify" tags="task,concurrency,spring">
 <b id="q1371791029">Предложить разные способы, как запустить 3 задания параллельно. Есть ли что-то для этого в Spring?</b>&nbsp;<a href="#q1371791029" style="text-decoration:none">🔗</a><br/>
 = Описать каждое задание в экземплярах класса RecursiveAction/RecursiveTask и отправить их в ForkJoinPool.invokeAll():<br/>
-<code>
-ForkJoinTask.invokeAll(
+<code>ForkJoinTask.invokeAll(
         new RecursiveAction() {
             @Override
             protected void compute() {
@@ -4240,8 +4176,7 @@ ForkJoinTask.invokeAll(
 </p>
 <p style="text-align:justify" tags="task,concurrency,spring">
 = Использовать CompletableFuture.runAsync:<br/>
-<code>
-CompletableFuture&lt;Void&gt; combinedFuture = CompletableFuture.allOf(
+<code>CompletableFuture&lt;Void&gt; combinedFuture = CompletableFuture.allOf(
         CompletableFuture.runAsync(() -&gt; { logger.info("way2: Make action 1"); }),
         CompletableFuture.runAsync(() -&gt; { logger.info("way2: Make action 2"); }),
         CompletableFuture.runAsync(() -&gt; { logger.info("way2: Make action 3"); })
@@ -4251,8 +4186,7 @@ combinedFuture.get();
 </p>
 <p style="text-align:justify" tags="task,concurrency,spring">
 == Классический способ с созданием Thread и передачей Runnable в него:<br/>
-<code>
-var thread1 = new Thread(() -&gt; { logger.info("--- way3: Make action 1"); });
+<code>var thread1 = new Thread(() -&gt; { logger.info("--- way3: Make action 1"); });
 var thread2 = new Thread(() -&gt; { logger.info("--- way3: Make action 2"); });
 var thread3 = new Thread(() -&gt; { logger.info("--- way3: Make action 3"); });
 thread1.start();
@@ -4263,8 +4197,7 @@ thread3.start();
 <p style="text-align:justify" tags="task,concurrency,spring">
 == Запуск нескольких заданий средствами Spring-а:<br/>
 <a href="https://docs.spring.io/spring-framework/docs/3.2.x/spring-framework-reference/html/scheduling.html">https://docs.spring.io/spring-framework/docs/3.2.x/spring-framework-reference/html/scheduling.html</a><br/>
-<code>
-import org.springframework.core.task.TaskExecutor;
+<code>import org.springframework.core.task.TaskExecutor;
 
 @RequiredArgsConstructor
 public class TaskExecutorExample {
@@ -4289,8 +4222,7 @@ public class TaskExecutorExample {
 </p>
 <p style="text-align:justify" tags="task,concurrency,spring">
 In addition to the TaskExecutor abstraction, Spring 3.0 introduces a TaskScheduler with a variety of methods for scheduling tasks to run at some point in the future:<br/>
-<code>
-public interface TaskScheduler {
+<code>public interface TaskScheduler {
     ScheduledFuture schedule(Runnable task, Trigger trigger);
     ScheduledFuture schedule(Runnable task, Date startTime);
     ScheduledFuture scheduleAtFixedRate(Runnable task, Date startTime, long period);
@@ -4345,8 +4277,7 @@ public interface TaskScheduler {
 </p>
 <p style="text-align:justify" tags="task,design">
 <b id="q-1466384158">Предложить структуру данных, чтобы хранить в ней структуру папок и файлов. Описать алгоритм, который измерит размер содержимого определенной папки.</b>&nbsp;<a href="#q-1466384158" style="text-decoration:none">🔗</a><br/>
-<code>
-@Builder
+<code>@Builder
 @AllArgsConstructor
 public static class Node {
     List&lt;Node&gt; children;
@@ -4377,8 +4308,7 @@ public static class Node {
 </p>
 <p style="text-align:justify" tags="task,db">
 <b id="q-1426761044">Предложить схему БД, чтобы хранить в ней структуру папок и файлов</b>&nbsp;<a href="#q-1426761044" style="text-decoration:none">🔗</a><br/>
-<code>
-Node(id, name, parent_id, type, size, create_ts)
+<code>Node(id, name, parent_id, type, size, create_ts)
 </code>
 </p>
 <p style="text-align:justify" tags="docker">
@@ -4391,8 +4321,7 @@ Although ADD and COPY are functionally similar, generally speaking, COPY is pref
 <a href="https://stackoverflow.com/questions/31746182/docker-compose-wait-for-container-x-before-starting-y">https://stackoverflow.com/questions/31746182/docker-compose-wait-for-container-x-before-starting-y</a><br/>
 Использовать healthcheck:<br/>
 <a href="https://docs.docker.com/compose/compose-file/#healthcheck">https://docs.docker.com/compose/compose-file/#healthcheck</a><br/>
-<code>
-version: "3"
+<code>version: "3"
 
 services:
   rabbitmq: # login guest:guest
@@ -4432,8 +4361,7 @@ To ease implementation, R2DBC also provides a test interface (a veritable TCK (T
 <p style="text-align:justify" tags="task">
 <b id="q-1973701161">Написать equals и hashCode своими руками</b>&nbsp;<a href="#q-1973701161" style="text-decoration:none">🔗</a><br/>
 <a href="https://www.baeldung.com/java-hashmap">https://www.baeldung.com/java-hashmap</a><br/>
-<code>
-@Override
+<code>@Override
 public boolean equals(Object o) {
     if (this == o) {
         return true;
@@ -4453,8 +4381,7 @@ public int hashCode() {
 }
 </code>
 В свою очередь, как устроены Objects.equals() и Objects.hash():<br/>
-<code>
-public static boolean equals(Object a, Object b) {
+<code>public static boolean equals(Object a, Object b) {
     return (a == b) || (a != null && a.equals(b));
 }
 
@@ -4580,8 +4507,7 @@ PermGen (permanent generation) – в этой области хранятся �
 </p>
 <p style="text-align:justify" tags="task">
 <b id="q-1101624733">В каком варианте массив будет успешно отсортирован?</b>&nbsp;<a href="#q-1101624733" style="text-decoration:none">🔗</a><br/>
-<code>
-List&lt;String&gt; list1 = new ArrayList&lt;&gt;(List.of("B", "C", "A"));
+<code>List&lt;String&gt; list1 = new ArrayList&lt;&gt;(List.of("B", "C", "A"));
 Collections.sort(list1);
 
 List&lt;String&gt; list2 = Arrays.asList("B", "C", "A");
@@ -4602,16 +4528,14 @@ Arrays.asList() возвращает другой ArrayList – fixed sized list
 </p>
 <p style="text-align:justify" tags="task">
 <b id="q1975611365">Преобразовать список списков строк в список строк: List&lt;List&lt;String&gt;&gt; ---&gt; List&lt;String&gt;</b>&nbsp;<a href="#q1975611365" style="text-decoration:none">🔗</a><br/>
-<code>
-lists.stream()
+<code>lists.stream()
     .flatMap(Collection::stream)
     .collect(Collectors.toList())
 </code>
 </p>
 <p style="text-align:justify" tags="task">
 <b id="q-1026911721">Что будет напечатано в консоль?</b>&nbsp;<a href="#q-1026911721" style="text-decoration:none">🔗</a><br/>
-<code>
-Stream.of("d2", "a2", "b1", "b3", "c")
+<code>Stream.of("d2", "a2", "b1", "b3", "c")
         .map(s -&gt; {
             System.out.println("map: " + s);
             return s.toUpperCase();
@@ -4667,8 +4591,7 @@ Memory Analyzer categorizes garbage collection roots according to the following 
 </p>
 <p style="text-align:justify" tags="task,concurrency">
 <b id="q-818057688">Что можешь сказать об этом коде? Как можно исключить последовательный запуск и ожидание каждого потока?</b>&nbsp;<a href="#q-818057688" style="text-decoration:none">🔗</a><br/>
-<code>
-List&lt;Integer&gt; results = integers.stream()
+<code>List&lt;Integer&gt; results = integers.stream()
         .map(integer -&gt; CompletableFuture.supplyAsync(() -&gt; process(integer), executor))
         .map(CompletableFuture::join)
         .collect(Collectors.toList());
@@ -4686,8 +4609,7 @@ Here's the high-level idea:<br/>
 = Then log a message<br/>
 = And finally clear the MDC<br/>
 It is enough to change the conversion pattern, using the %X{} placeholder for each entry contained in the MDC we want to be logged:<br/>
-<code>
-log4j.appender.consoleAppender.layout.ConversionPattern=
+<code>log4j.appender.consoleAppender.layout.ConversionPattern=
   %-4r [%t] %5p %c{1} %x - %m - tx.id=%X{transaction.id} tx.owner=%X{transaction.owner}%n
 </code>
 Always remember to clean up the MDC context at the end of each execution. Another approach is to use ThreadPoolExecutor hooks and perform necessary cleanups after each execution.<br/>
@@ -4721,8 +4643,7 @@ In some respects, you can think of the Spring containers role when talking about
 </p>
 <p style="text-align:justify" tags="task">
 <b id="q615821026">Ты на код-ревью. Что не нравится? Что бы сделал иначе? Что вызывает подозрение? Как сделать self-injection? Что нужно дописать для этого?</b>&nbsp;<a href="#q615821026" style="text-decoration:none">🔗</a><br/>
-<code>
-@Component
+<code>@Component
 @RequiredArgsConstructor
 public class CachedPhotosService {
     private static final String RESIZED_PHOTO_CACHE_NAME = "RESIZED_PHOTO_CACHE_NAME";
@@ -4765,8 +4686,7 @@ public class CachedPhotosService {
 <b id="q556022302">Читал про Spring Test? @SpringBootTest, как написать, чтобы поднять только 1 bean?</b>&nbsp;<a href="#q556022302" style="text-decoration:none">🔗</a><br/>
 <a href="https://stackoverflow.com/questions/51051994/spring-context-test-with-just-one-bean">https://stackoverflow.com/questions/51051994/spring-context-test-with-just-one-bean</a><br/>
 Нужно аннотировать тест аннотацией, где указать в конфигурации только этот 1 бин:<br/>
-<code>
-@RunWith(SpringRunner.class)
+<code>@RunWith(SpringRunner.class)
 @SpringBootTest(properties = "spring.profiles.active=test")
 @ContextConfiguration(classes = MyTestBean.class)
 </code>
@@ -4915,8 +4835,7 @@ ZooKeeper выполняет роль консистентного хранил�
 </p>
 <p style="text-align:justify" tags="shell,linux">
 <b id="q-1896020487">Команда Linux для просмотра java процессов</b>&nbsp;<a href="#q-1896020487" style="text-decoration:none">🔗</a><br/>
-<code>
-ps aux | grep java
+<code>ps aux | grep java
 </code>
 </p>
 <p style="text-align:justify" tags="core,exceptions">
@@ -4934,8 +4853,7 @@ Checked exception принуждает нас или обработать его
 </p>
 <p style="text-align:justify" tags="task,streams">
 <b id="q606549178">Что будет выведено в консоль?</b>&nbsp;<a href="#q606549178" style="text-decoration:none">🔗</a><br/>
-<code>
-public static Stream&lt;String&gt; bar(Stream&lt;String&gt; stream) {
+<code>public static Stream&lt;String&gt; bar(Stream&lt;String&gt; stream) {
     System.out.println("start bar");
     return stream.filter(el -&gt; !el.equals("bar"))
             .peek(System.out::print);
@@ -4950,8 +4868,7 @@ public static void main(String[] args) {
 </p>
 <p style="text-align:justify" tags="task,streams">
 <b id="q-77320637">Вернуть список пользователей, у которых какая-либо группа начинается на "А":</b>&nbsp;<a href="#q-77320637" style="text-decoration:none">🔗</a><br/>
-<code>
-class User {
+<code>class User {
     private int id;
     private String name;
     private List&lt;Group&gt; groups;
@@ -4970,8 +4887,7 @@ public class Test {
 }
 </code>
 Решение:<br/>
-<code>
-public List&lt;User&gt; foo(Stream&lt;User&gt; usersStream) {
+<code>public List&lt;User&gt; foo(Stream&lt;User&gt; usersStream) {
     return usersStream
             .filter(user -&gt; user.groups.stream()
                     .map(Group::getName)
@@ -4989,8 +4905,7 @@ public List&lt;User&gt; foo(Stream&lt;User&gt; usersStream) {
 <b id="q-486333462">Написать deadlock</b>&nbsp;<a href="#q-486333462" style="text-decoration:none">🔗</a><br/>
 Deadlock или взаимная блокировка — это ошибка, которая происходит когда потоки имеют циклическую зависимость от пары синхронизированных объектов.<br/>
 <a href="https://www.javatpoint.com/deadlock-in-java">https://www.javatpoint.com/deadlock-in-java</a><br/>
-<code>
-public class TestDeadlockExample1 {
+<code>public class TestDeadlockExample1 {
     public static void main(String[] args) {
         final String resource1 = "resource1";
         final String resource2 = "resource2";
@@ -5052,8 +4967,7 @@ public class TestDeadlockExample1 {
 </p>
 <p style="text-align:justify" tags="task,transactions">
 <b id="q1950183913">Будет ли это нормально работать? Нужно чтобы вся коллекция элементов обработалась без ошибок, либо ни один элемент не обработался:</b>&nbsp;<a href="#q1950183913" style="text-decoration:none">🔗</a><br/>
-<code>
-@Transactional
+<code>@Transactional
 public void processCollection(Collection&lt;Object&gt; objects) {
     objects.parallelStream()
             .forEach(this::processOne);
@@ -5270,8 +5184,7 @@ Xss - stack size of each thread, default value is 256 KB in JDK1.4 and 1 MB in J
 </p>
 <p style="text-align:justify" tags="task">
 <b id="q1282944754">Написать тело метода printTree(), который пройдет по всему дереву Node и распечатает каждый элемент. Какие варианты есть кроме рекурсии, чтобы избежать StackOverFlow?</b>&nbsp;<a href="#q1282944754" style="text-decoration:none">🔗</a><br/>
-<code>
-class Node {
+<code>class Node {
 	private Node left;
 	private Node right;
 	private int value;
@@ -5280,8 +5193,7 @@ class Node {
 }
 </code>
 Решение:<br/>
-<code>
-public void printTree(Node root) {
+<code>public void printTree(Node root) {
     Queue&lt;Node&gt; children = new ArrayDeque&lt;&gt;();
     children.add(root);
     while (!children.isEmpty()) {
@@ -5309,8 +5221,7 @@ public void printTree(Node root) {
 </p>
 <p style="text-align:justify" tags="task">
 <b id="q1180705913">Что напечатает следующее выражение:</b>&nbsp;<a href="#q1180705913" style="text-decoration:none">🔗</a><br/>
-<code>
-Arrays.stream(new Integer[]{1, 4, 3})
+<code>Arrays.stream(new Integer[]{1, 4, 3})
         .peek(e -&gt; {
             System.out.println("Saw " + e);
         })
@@ -5688,8 +5599,7 @@ In practice, methods are not compiled the first time they are called. For each m
 Какое значение counter1, counter2 будет выведено в строках с System.out.println() ?<br/>
 Что нужно изменить в коде для вывода корректного, актуального значения?<br/>
 Как работает CountDownLatch? Рассказать про стек потоков, гонку потоков.<br/>
-<code>
-public class Increment {
+<code>public class Increment {
     private static int counter1 = 0;
     private static int counter2 = 0;
 
@@ -5719,8 +5629,7 @@ public class Increment {
 </p>
 <p style="text-align:justify" tags="task">
 <b id="q196083857">Код-ревью - рассказать свои мысли о данном коде:</b>&nbsp;<a href="#q196083857" style="text-decoration:none">🔗</a><br/>
-<code>
-/**
+<code>/**
  * Компонент проведения платежей.
  * &lt;p&gt;
  * Платеж - это сумма в валюте, которая переводится от одного клиента другому.
@@ -5804,8 +5713,7 @@ public class PaymentService {
 </p>
 <p style="text-align:justify" tags="task">
 <b id="q-618486771">Рассказать, что будет при вызове ServiceA.doIt() и откатится ли транзакция?</b>&nbsp;<a href="#q-618486771" style="text-decoration:none">🔗</a><br/>
-<code>
-@Service
+<code>@Service
 public class ServiceA {
     @Autowired
     private TestRepository testRepository;
@@ -5867,8 +5775,7 @@ P.S. Хотя в ServiceB.doIt() и стоит catch - вторая транза
 <a href="https://ru.wikipedia.org/wiki/Лямбда-выражение">https://ru.wikipedia.org/wiki/Лямбда-выражение</a><br/>
 Лямбда-выражение - специальный синтаксис для определения функциональных объектов, заимствованный из лямбда-исчисления. Применяется как правило для объявления анонимных функций по месту их использования, и обычно допускает замыкание на лексический контекст, в котором это выражение использовано. Используя лямбда-выражения, можно объявлять функции в любом месте кода.<br/>
 Примеры:<br/>
-<code>
-(x, y) -&gt; { return x + y*5; }
+<code>(x, y) -&gt; { return x + y*5; }
 (x, y) -&gt; x + y*5
 </code>
 </p>
@@ -5902,8 +5809,7 @@ Mergesort - работает даже на структурах данных п�
 </p>
 <p style="text-align:justify" tags="task">
 <b id="q1530916402">Написать/описать устно метод, принимающий на вход 2 массива, и дающий ответ да/нет в случае, если все элементы первого массива содержатся (или нет) во втором массиве (нужное кол-во раз). Какова сложность O(n) метода?</b>&nbsp;<a href="#q1530916402" style="text-decoration:none">🔗</a><br/>
-<code>
-Примеры:
+<code>Примеры:
 (a,d,t,n), (a,r,t,n,s,a,y,d) -&gt; да
 (a,d,t,n,w), (a,r,t,n,s,a,y,d) -&gt; нет
 (a,a,m,n), (a,m,n) -&gt; нет
@@ -5965,8 +5871,7 @@ It will rollback only for RuntimeExceptions and Errors not for other exceptions 
 </p>
 <p style="text-align:justify" tags="task">
 <b id="q-2107431648">Рассказать свои мысли о данном коде:</b>&nbsp;<a href="#q-2107431648" style="text-decoration:none">🔗</a><br/>
-<code>
-List&lt;Employee&gt; list = new ArrayList&lt;Employee&gt;();
+<code>List&lt;Employee&gt; list = new ArrayList&lt;Employee&gt;();
 list.add(new Manager(100));
 list.add(new Manager(200));
 ((List&lt;Manager&gt;)list).get(1).getBonus();
@@ -5976,8 +5881,7 @@ list.add(new Manager(200));
 </p>
 <p style="text-align:justify" tags="task">
 <b id="q2125588807">Что выведется в консоль при создании объекта класса B?</b>&nbsp;<a href="#q2125588807" style="text-decoration:none">🔗</a><br/>
-<code>
-public class A {
+<code>public class A {
 	private int a = 1;
 	public A() {
 		sout(getA());
@@ -6004,8 +5908,7 @@ public class B extends A {
 <p style="text-align:justify" tags="task">
 <b id="q-1194238852">How to convert an array of objects to an array of their primitive types?</b>&nbsp;<a href="#q-1194238852" style="text-decoration:none">🔗</a><br/>
 <a href="https://stackoverflow.com/questions/564392/converting-an-array-of-objects-to-an-array-of-their-primitive-types">https://stackoverflow.com/questions/564392/converting-an-array-of-objects-to-an-array-of-their-primitive-types</a><br/>
-<code>
-Integer[] array = {1, 2, 3, 4, 5};
+<code>Integer[] array = {1, 2, 3, 4, 5};
 int[] converted = Arrays.stream(array).mapToInt(value -&gt; value).toArray();
 </code>
 </p>
@@ -6064,8 +5967,7 @@ Flux и Mono - cold publishers<br/>
 </p>
 <p style="text-align:justify" tags="task">
 <b id="q1623156297">Что будет выведено в консоль?</b>&nbsp;<a href="#q1623156297" style="text-decoration:none">🔗</a><br/>
-<code>
-public static void main(String[] args) {
+<code>public static void main(String[] args) {
     String string = "Hello";
     string.concat(" World");
     System.out.println(string);
@@ -6075,8 +5977,7 @@ public static void main(String[] args) {
 </p>
 <p style="text-align:justify" tags="task">
 <b id="q1706940678">Есть коллекция persons объектов класса Person, у которого есть поле List&lt;String&gt; names. Предложить способы вывести набор уникальных имен для данной коллекции persons:</b>&nbsp;<a href="#q1706940678" style="text-decoration:none">🔗</a><br/>
-<code>
-public class Person {
+<code>public class Person {
 	List&lt;String&gt; names;
 }
 List&lt;Person&gt; persons = new ArrayList&lt;&gt;() {{ ... }};
@@ -6095,8 +5996,7 @@ List&lt;String&gt; distinctNames = persons.stream()
 </p>
 <p style="text-align:justify" tags="task">
 <b id="q130928495">Какие могут быть проблемы с данным кодом?</b>&nbsp;<a href="#q130928495" style="text-decoration:none">🔗</a><br/>
-<code>
-@Service
+<code>@Service
 class WarmCacheService {
 	@Autowired
 	private DataSource ds;
@@ -6138,8 +6038,7 @@ Spring вначале вызывает конструктор по умолча�
 <b id="q-58501757">Как в коде указать уровень изоляции транзакции программно, а не через аннотацию?</b>&nbsp;<a href="#q-58501757" style="text-decoration:none">🔗</a><br/>
 <a href="https://habr.com/ru/companies/otus/articles/431508">https://habr.com/ru/companies/otus/articles/431508</a><br/>
 Можно использовать transactionalTemplate:<br/>
-<code>
-var template = new TransactionTemplate(transactionManager);
+<code>var template = new TransactionTemplate(transactionManager);
 template.setIsolationLevel(TransactionDefinition.ISOLATION_READ_UNCOMMITTED);   // указываем уровень изоляции
 template.setTimeout(30);    // указываем таймаут 30 секунд
 var result = transactionTemplate.execute(new TransactionCallback() {
