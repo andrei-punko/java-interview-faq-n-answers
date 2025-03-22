@@ -3713,7 +3713,7 @@ AssertionErrors are meant to indicate unrecoverable conditions in an application
 https://habr.com/ru/company/flant/blog/478306/
 Service mesh - это всего лишь куча userspace-прокси, расположенных «рядом» с сервисами, плюс набор управляющих процессов. Прокси в совокупности получили название data plane, а управляющие процессы именуются control plane. Data plane перехватывает вызовы между сервисами и делает с ними «всякое-разное»; control plane, соответственно, координирует поведение прокси и обеспечивает доступ для вас, т.е. оператора, к API, позволяя манипулировать сетью и изменять её как единое целое.
 
-- Рекурсивный вызов в JPA - как с ним бороться? Например у классов ентитей А и В есть взаимные ссылки друг на друга.
+- Рекурсивный вызов в JPA - как с ним бороться? (Например, у классов ентитей А и В есть взаимные ссылки друг на друга)
 [jpa]
 В случае если это в toString() или сериализации в json - исключить из toString, или при помощи соответствующей аннотации в JSON.
 Также при необходимости некоторые сущности можно загружать как lazy, управляя этим при помощи FetchType/FetchMode
@@ -5842,7 +5842,7 @@ https://ru.wikipedia.org/wiki/%D0%A2%D1%80%D0%B0%D0%BD%D0%B7%D0%B0%D0%BA%D1%86%D
 * Как в коде указать уровень изоляции транзакции программно, а не через аннотацию?
 [transactions]
 https://habr.com/ru/companies/otus/articles/431508
-Можно использовать transactionalTemplate:
+Можно использовать transactionTemplate в Spring:
 ```
 var template = new TransactionTemplate(transactionManager);
 template.setIsolationLevel(TransactionDefinition.ISOLATION_READ_UNCOMMITTED);   // указываем уровень изоляции
