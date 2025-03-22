@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const a = document.createElement('a');
         a.textContent = tag;
         // Используем только цвет, без изменения размера
-        const colorIndex = (index % 10) + 1;
+        const colorIndex = (index % 15) + 1;
         a.className = `tag-link tag-size-${colorIndex}`;
         a.addEventListener('click', () => toggleTag(tag, a));
         tagsList.appendChild(a);
