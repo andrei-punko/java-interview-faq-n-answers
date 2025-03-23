@@ -37,6 +37,7 @@
 .tag-link:hover {
     opacity: 0.8;
     transform: scale(1.05);
+    color: black;
 }
 
 .tag-link.selected {
