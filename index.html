@@ -2679,7 +2679,7 @@ Memory: usage, allocation<br/>
 Yes, it's possible<br/>
 </p>
 <p style="text-align:justify" tags="spring">
-<b id="q109357290">Aop in Spring</b>&nbsp;<a href="#q109357290" style="text-decoration:none">🔗</a><br/>
+<b id="q-941319825">Spring AOP</b>&nbsp;<a href="#q-941319825" style="text-decoration:none">🔗</a><br/>
 Spring makes everything via proxy. Proxy implements same interface as wrapped class. Aop added by extra code in generated proxy class<br/>
 </p>
 <p style="text-align:justify" tags="gc">
@@ -3166,15 +3166,17 @@ Imagine that the shared object is initially stored in main memory. A thread runn
 Идея подхода copy-on-write заключается в том, что при чтении области данных используется общая копия, в случае изменения данных — создается новая копия.<br/>
 </p>
 <p style="text-align:justify" tags="spring">
-<b id="q437994566">Spring: инициализация prototype бина как поле в синглтоне (spring bean scope proxy)</b>&nbsp;<a href="#q437994566" style="text-decoration:none">🔗</a><br/>
-?<br/>
+<b id="q-443010631">Spring: инициализация prototype бина как поле в синглтоне (spring bean scoped-proxy)</b>&nbsp;<a href="#q-443010631" style="text-decoration:none">🔗</a><br/>
+<a href="https://docs.spring.io/spring-framework/reference/core/beans/factory-scopes.html#beans-factory-scopes-other-injection-proxies">https://docs.spring.io/spring-framework/reference/core/beans/factory-scopes.html#beans-factory-scopes-other-injection-proxies</a><br/>
+By default, when the Spring container creates a proxy for a bean that is marked up with the &lt;aop:scoped-proxy/&gt; element, a CGLIB-based class proxy is created.<br/>
+Alternatively, you can configure the Spring container to create standard JDK interface-based proxies for such scoped beans, by specifying false for the value of the proxy-target-class attribute of the &lt;aop:scoped-proxy/&gt; element. Using JDK interface-based proxies means that you do not need additional libraries in your application classpath to affect such proxying. However, it also means that the class of the scoped bean must implement at least one interface and that all collaborators into which the scoped bean is injected must reference the bean through one of its interfaces.<br/>
 </p>
-<p style="text-align:justify" tags="db">
+<p style="text-align:justify" tags="db,transactions">
 <b id="q2056097630">Описать, как происходит оптимистическая/пессимистическая блокировка в БД</b>&nbsp;<a href="#q2056097630" style="text-decoration:none">🔗</a><br/>
-    пессимистическая: создание лока до и снятие после транзакции<br/>
-    оптимистическая: как compare-and-set, только проверяется column version<br/>
+= пессимистическая: создание лока до и снятие после транзакции<br/>
+= оптимистическая: как compare-and-set, только проверяется column version<br/>
 </p>
-<p style="text-align:justify" tags="patterns">
+<p style="text-align:justify" tags="patterns,buzzword">
 <b id="q1118015495">GRASP (general responsibility assignment software patterns) - общие шаблоны распределения ответственностей, используемые в ООП для решения общих задач по назначению ответственностей классам и объектам.</b>&nbsp;<a href="#q1118015495" style="text-decoration:none">🔗</a><br/>
 <a href="https://ru.wikipedia.org/wiki/GRASP">https://ru.wikipedia.org/wiki/GRASP</a><br/>
 GRASP содержит 9 шаблонов:<br/>
@@ -3188,7 +3190,7 @@ GRASP содержит 9 шаблонов:<br/>
     Снижает:<br/>
         степень зацепления.<br/>
 </p>
-<p style="text-align:justify" tags="patterns">
+<p style="text-align:justify" tags="patterns,buzzword">
 2. Создатель (Creator)<br/>
 Класс должен создавать экземпляры тех классов, которые он может:<br/>
     Содержать или агрегировать;<br/>
@@ -3196,7 +3198,7 @@ GRASP содержит 9 шаблонов:<br/>
     Использовать;<br/>
     Инициализировать, имея нужные данные.<br/>
 </p>
-<p style="text-align:justify" tags="patterns">
+<p style="text-align:justify" tags="patterns,buzzword">
 3. Контроллер (Controller)<br/>
 Отвечает за операции, запросы на которые приходят от пользователя, и может выполнять сценарии одного или нескольких вариантов использования (например, создание и удаление);<br/>
 Не выполняет работу самостоятельно, а делегирует компетентным исполнителям;<br/>
@@ -3206,7 +3208,7 @@ GRASP содержит 9 шаблонов:<br/>
         Корневой объект;<br/>
         Устройство.<br/>
 </p>
-<p style="text-align:justify" tags="patterns">
+<p style="text-align:justify" tags="patterns,buzzword">
 4. Слабое зацепление (Low Coupling)<br/>
 «Степень зацепления» — мера неотрывности элемента от других элементов (либо мера данных, имеющихся у него о них).<br/>
 «Слабое» зацепление является оценочной моделью, которая диктует, как распределить обязанности, которые необходимо поддерживать.<br/>
@@ -3216,7 +3218,7 @@ GRASP содержит 9 шаблонов:<br/>
     Не зависит от внешних изменений (изменение в одном классе оказывает слабое влияние на другие классы);<br/>
     Прост для повторного использования.<br/>
 </p>
-<p style="text-align:justify" tags="patterns">
+<p style="text-align:justify" tags="patterns,buzzword">
 5. Высокая связность (High Cohesion)<br/>
 Высокая связность класса — это оценочная модель, направленная на удержание объектов должным образом сфокусированными, управляемыми и понятными. Высокая связность обычно используется для поддержания низкого зацепления. Высокая связность означает, что обязанности данного элемента тесно связаны и сфокусированы. Разбиение программ на классы и подсистемы является примером деятельности, которая увеличивает связность системы.<br/>
 И наоборот, низкая связность — это ситуация, при которой данный элемент имеет слишком много несвязанных обязанностей. Элементы с низкой связностью часто страдают от того, что их трудно понять, трудно использовать, трудно поддерживать.<br/>
@@ -3228,13 +3230,13 @@ GRASP содержит 9 шаблонов:<br/>
         Поддержка;<br/>
         Устойчивость к внешним изменениям.<br/>
 </p>
-<p style="text-align:justify" tags="patterns">
+<p style="text-align:justify" tags="patterns,buzzword">
 6. Полиморфизм (Polymorphism)<br/>
 Устройство и поведение системы:<br/>
     Определяется данными;<br/>
     Задано полиморфными операциями её интерфейса.<br/>
 </p>
-<p style="text-align:justify" tags="patterns">
+<p style="text-align:justify" tags="patterns,buzzword">
 7. Чистая выдумка (Pure Fabrication)<br/>
 Не относится к предметной области, но:<br/>
     Уменьшает зацепление;<br/>
@@ -3242,11 +3244,11 @@ GRASP содержит 9 шаблонов:<br/>
     Упрощает повторное использование.<br/>
 «Pure Fabrication» отражает концепцию сервисов в модели предметно-ориентированного проектирования.<br/>
 </p>
-<p style="text-align:justify" tags="patterns">
+<p style="text-align:justify" tags="patterns,buzzword">
 8. Посредник (Indirection)<br/>
 Слабое зацепление между элементами системы (и возможность повторного использования) обеспечивается назначением промежуточного объекта их посредником.<br/>
 </p>
-<p style="text-align:justify" tags="patterns">
+<p style="text-align:justify" tags="patterns,buzzword">
 9. Устойчивость к изменениям (Protected Variations)<br/>
 Шаблон защищает элементы от изменения другими элементами (объектами или подсистемами) с помощью вынесения взаимодействия в фиксированный интерфейс, через который (и только через который) возможно взаимодействие между элементами. Поведение может варьироваться лишь через создание другой реализации интерфейса.<br/>
 </p>
@@ -3450,7 +3452,7 @@ When long time to app start - isn't appropriate<br/>
 <b id="q1050216556">Spring @PreDestroy - is it running when performs System.exit() in some part of code?</b>&nbsp;<a href="#q1050216556" style="text-decoration:none">🔗</a><br/>
 It will be runned because shutdown hook used for that<br/>
 </p>
-<p style="text-align:justify" tags="task">
+<p style="text-align:justify" tags="task,jms">
 <b id="q-643052744">Queue broker - забрали месседж из очереди и при процессинге упали. надо репроцессинг - как действовать?</b>&nbsp;<a href="#q-643052744" style="text-decoration:none">🔗</a><br/>
 Use acknowledge mechanism for that<br/>
 </p>
@@ -4272,8 +4274,30 @@ In addition to the TaskExecutor abstraction, Spring 3.0 introduces a TaskSchedul
 = Шестая нормальная форма (6NF)<br/>
 </p>
 <p style="text-align:justify" tags="task,core">
-<b id="q-230892142">Класс имплементит 2 интерфейса, с объявленными одинаковыми методами. В самом классе - описан метод нужной сигнатуры. Рассказать, будет ли это работать</b>&nbsp;<a href="#q-230892142" style="text-decoration:none">🔗</a><br/>
-?<br/>
+<b id="q375816595">Класс имплементит 2 интерфейса, каждый из которых объявляет одинаковый метод. В самом классе - описан метод нужной сигнатуры. Будет ли такое решение работать?</b>&nbsp;<a href="#q375816595" style="text-decoration:none">🔗</a><br/>
+<code>public interface IOne {
+    int doAction(String param);
+}
+
+public interface ITwo {
+    int doAction(String param);
+}
+
+public class OneTwo implements IOne, ITwo {
+
+    @Override
+    public int doAction(String param) {
+        return 21;
+    }
+
+    public static void main(String[] args) {
+        var oneTwo = new OneTwo();
+        var result = oneTwo.doAction("param-value");
+        System.out.println(result);
+    }
+}
+</code>
+Данное решение работает, экземпляр класса OneTwo имплементит одновременно оба интерфейса и может использоваться в коде, написанном как для IOne, так и для ITwo.<br/>
 </p>
 <p style="text-align:justify" tags="task,design">
 <b id="q-1466384158">Предложить структуру данных, чтобы хранить в ней структуру папок и файлов. Описать алгоритм, который измерит размер содержимого определенной папки.</b>&nbsp;<a href="#q-1466384158" style="text-decoration:none">🔗</a><br/>

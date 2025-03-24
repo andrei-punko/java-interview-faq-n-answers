@@ -2632,7 +2632,7 @@ https://ssl.com.ua/info/how-ssl-works/
 [core]
 yes, it's possible
 
-- aop in Spring
+- Spring AOP
 [spring]
 Spring makes everything via proxy. Proxy implements same interface as wrapped class. Aop added by extra code in generated proxy class
 
@@ -3068,17 +3068,19 @@ https://ru.wikipedia.org/wiki/%D0%9A%D0%BE%D0%BF%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D
 Механизм копирования при записи (Copy-On-Write, COW) используется для оптимизации многих процессов, происходящих в операционной системе, таких как, например, работа с оперативной памятью или файлами на диске.
 Идея подхода copy-on-write заключается в том, что при чтении области данных используется общая копия, в случае изменения данных — создается новая копия.
 
-- Spring: инициализация prototype бина как поле в синглтоне (spring bean scope proxy)
+- Spring: инициализация prototype бина как поле в синглтоне (spring bean scoped-proxy)
 [spring]
-?
+https://docs.spring.io/spring-framework/reference/core/beans/factory-scopes.html#beans-factory-scopes-other-injection-proxies
+By default, when the Spring container creates a proxy for a bean that is marked up with the <aop:scoped-proxy/> element, a CGLIB-based class proxy is created.
+Alternatively, you can configure the Spring container to create standard JDK interface-based proxies for such scoped beans, by specifying false for the value of the proxy-target-class attribute of the <aop:scoped-proxy/> element. Using JDK interface-based proxies means that you do not need additional libraries in your application classpath to affect such proxying. However, it also means that the class of the scoped bean must implement at least one interface and that all collaborators into which the scoped bean is injected must reference the bean through one of its interfaces.
 
 - Описать, как происходит оптимистическая/пессимистическая блокировка в БД
-[db]
-    пессимистическая: создание лока до и снятие после транзакции
-    оптимистическая: как compare-and-set, только проверяется column version
+[db,transactions]
+= пессимистическая: создание лока до и снятие после транзакции
+= оптимистическая: как compare-and-set, только проверяется column version
 
 - GRASP (general responsibility assignment software patterns) - общие шаблоны распределения ответственностей, используемые в ООП для решения общих задач по назначению ответственностей классам и объектам.
-[patterns]
+[patterns,buzzword]
 https://ru.wikipedia.org/wiki/GRASP
 GRASP содержит 9 шаблонов:
 1. Информационный эксперт (Information Expert)
@@ -3334,7 +3336,7 @@ when long time to app start - isn't appropriate
 it will be runned because shutdown hook used for that
 
 - queue broker - забрали месседж из очереди и при процессинге упали. надо репроцессинг - как действовать?
-[task]
+[task,jms]
 use acknowledge mechanism for that
 
 - How to make undo/rollback in Flyway?
@@ -4122,9 +4124,32 @@ https://ru.wikipedia.org/wiki/%D0%9D%D0%BE%D1%80%D0%BC%D0%B0%D0%BB%D1%8C%D0%BD%D
 = Доменно-ключевая нормальная форма (DKNF)
 = Шестая нормальная форма (6NF)
 
-- Класс имплементит 2 интерфейса, с объявленными одинаковыми методами. В самом классе - описан метод нужной сигнатуры. Рассказать, будет ли это работать
+- Класс имплементит 2 интерфейса, каждый из которых объявляет одинаковый метод. В самом классе - описан метод нужной сигнатуры. Будет ли такое решение работать?
 [task,core]
-?
+```
+public interface IOne {
+    int doAction(String param);
+}
+
+public interface ITwo {
+    int doAction(String param);
+}
+
+public class OneTwo implements IOne, ITwo {
+
+    @Override
+    public int doAction(String param) {
+        return 21;
+    }
+
+    public static void main(String[] args) {
+        var oneTwo = new OneTwo();
+        var result = oneTwo.doAction("param-value");
+        System.out.println(result);
+    }
+}
+```
+Данное решение работает, экземпляр класса OneTwo имплементит одновременно оба интерфейса и может использоваться в коде, написанном как для IOne, так и для ITwo.
 
 - Предложить структуру данных, чтобы хранить в ней структуру папок и файлов. Описать алгоритм, который измерит размер содержимого определенной папки.
 [task,design]
