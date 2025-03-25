@@ -45,6 +45,13 @@
     transform: none;
 }
 
+/* Стили для ссылок */
+.a-title {
+    color: black;
+    text-decoration: none;
+    font-weight: bold
+}
+
 /* Стили для кода */
 code {
     white-space: pre;
