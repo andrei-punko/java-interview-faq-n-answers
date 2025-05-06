@@ -6132,6 +6132,46 @@ Some applications can require additional startup time on their first initializat
 = Dependency inversion principle (Принцип инверсии зависимостей)<br/>
 	"Зависимость на Абстракциях. Нет зависимости на что-то конкретное".<br/>
 </p>
+<p style="text-align:justify" tags="concurrency">
+<a href="#q654793137" id="q654793137" class="a-title">Разница между методами wait() и sleep()</a><br/>
+<a href="https://javarush.com/groups/posts/4017-kofe-breyk-198-6-razlichiy-mezhdu-metodami-wait-i-sleep-kak-praviljhno-ispoljhzovatjh-list-v-ja">https://javarush.com/groups/posts/4017-kofe-breyk-198-6-razlichiy-mezhdu-metodami-wait-i-sleep-kak-praviljhno-ispoljhzovatjh-list-v-ja</a><br/>
+Оба метода используются для приостановки текущего потока.<br/>
+Когда поток вызывает wait() для объекта, то он переходит в неопределенное состояние ожидания, пока другой поток не вызовет для этого объекта notify() или notifyAll(). Если же никто не вызовет notify, то состояние ожидания продолжится, пока программа не будет закрыта.<br/>
+Что касается метода sleep(), то он может использоваться, чтобы приостановить поток на определенное время, например, подождать 5 секунд, прежде чем повторить попытку доступа к микросервису.<br/>
+Иными словами, sleep() — это самый простой способ перевести поток в спящий режим на ограниченное время, в то время как wait() — это более сложный способ взаимодействия между потоками в Java.<br/>
+</p>
+<p style="text-align:justify" tags="concurrency">
+Отличия:<br/>
+1. Синхронизированный контекст<br/>
+Метод wait() должен вызываться из синхронизированного контекста (может быть синхронизированным блоком или методом), тогда как метод sleep() может быть вызван из синхронизированного блока без него.<br/>
+2. Снятие блокировки<br/>
+Когда вы вызываете метод wait(), поток снимает блокировку, которую он удерживал. А вот после вызова метода sleep() поток продолжает удерживать блокировку.<br/>
+3. Местоположение<br/>
+Метод wait() определен в классе java.lang.Object, тогда как метод sleep() определен в классе java.lang.Thread.<br/>
+4. Пробуждение<br/>
+Поток, вызвавший wait(), может быть разбужен (woken up) другими потоками с помощью вызова методов notify() и notifyAll(). При этом спящий поток не может быть разбужен другим потоком до истечения времени ожидания<br/>
+</p>
+<p style="text-align:justify" tags="concurrency">
+<a href="#q878469956" id="q878469956" class="a-title">Рассказать о методе yield(). Сравнить его с методами wait(), sleep(), join()</a><br/>
+<a href="https://javarush.com/quests/lectures/questcore.level07.lecture07">https://javarush.com/quests/lectures/questcore.level07.lecture07</a><br/>
+<a href="https://www.baeldung.com/java-thread-yield">https://www.baeldung.com/java-thread-yield</a><br/>
+Процессор постоянно переключается между потоками. Каждому потоку выделяется небольшой кусочек процессорного времени, называемый квантом. Когда это время истекает – процессор переключается на другой поток. Вызов Thread.yield() позволяет досрочно завершить квант времени текущего потока и переключить процессор на следующий поток.<br/>
+</p>
+<p style="text-align:justify" tags="concurrency">
+• yield() vs wait()<br/>
+= While yield() is invoked in the context of the current thread, wait() can only be invoked on an explicitly acquired lock inside a synchronized block or method<br/>
+= Unlike yield(), it is possible for wait() to specify a minimum time period to wait before any attempt to schedule the thread again<br/>
+= With wait() it is also possible to wake the thread anytime through an invocation of notify() or notifyAll() on the concerned lock object<br/>
+</p>
+<p style="text-align:justify" tags="concurrency">
+• yield() vs sleep()<br/>
+While yield() can only make a heuristic attempt to suspend the execution of the current thread with no guarantee of when will it be scheduled back, sleep() can force the scheduler to suspend the execution of the current thread for at least the mentioned time period as its parameter.<br/>
+</p>
+<p style="text-align:justify" tags="concurrency">
+• yield() vs join()<br/>
+= The current thread can invoke join() on any other thread which makes the current thread wait for the other thread to die before proceeding<br/>
+= Optionally it can mention a time period as its parameter which indicates the maximum time for which the current thread should wait before resuming<br/>
+</p>
 <p style="text-align:justify" tags="sql">
 <a href="#q-729101219" id="q-729101219" class="a-title">Solutions of tasks which require writing SQL queries:</a><br/>
 <a href="https://github.com/andrei-punko/java-interview-coding/tree/master/sql">https://github.com/andrei-punko/java-interview-coding/tree/master/sql</a><br/>
