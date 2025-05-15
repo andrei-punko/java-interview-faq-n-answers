@@ -6173,6 +6173,27 @@ While yield() can only make a heuristic attempt to suspend the execution of the 
 = The current thread can invoke join() on any other thread which makes the current thread wait for the other thread to die before proceeding<br/>
 = Optionally it can mention a time period as its parameter which indicates the maximum time for which the current thread should wait before resuming<br/>
 </p>
+<p style="text-align:justify" tags="core">
+<a href="#q1498144112" id="q1498144112" class="a-title">Как откомпилировать и запустить код в Java-классе, используя только JDK?</a><br/>
+Написать код в текстовом файле, дать ему расширение .java<br/>
+Поместить файл внутри структуры директорий, соответствующей имени пакета: by.andd3dfx.App -&gt; src/by/andd3dfx/App.java<br/>
+В папке build:<br/>
+= добавить папку libs, скачать в нее нужные jar-ки с зависимостями,<br/>
+= добавить папку META-INF с файлом MANIFEST.MF и содержимым:<br/>
+<code>Main-Class: by.andd3dfx.App
+Class-Path: libs/commons-lang3-3.17.0.jar (перечислить нужные библиотеки, разделяя пробелами)
+</code>
+Откомпилировать java-класс (команда из папки с App.java):<br/>
+<code>javac -cp ../../../build/libs/commons-lang3-3.17.0.jar -d ../../../build App.java
+</code>
+Запаковать в zip-архив папки из ./build:<br/>
+= META-INF<br/>
+= libs<br/>
+= папку с нашим .class-файлом<br/>
+Переименовать zip-архив в app.jar; теперь можем запустить его (команда из корня проекта):<br/>
+<code>java -jar build/app.jar
+</code>
+</p>
 <p style="text-align:justify" tags="sql">
 <a href="#q-729101219" id="q-729101219" class="a-title">Solutions of tasks which require writing SQL queries:</a><br/>
 <a href="https://github.com/andrei-punko/java-interview-coding/tree/master/sql">https://github.com/andrei-punko/java-interview-coding/tree/master/sql</a><br/>

@@ -5974,6 +5974,30 @@ While yield() can only make a heuristic attempt to suspend the execution of the 
 = The current thread can invoke join() on any other thread which makes the current thread wait for the other thread to die before proceeding
 = Optionally it can mention a time period as its parameter which indicates the maximum time for which the current thread should wait before resuming
 
+* Как откомпилировать и запустить код в Java-классе, используя только JDK?
+[core]
+Написать код в текстовом файле, дать ему расширение .java
+Поместить файл внутри структуры директорий, соответствующей имени пакета: by.andd3dfx.App -> src/by/andd3dfx/App.java
+В папке build:
+= добавить папку libs, скачать в нее нужные jar-ки с зависимостями,
+= добавить папку META-INF с файлом MANIFEST.MF и содержимым:
+```
+Main-Class: by.andd3dfx.App
+Class-Path: libs/commons-lang3-3.17.0.jar (перечислить нужные библиотеки, разделяя пробелами)
+```
+Откомпилировать java-класс (команда из папки с App.java):
+```
+javac -cp ../../../build/libs/commons-lang3-3.17.0.jar -d ../../../build App.java
+```
+Запаковать в zip-архив папки из ./build:
+= META-INF
+= libs
+= папку с нашим .class-файлом
+Переименовать zip-архив в app.jar; теперь можем запустить его (команда из корня проекта):
+```
+java -jar build/app.jar
+```
+
 * Solutions of tasks which require writing SQL queries:
 [sql]
 https://github.com/andrei-punko/java-interview-coding/tree/master/sql
