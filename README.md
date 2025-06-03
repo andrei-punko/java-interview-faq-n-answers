@@ -50,3 +50,7 @@ pull origin master
   updated site will be available by original [link](https://andrei-punko.github.io/java-interview-faq-n-answers)
 
 Instead of generate & commit steps, you could use [generate-n-commit-n-push.bat](generate-n-commit-n-push.bat) script
+
+## Appendix. Coding interview materials
+
+Check [this repo](https://github.com/andrei-punko/java-interview-coding) to get materials for preparation to Java coding interview
