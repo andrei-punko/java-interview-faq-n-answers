@@ -6,7 +6,6 @@
 <a href="https://www.donationalerts.com/r/andd3dfx"><img src="images/button_donate.png" alt="Donate" height="47"/></a>
 <a href="https://andrei-punko.github.io/java-interview-faq-n-answers"><img src="images/button_java-faq.png" alt="Java interview FAQ" height="48"/></a>
 <a href="https://www.donationalerts.com/r/andd3dfx"><img src="images/button_donate.png" alt="Donate" height="47"/></a>
-<a href="https://andrei-punko.github.io/java-interview-faq-n-answers"><img src="images/button_java-faq.png" alt="Java interview FAQ" height="48"/></a>
 
 ## Prerequisites
 
