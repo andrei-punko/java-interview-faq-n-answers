@@ -334,8 +334,17 @@ Collection имеет методы: size, isEmpty, contains, add, remove.<br/>
 • retainAll - удаляет из данной К все элементы, НЕ содержащиеся в указанной К<br/>
 • clear – удаляет все элементы К<br/>
 • перевод коллекции в массив:<br/>
-<code>Object[] a = c.toArray();			//for Object type
-String[] a = c.toArray(new String[0]);	//for String type, for example
+<code>// For Object type:
+Object[] a = c.toArray();
+
+// For String type:
+String[] a = c.toArray(new String[0]);
+
+// Since Java 8:
+String[] strings = list.stream().toArray(String[]::new);
+
+// Since Java 11:
+String[] strings = list.toArray(String[]::new);
 </code>
 </p>
 <p style="text-align:justify" tags="collections">
