@@ -583,35 +583,35 @@ Deadlock – взаимная блокировка потоков: два пот
 Исключение UnmarshalException выбрасывается, когда RMI сервер не может восстановить сериализованный объект.<br/>
 Serializable класс содержит поле static final long serialVersionUID, обычно вычисляемое автоматически. Если мы изменили описание класса, значение автоматически рассчитываемого поля изменится. Хорошим тоном является объявление своего такого поля с заданием его значения.<br/>
 </p>
-<p style="text-align:justify" tags="transactions">
+<p style="text-align:justify" tags="db,transactions">
 <a href="#q-288604527" id="q-288604527" class="a-title">Транзакция. Распределенная транзакция</a><br/>
 <a href="https://ru.wikipedia.org/wiki/Транзакция_(информатика)">https://ru.wikipedia.org/wiki/Транзакция_(информатика)</a><br/>
 = Транзакция – группа последовательных операций, представляющая логическую единицу работы с данными. Транзакция может быть выполнена либо целиком и успешно, соблюдая целостность данных и независимо от параллельно идущих других транзакций, либо не выполнена вообще.<br/>
 </p>
-<p style="text-align:justify" tags="transactions">
+<p style="text-align:justify" tags="db,transactions">
 = Распределенная транзакция включает в себя несколько локальных транзакций, каждая из которых либо фиксируется, либо прерывается. Распределенная транзакция фиксируется только в том случае, когда зафиксированы все локальные транзакции, ее составляющие. Если хотя бы одна из них была прервана, то должна быть прервана и распределенная транзакция.<br/>
 </p>
-<p style="text-align:justify" tags="transactions">
+<p style="text-align:justify" tags="db,transactions">
 <a href="#q-2034116010" id="q-2034116010" class="a-title">Свойства, модель и типы транзакций. Привести примеры использования транзакции</a><br/>
 = Модели транзакций классифицируются на основании различных свойств:<br/>
 • Структура транзакции<br/>
 • Параллельность внутри транзакции<br/>
 • Продолжительность<br/>
 </p>
-<p style="text-align:justify" tags="transactions">
+<p style="text-align:justify" tags="db,transactions">
 = Выделяют следующие типы транзакций:<br/>
 1. Плоские (классические)<br/>
 2. Цепочечные<br/>
 3. Вложенные<br/>
 </p>
-<p style="text-align:justify" tags="transactions">
+<p style="text-align:justify" tags="db,transactions">
 Плоские транзакции характеризуются 4 классическими свойствами ACID (Atomicity, Consistency, Isolation, Durability):<br/>
 • Атомарность - транзакция должна быть выполнена в целом или не выполнена вовсе<br/>
 • Согласованность - гарантирует, что по мере выполнения транзакций, данные переходят из одного согласованного состояния в другое, т. е. транзакция не разрушает взаимной согласованности данных<br/>
 • Изолированность – означает, что конкурирующие за доступ к БД транзакции физически обрабатываются последовательно, изолированно друг от друга, но для пользователей это выглядит так, как будто они выполняются параллельно<br/>
 • Долговечность (прочность) – если транзакция завершена успешно, то те изменения, в данных, которые были ею произведены, не могут быть потеряны ни при каких обстоятельствах<br/>
 </p>
-<p style="text-align:justify" tags="transactions">
+<p style="text-align:justify" tags="db,transactions">
 = Пример транзакции:<br/>
 • Начать транзакцию<br/>
 == прочесть баланс на счету номер N1<br/>
@@ -5839,7 +5839,7 @@ public class PaymentService {
 = всегда ли будет отправлена нотификация в notificationRestClient.notify()?<br/>
 = вопрос об экстернализации конфигурации<br/>
 </p>
-<p style="text-align:justify" tags="task">
+<p style="text-align:justify" tags="spring,transactions,task">
 <a href="#q-618486771" id="q-618486771" class="a-title">Рассказать, что будет при вызове ServiceA.doIt() и откатится ли транзакция?</a><br/>
 <code>@Service
 public class ServiceA {
@@ -5885,14 +5885,14 @@ public class ServiceC {
 = Spring по умолчанию откатывает только unchecked (непроверяемые) исключения.<br/>
 <a href="https://habr.com/ru/articles/567368/">https://habr.com/ru/articles/567368/</a><br/>
 </p>
-<p style="text-align:justify" tags="task">
+<p style="text-align:justify" tags="spring,transactions,task">
 Поэтому:<br/>
 У нас есть следующие транзакции:<br/>
 1. ServiceA.doIt() (т.к. это самый внешний метод с висящей на нем @Transactional)<br/>
 2. ServiceB.doIt() (т.к. у @Transactional указан propagation = Propagation.REQUIRES_NEW)<br/>
 У метода ServiceC.doIt() новая транзакция не открывается, а используется та же, что открыта на ServiceB.doIt().<br/>
 </p>
-<p style="text-align:justify" tags="task">
+<p style="text-align:justify" tags="spring,transactions,task">
 Когда бросется (unchecked) исключение в ServiceC.doIt(), - неважно, произойдет ли откат, т.к. откатится в этом случае вторая транзакция (на методе ServiceB.doIt()).<br/>
 Первая транзакция на ServiceA.doIt() откатана не будет.<br/>
 P.S. Хотя в ServiceB.doIt() и стоит catch - вторая транзакция откатится, т.к.:<br/>
@@ -6125,7 +6125,7 @@ List&lt;String&gt; distinctNames = persons.stream()
 				.stream().toList();
 </code>
 </p>
-<p style="text-align:justify" tags="task">
+<p style="text-align:justify" tags="spring,task">
 <a href="#q130928495" id="q130928495" class="a-title">Какие могут быть проблемы с данным кодом?</a><br/>
 <code>@Service
 class WarmCacheService {
