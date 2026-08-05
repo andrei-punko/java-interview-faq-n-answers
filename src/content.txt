@@ -6151,6 +6151,10 @@ SELECT COALESCE(description, short_description, '(none)')
 FROM products;
 ```
 
+* MVCC в БД
+[buzzword,db]
+?
+
 * Solutions of tasks which require writing SQL queries:
 [sql]
 https://github.com/andrei-punko/java-interview-coding/tree/master/sql
