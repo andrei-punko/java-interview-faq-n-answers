@@ -6411,6 +6411,26 @@ ADR (Architecture Decision Record) - короткий текстовый док�
 •	Интеграция: на современных архитектурных платформах (например, Structurizr или IcePanel) записи ADR связываются с конкретными элементами диаграмм C4 (контейнерами или компонентами).<br/>
 Кликнув по сервису на схеме, можно сразу увидеть историю принятых по нему решений.<br/>
 </p>
+<p style="text-align:justify" tags="buzzword,linux">
+<a href="#q1284278422" id="q1284278422" class="a-title">Как стартовать свое приложение в режиме демона? Что это?</a><br/>
+Такой способ запуска приложения называется демонизацией, а само приложение работает как демон (daemon), фоновый процесс (background process) или независимый процесс.<br/>
+В контексте Unix-подобных систем (Linux, macOS) для этого также часто используют термин "запуск в режиме отвязки от терминала" (detached mode или nohup-запуск).<br/>
+</p>
+<p style="text-align:justify" tags="buzzword,linux">
+Как это устроено и почему это работает?<br/>
+</p>
+<p style="text-align:justify" tags="buzzword,linux">
+Когда вы закрываете терминал, операционная система отправляет всем запущенным в нем программам сигнал SIGHUP (Signal Hang Up — сигнал о завершении сеанса). Получив его, программы стандартно закрываются.<br/>
+Использование nohup меняет это поведение:<br/>
+• Игнорирование сигнала: Имя утилиты расшифровывается как "no hang up" (не вешать трубку). Она заставляет приложение игнорировать сигнал SIGHUP.<br/>
+• Перенаправление вывода: По умолчанию nohup перенаправляет все логи (stdout и stderr), которые раньше шли в консоль, в файл nohup.out. Благодаря этому программе есть куда писать данные, даже когда экран консоли закрыт.<br/>
+• Символ & (амперсанд): Обычно nohup используют вместе со знаком & на конце команды. Это отправляет процесс в фоновый режим выполнения (background), освобождая вам командную строку для дальнейшей работы.<br/>
+<code>nohup java -jar target/spring-boot-3-template-0.0.1-SNAPSHOT.jpg --spring.profiles.active=dev &gt; logs/sb3-template-$(date +%Y%m%d-%H%M%S).log 2&gt;&1 &
+</code>
+</p>
+<p style="text-align:justify" tags="buzzword,linux">
+Папка logs должна быть создана (mkdir -p logs) перед запуском команды, иначе Linux выдаст ошибку о том, что путь не найден.<br/>
+</p>
 <p style="text-align:justify" tags="sql">
 <a href="#q-729101219" id="q-729101219" class="a-title">Solutions of tasks which require writing SQL queries:</a><br/>
 <a href="https://github.com/andrei-punko/java-interview-coding/tree/master/sql">https://github.com/andrei-punko/java-interview-coding/tree/master/sql</a><br/>
